@@ -1,17 +1,19 @@
-FC NE Trainingsapp – GitHub Update v2.9
-=========================================
+FC NE TRAININGSAPP – UPDATE v2.10
 
-Enthalten:
-- index.html (v2.9)
+Auf GitHub ersetzen:
+- index.html
 - manifest.webmanifest
-- sw.js (neuer Cache v2.9)
+- sw.js
 
-Neu in v2.9:
-- dezenter professioneller Footer auf der Startseite
-- Version / Build / Stand sichtbar
-- "Über die App"-Seite
-- dezente Nennung: Konzept & Weiterentwicklung: Simon Pfister
-- transparente Info zu Quellen, PWA und lokaler Datenspeicherung
+Den Ordner icons unverändert lassen.
 
-Auf GitHub diese drei Dateien ersetzen.
-Den vorhandenen Ordner icons unverändert lassen.
+WICHTIG:
+Die bereits auf dem iPhone installierte App muss normalerweise NICHT neu installiert werden.
+Beim nächsten Start prüft der Service Worker auf eine neue Version. Die Navigation wird netzwerk-first geladen, damit die aktuelle GitHub-Version bevorzugt wird.
+
+v2.10:
+- iPhone/PWA-Kopfbereich mit zusätzlichem Sicherheitsabstand
+- Manifest im HTML eingebunden
+- Apple-PWA-Metadaten ergänzt
+- Service Worker wird automatisch registriert und aktualisiert
+- Cache-Version v2.10
