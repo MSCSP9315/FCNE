@@ -1,4 +1,4 @@
-const CACHE = 'fcne-training-v2.4-20261004';
+const CACHE = 'fcne-training-v2.6-20261004';
 const APP_SHELL = [
   './',
   './index.html',

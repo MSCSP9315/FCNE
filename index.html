@@ -151,9 +151,9 @@
 /* v1.7 Traineransicht */
 .trainer-overlay{display:none;position:fixed;inset:0;z-index:120;background:#f3f6f4;overflow:auto}
 .trainer-overlay.open{display:block}
-.trainer-head{position:sticky;top:0;z-index:5;background:#087f42;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;box-shadow:0 2px 10px #0002}
+.trainer-head{position:sticky;top:0;z-index:5;background:#087f42;color:#fff;padding:calc(22px + env(safe-area-inset-top)) 14px 12px;display:flex;align-items:flex-start;gap:10px;box-shadow:0 2px 10px #0002}
 .trainer-head button{border:0;background:#fff;color:#087f42;width:38px;height:38px;border-radius:50%;font-size:22px;font-weight:900}
-.trainer-head div{min-width:0}.trainer-head strong{display:block;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trainer-head small{display:block;font-size:10px;opacity:.9;margin-top:2px}
+.trainer-head div{min-width:0}.trainer-head strong{display:block;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.trainer-head small{display:block;font-size:10px;opacity:.9;margin-top:2px}.trainer-action-box{background:#fff;border-radius:15px;padding:12px;margin-bottom:10px;box-shadow:0 3px 12px #0000000d}.trainer-action-box h4{margin:0 0 6px;font-size:13px;color:#1f2823}.trainer-action-box p{margin:0 0 10px;font-size:11px;line-height:1.45;color:#627069}.trainer-save-btn{width:100%;border:0;background:#087f42;color:#fff;border-radius:12px;padding:13px 12px;font-weight:900;font-size:13px}.trainer-save-btn.secondary{background:#e9f6ed;color:#087f42;border:1px solid #bfe3cb}.trainer-action-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}.trainer-fav-btn{width:100%;border:1px solid #f0d47b;background:#fff8dd;color:#7b5d00;border-radius:12px;padding:13px 10px;font-weight:900;font-size:12px}.trainer-fav-btn.on{background:#fff0ad;color:#644800}.fav-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 12px}.fav-tab{border:1px solid #dfe6e1;background:#fff;color:#4f5b54;border-radius:12px;padding:11px 8px;font-weight:900;font-size:11px}.fav-tab.on{background:#087f42;color:#fff;border-color:#087f42}.fav-training-card{background:#fff;border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 4px 14px #0001}.fav-training-card h3{margin:0 0 5px;font-size:15px}.fav-training-card p{margin:0;color:#69716d;font-size:10px;line-height:1.45}.fav-training-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}.fav-training-meta span{background:#eef4f0;border-radius:999px;padding:5px 8px;font-size:9px;font-weight:800;color:#526058}.fav-training-actions{display:flex;gap:8px;margin-top:11px}.fav-training-actions button{flex:1;border:0;border-radius:11px;padding:10px 8px;font-weight:900;font-size:10px}.fav-training-open{background:#087f42;color:#fff}.fav-training-remove{background:#f2f2f2;color:#5b625e}@media(max-width:420px){.trainer-action-row{grid-template-columns:1fr}}
 .trainer-body{padding:12px 12px 30px;max-width:760px;margin:0 auto}
 .trainer-progress-box{background:#fff;border-radius:15px;padding:12px;margin-bottom:10px;box-shadow:0 3px 12px #0000000d}
 .trainer-progress-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:850;margin-bottom:8px}
@@ -286,13 +286,6 @@ body.category-mode .bottomnav{display:none!important}
 <style id="e2c-original-image-style">
 .e2c-original-wrap{margin:0 0 14px}.e2c-original-image{object-fit:contain;background:#f5f7f5}.e2c-original-wrap .imported-tap{text-align:center;margin-top:6px}
 </style>
-
-<link rel="manifest" href="./manifest.webmanifest">
-<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="FC NE Training">
-
 </head>
 <body>
 <div class="app">
@@ -1021,6 +1014,8 @@ let wizardStep=0;
 let draft={name:'',target:75,players:10,focus:'Gemischt / allgemein',date:v191Today(),notes:'',customDurations:{},selections:{}};
 let filterCat='Alle';
 let favorites=JSON.parse(localStorage.getItem('fcne_favs_v07')||'[]');
+let trainingFavorites=JSON.parse(localStorage.getItem('fcne_training_favs_v26')||'[]');
+let favoritesTab='exercises';
 let saved=JSON.parse(localStorage.getItem('fcne_saved_trainings_v07')||'[]').map(v191Compat);
 
 // v1.7.1: alte generische Kleinfeld-/Grossfeldkarte auf das aktuelle PMF-Format migrieren.
@@ -1069,6 +1064,7 @@ function v20Backup(){
      app:'FC NE Trainingsapp',version:'2.1.1',exportedAt:new Date().toISOString(),
      savedTrainings:JSON.parse(localStorage.getItem('fcne_saved_trainings_v07')||'[]'),
      favorites:JSON.parse(localStorage.getItem('fcne_favs_v07')||'[]'),
+     trainingFavorites:JSON.parse(localStorage.getItem('fcne_training_favs_v26')||'[]'),
      history:JSON.parse(localStorage.getItem('fcne_training_history_v21')||'[]')
    };
    const data=JSON.stringify(payload,null,2);
@@ -1099,7 +1095,7 @@ async function v211CopyBackup(){
 }
 
 function v20ImportClick(){const f=document.getElementById('v20BackupFile');if(f)f.click();}
-function v20Restore(input){const file=input.files&&input.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data.savedTrainings)||!Array.isArray(data.favorites))throw new Error('format');if(!confirm('Backup einlesen? Die aktuell gespeicherten Trainings und Favoriten werden ersetzt.')){input.value='';return;}localStorage.setItem('fcne_saved_trainings_v07',JSON.stringify(data.savedTrainings));localStorage.setItem('fcne_favs_v07',JSON.stringify(data.favorites));saved=data.savedTrainings.map(v191Compat);favs=new Set(data.favorites);v21History=Array.isArray(data.history)?data.history:[];v21SaveHistory();renderSaved();alert('Backup wurde erfolgreich eingelesen.');}catch(e){alert('Keine gültige FC-NE-Backup-Datei.');}input.value='';};reader.readAsText(file);}
+function v20Restore(input){const file=input.files&&input.files[0];if(!file)return;const reader=new FileReader();reader.onload=()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data.savedTrainings)||!Array.isArray(data.favorites))throw new Error('format');if(!confirm('Backup einlesen? Die aktuell gespeicherten Trainings und Favoriten werden ersetzt.')){input.value='';return;}localStorage.setItem('fcne_saved_trainings_v07',JSON.stringify(data.savedTrainings));localStorage.setItem('fcne_favs_v07',JSON.stringify(data.favorites));trainingFavorites=Array.isArray(data.trainingFavorites)?data.trainingFavorites:[];localStorage.setItem('fcne_training_favs_v26',JSON.stringify(trainingFavorites));saved=data.savedTrainings.map(v191Compat);favorites=[...data.favorites];v21History=Array.isArray(data.history)?data.history:[];v21SaveHistory();renderSaved();renderFavorites();alert('Backup wurde erfolgreich eingelesen.');}catch(e){alert('Keine gültige FC-NE-Backup-Datei.');}input.value='';};reader.readAsText(file);}
 
 /* v2.1 – Trainingshistorie */
 let v21History=JSON.parse(localStorage.getItem('fcne_training_history_v21')||'[]');
@@ -1230,7 +1226,13 @@ function openTrainerDraft(){
     total:total,
     players:draft.players||0,
     focus:draft.focus||'Gemischt / allgemein',
-    selections:{...draft.selections}
+    date:draft.date||'',
+    notes:draft.notes||'',
+    sourceBranch:draft.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv',
+    environment:draft.environment||window.FCNE_EASY_MODE||null,
+    customDurations:{...(draft.customDurations||{})},
+    selections:{...draft.selections},
+    _fromSaved:false
   };
   renderTrainerView(trainerCurrent);
 }
@@ -1243,7 +1245,14 @@ function openTrainerSaved(i){
     total:t.total,
     players:t.players||0,
     focus:t.focus||'Gemischt / allgemein',
-    selections:{...t.selections}
+    date:t.date||'',
+    notes:t.notes||'',
+    sourceBranch:t.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv',
+    environment:t.environment||null,
+    customDurations:{...(t.customDurations||{})},
+    selections:{...t.selections},
+    _fromSaved:true,
+    _savedId:t.id||null
   };
   renderTrainerView(trainerCurrent);
 }
@@ -1260,6 +1269,9 @@ function renderTrainerView(t){
     <div class="training-meta"><b>🎯 ${escapeHtml(t.focus||'Gemischt / allgemein')}</b><span>Schwerpunkt</span></div>
     <div class="training-meta"><b>⏱ ${t.total||0} Min</b><span>Gesamtdauer</span></div>
   </div>`;
+
+  const favOn=isTrainingFavorite(t);
+  html+=`<div class="trainer-action-box"><h4>${t._fromSaved?'💾 Bereits gespeichertes Training':'💾 Training direkt aus der Traineransicht speichern'}</h4><p>${t._fromSaved?'Du kannst dieses Training als Kopie speichern oder als komplettes Lieblingstraining markieren.':'Wenn alles passt, kannst du das Training hier speichern oder direkt zu deinen kompletten Trainings-Favoriten hinzufügen.'}</p><div class="trainer-action-row"><button class="trainer-save-btn${t._fromSaved?' secondary':''}" onclick="saveTrainerFromOverlay()">${t._fromSaved?'💾 Als Kopie speichern':'💾 Training speichern'}</button><button class="trainer-fav-btn${favOn?' on':''}" onclick="toggleTrainerFavoriteFromOverlay()">${favOn?'★ Trainings-Favorit':'☆ Training zu Favoriten'}</button></div></div>`;
 
   html+=`<div class="trainer-progress-box">
     <div class="trainer-progress-top"><span>Trainingsfortschritt</span><span id="trainerProgressText">0 / ${exercises.length} erledigt</span></div>
@@ -1306,6 +1318,56 @@ function closeTrainer(){
   document.getElementById('trainerOverlay').classList.remove('open');
   document.body.style.overflow='';
 }
+
+function saveTrainerFromOverlay(){
+  if(!trainerCurrent)return;
+  const name=(trainerCurrent.name||'Training').trim();
+  const sourceBranch=trainerCurrent.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv';
+  draft={
+    name:name||'Training',
+    target:trainerCurrent.target||trainerCurrent.total||0,
+    players:Number(trainerCurrent.players)||0,
+    focus:trainerCurrent.focus||'Gemischt / allgemein',
+    date:trainerCurrent.date||(typeof v191Today==='function'?v191Today():''),
+    notes:trainerCurrent.notes||'',
+    customDurations:{...(trainerCurrent.customDurations||{})},
+    selections:{...(trainerCurrent.selections||{})},
+    sourceBranch:sourceBranch
+  };
+  if(trainerCurrent.environment) draft.environment=trainerCurrent.environment;
+  window.FCNE_ACTIVE_BRANCH=sourceBranch;
+  if(trainerCurrent.environment) window.FCNE_EASY_MODE=trainerCurrent.environment;
+  closeTrainer();
+  if(typeof window.saveTraining==='function') window.saveTraining();
+}
+
+function trainingFavoriteSignature(t){
+  if(!t)return '';
+  const sel=t.selections||{};
+  return JSON.stringify({b:t.sourceBranch||'sfv',e:t.environment||'',s:PHASES.map(ph=>sel[ph]||'')});
+}
+function isTrainingFavorite(t){const sig=trainingFavoriteSignature(t);return !!sig&&trainingFavorites.some(x=>trainingFavoriteSignature(x)===sig);}
+function saveTrainingFavorites(){localStorage.setItem('fcne_training_favs_v26',JSON.stringify(trainingFavorites));}
+function toggleTrainingFavorite(t){
+  if(!t)return false;
+  const sig=trainingFavoriteSignature(t),i=trainingFavorites.findIndex(x=>trainingFavoriteSignature(x)===sig);
+  if(i>=0){trainingFavorites.splice(i,1);saveTrainingFavorites();renderFavorites();return false;}
+  const copy={id:'fav-'+Date.now(),name:t.name||'Training',target:t.target||t.total||0,total:t.total||0,players:Number(t.players)||0,focus:t.focus||'Gemischt / allgemein',date:t.date||'',notes:t.notes||'',sourceBranch:t.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv',environment:t.environment||null,customDurations:{...(t.customDurations||{})},selections:{...(t.selections||{})},favoritedAt:new Date().toISOString()};
+  trainingFavorites.unshift(copy);saveTrainingFavorites();renderFavorites();return true;
+}
+function toggleTrainerFavoriteFromOverlay(){
+  if(!trainerCurrent)return;
+  toggleTrainingFavorite(trainerCurrent);
+  renderTrainerView(trainerCurrent);
+}
+function toggleSavedTrainingFavorite(i){const t=saved[i];if(!t)return;toggleTrainingFavorite(t);openSaved(i);}
+function openFavoriteTraining(i){
+  const t=trainingFavorites[i];if(!t)return;
+  trainerCurrent={...t,selections:{...(t.selections||{})},customDurations:{...(t.customDurations||{})},_fromSaved:false};
+  renderTrainerView(trainerCurrent);
+}
+function removeTrainingFavorite(i){trainingFavorites.splice(i,1);saveTrainingFavorites();renderFavorites();}
+function setFavoritesTab(tab){favoritesTab=tab==='trainings'?'trainings':'exercises';renderFavorites();}
 
 function trainingOverviewHtml(name,target,total,selections,players=0,focus='Gemischt / allgemein',withEditButton=false,editIndex=-1){
   const exercises=PHASES.map(ph=>DATA.find(e=>e.id===selections[ph])).filter(Boolean);
@@ -1448,7 +1510,7 @@ function openSaved(i){
   draft.customDurations=oldDur;
   if(t.date) html='<div class="v191-note"><b>📅 Trainingsdatum:</b> '+escapeHtml(t.date)+'</div>'+html;
   if(t.notes) html+='<div class="v191-note"><b>📝 Trainernotizen</b><br>'+escapeHtml(t.notes)+'</div>';
-  html+='<div class="v20-actions"><button class="v20-btn" onclick="v20PrintTraining()">🖨 Drucken / als PDF sichern</button>'+(v21IsDone(t.id)?'<button class="v21-undone" onclick="v21UndoDone('+i+');openSaved('+i+')">↩ Durchführung zurücknehmen</button>':'<button class="v21-done" onclick="v21MarkDone('+i+');openSaved('+i+')">✓ Als durchgeführt markieren</button>')+'</div>';
+  html+='<div class="v20-actions"><button class="v20-btn" onclick="v20PrintTraining()">🖨 Drucken / als PDF sichern</button><button class="v20-btn secondary" onclick="toggleSavedTrainingFavorite('+i+')">'+(isTrainingFavorite(t)?'★ Trainings-Favorit':'☆ Zu Trainings-Favoriten')+'</button>'+(v21IsDone(t.id)?'<button class="v21-undone" onclick="v21UndoDone('+i+');openSaved('+i+')">↩ Durchführung zurücknehmen</button>':'<button class="v21-done" onclick="v21MarkDone('+i+');openSaved('+i+')">✓ Als durchgeführt markieren</button>')+'</div>';
   document.getElementById('savedDetail').innerHTML=html;
   showScreen('saved-detail');
 }
@@ -1510,7 +1572,22 @@ function closeExercise(){document.querySelectorAll('.exercise-detail.open').forE
 function selectFromDetail(id){const e=DATA.find(x=>x.id===id);if(!e)return;draft.selections[e.category]=id;closeExercise();if(document.getElementById('screen-wizard').classList.contains('active'))renderWizard();}
 function toggleFavorite(id){const i=favorites.indexOf(id);if(i>=0)favorites.splice(i,1);else favorites.push(id);localStorage.setItem('fcne_favs_v07',JSON.stringify(favorites));syncHearts();renderFavorites();}
 function syncHearts(){document.querySelectorAll('.heart').forEach(b=>b.textContent=favorites.includes(b.dataset.id)?'♥':'♡');}
-function renderFavorites(){const box=document.getElementById('favoritesContent');let h='<div class="special-head"><h3>❤️ Meine Favoriten</h3><p>Deine markierten Übungen aus der normalen Übungsbibliothek.</p></div>';if(!favorites.length){h+='<div class="form-card" style="text-align:center;color:#707872">Noch keine Favoriten gespeichert.</div>';box.innerHTML=h;return;}favorites.forEach(id=>{const e=DATA.find(x=>x.id===id);if(!e)return;const idx=DATA.indexOf(e),img=document.querySelector('#detail-'+idx+' .detail-hero').src;h+=`<button class="exercise-card" onclick="openExercise(${idx})"><img src="${img}"><div class="exercise-copy"><span class="badge" style="background:${COLORS[e.category]}">★ ${e.category}</span><h3>${e.title}</h3><p>${e.duration} Min · ${e.focus||e.field}</p></div><span class="arrow">›</span></button>`;});box.innerHTML=h;}
+function renderFavorites(){
+  const box=document.getElementById('favoritesContent');if(!box)return;
+  let h='<div class="special-head"><h3>⭐ Meine Favoriten</h3><p>Einzelne Lieblingsübungen und komplette Lieblingstrainings getrennt verwalten.</p></div>';
+  h+=`<div class="fav-tabs"><button class="fav-tab ${favoritesTab==='exercises'?'on':''}" onclick="setFavoritesTab('exercises')">❤️ Übungen (${favorites.length})</button><button class="fav-tab ${favoritesTab==='trainings'?'on':''}" onclick="setFavoritesTab('trainings')">⭐ Komplette Trainings (${trainingFavorites.length})</button></div>`;
+  if(favoritesTab==='trainings'){
+    if(!trainingFavorites.length){h+='<div class="form-card" style="text-align:center;color:#707872">Noch keine kompletten Trainings als Favorit markiert.<br><br>Öffne ein Training in der Traineransicht und tippe auf „☆ Training zu Favoriten“.</div>';box.innerHTML=h;return;}
+    trainingFavorites.forEach((t,i)=>{
+      const branch=t.sourceBranch==='easy2coach'?(t.environment==='hall'?'Easy2Coach · Halle':'Easy2Coach · Feld'):'SFV';
+      h+=`<div class="fav-training-card"><h3>⭐ ${escapeHtml(t.name||'Training')}</h3><p>${escapeHtml(branch)}${t.date?' · '+escapeHtml(t.date):''}</p><div class="fav-training-meta"><span>⏱ ${Number(t.total)||0} Min</span><span>👥 ${Number(t.players)||'–'} Spieler</span><span>🎯 ${escapeHtml(t.focus||'Gemischt / allgemein')}</span></div><div class="fav-training-actions"><button class="fav-training-open" onclick="openFavoriteTraining(${i})">Traineransicht öffnen</button><button class="fav-training-remove" onclick="removeTrainingFavorite(${i})">Entfernen</button></div></div>`;
+    });
+    box.innerHTML=h;return;
+  }
+  if(!favorites.length){h+='<div class="form-card" style="text-align:center;color:#707872">Noch keine Übungen als Favorit markiert.</div>';box.innerHTML=h;return;}
+  favorites.forEach(id=>{const e=DATA.find(x=>x.id===id);if(!e)return;const idx=DATA.indexOf(e),detail=document.querySelector('#detail-'+idx+' .detail-hero'),img=detail?detail.src:(e.image||'');h+=`<button class="exercise-card" onclick="openExercise(${idx})">${img?`<img src="${img}">`:''}<div class="exercise-copy"><span class="badge" style="background:${COLORS[e.category]}">★ ${e.category}</span><h3>${escapeHtml(e.title)}</h3><p>${e.duration} Min · ${escapeHtml(e.focus||e.field||'')}</p></div><span class="arrow">›</span></button>`;});
+  box.innerHTML=h;
+}
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
 renderImportedExercises();renderSaved();renderFavorites();syncHearts();
 </script>
@@ -2619,16 +2696,5 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 </script>
 
 <!-- FC NE v2.2: fixed Spielteil + strict field/hall split -->
-
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js', { updateViaCache: 'none' })
-      .then(reg => reg.update())
-      .catch(err => console.warn('Service Worker konnte nicht registriert werden:', err));
-  });
-}
-</script>
-
 </body>
 </html>

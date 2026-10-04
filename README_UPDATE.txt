@@ -1,10 +1,8 @@
-FC NE Trainingsapp v2.4 – GitHub Update
+FC NE Trainingsapp v2.6
 
-Diese drei Dateien im Hauptverzeichnis des GitHub-Repositories ersetzen:
+Auf GitHub ersetzen:
 - index.html
-- manifest.webmanifest
 - sw.js
+- manifest.webmanifest nur falls noch nicht aktuell
 
-Den Ordner icons unverändert lassen.
-
-Der neue Service Worker verwendet einen neuen Cache-Namen und löscht alte fcne-training-* Caches beim Aktivieren.
+Ordner icons unverändert lassen.
