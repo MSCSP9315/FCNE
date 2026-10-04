@@ -1,8 +1,17 @@
-FC NE Trainingsapp v2.6
+FC NE Trainingsapp – GitHub Update v2.9
+=========================================
 
-Auf GitHub ersetzen:
-- index.html
-- sw.js
-- manifest.webmanifest nur falls noch nicht aktuell
+Enthalten:
+- index.html (v2.9)
+- manifest.webmanifest
+- sw.js (neuer Cache v2.9)
 
-Ordner icons unverändert lassen.
+Neu in v2.9:
+- dezenter professioneller Footer auf der Startseite
+- Version / Build / Stand sichtbar
+- "Über die App"-Seite
+- dezente Nennung: Konzept & Weiterentwicklung: Simon Pfister
+- transparente Info zu Quellen, PWA und lokaler Datenspeicherung
+
+Auf GitHub diese drei Dateien ersetzen.
+Den vorhandenen Ordner icons unverändert lassen.
