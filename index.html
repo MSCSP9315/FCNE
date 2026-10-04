@@ -13,7 +13,7 @@
 <style>
 :root{--green:#087f42;--green2:#055d2f;--bg:#f3f5f4;--muted:#6b736f}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111}button,input,select{font:inherit}
-/* v2.11 – iPhone/PWA Header-Sicherheitsabstand inkl. Planungs-Overlay */
+/* v2.12 – Schrittweise Zurück-Navigation in Planer, Bibliothek und Wizard */
 html.pwa-standalone .trainer-head{padding-top:max(64px,calc(18px + env(safe-area-inset-top)))!important}
 html.pwa-standalone .ep-head{padding-top:max(72px,calc(18px + env(safe-area-inset-top)))!important;padding-bottom:14px!important}
 html.pwa-standalone .topbar,html.pwa-standalone .detail-header{padding-top:max(58px,calc(10px + env(safe-area-inset-top)))!important}
@@ -358,7 +358,7 @@ body.category-mode .bottomnav{display:none!important}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.11 · Build 2026.10.04</div>
+  <div class="app-version">Version 2.12 · Build 2026.10.04</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -376,7 +376,7 @@ body.category-mode .bottomnav{display:none!important}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.11 · Build 2026.10.04</div>
+    <div class="app-version">Version 2.12 · Build 2026.10.04</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -399,7 +399,7 @@ body.category-mode .bottomnav{display:none!important}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.11</b><span>App-Version</span></div>
+        <div><b>Version 2.12</b><span>App-Version</span></div>
         <div><b>2026.10.04</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
@@ -1721,7 +1721,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 </script>
 
 <script>document.body.classList.add('category-mode');</script>
-<div id="eplanOverlay" aria-hidden="true"><div class="ep-head"><button class="ep-back" onclick="eplanClose()">‹</button><div><b>Training planen</b><div style="font-size:12px;color:#718078">E-Junioren · TEST</div></div></div><div class="ep-wrap"><div id="epMain"><div class="ep-kicker">E-JUNIOREN</div><h2>Wie möchtest du planen?</h2><p>SFV-Vorlage übernehmen oder dein Training selbst zusammenstellen.</p><button class="ep-card ep-sfv" onclick="eplanShowSFV()"><span class="ep-icon">⚽</span><b>Training nach SFV</b><small>Komplette hinterlegte SFV-Trainings mit Originalübungen und Zeiten.</small></button><button class="ep-card ep-auto" onclick="eplanShowAuto()"><span class="ep-icon">✨</span><b>Training nach Schwerpunkt generieren</b><small>SFV-Ablauf automatisch: Aufwärmen → Vielseitigkeit → Fussball spielen lernen → Fussball spielen → Ausklang.</small></button><button class="ep-card ep-own" onclick="eplanOwn()"><span class="ep-icon">▣</span><b>Eigenes Training planen</b><small>Den bestehenden FC-NE-Planer unverändert öffnen.</small></button><button class="ep-card ep-topic" onclick="eplanShowTopics()"><span class="ep-icon">🔎</span><b>Übungen nach Thema</b><small>Dribbling, Zweikampf, Passen, Torschuss und weitere Kategorien.</small></button></div><div id="epSFV" class="ep-sub"></div><div id="epAuto" class="ep-sub"></div><div id="epTopics" class="ep-sub"></div></div></div><script id="eplan-v2-js">
+<div id="eplanOverlay" aria-hidden="true"><div class="ep-head"><button class="ep-back" onclick="eplanBack()">‹</button><div><b>Training planen</b><div style="font-size:12px;color:#718078">E-Junioren · TEST</div></div></div><div class="ep-wrap"><div id="epMain"><div class="ep-kicker">E-JUNIOREN</div><h2>Wie möchtest du planen?</h2><p>SFV-Vorlage übernehmen oder dein Training selbst zusammenstellen.</p><button class="ep-card ep-sfv" onclick="eplanShowSFV()"><span class="ep-icon">⚽</span><b>Training nach SFV</b><small>Komplette hinterlegte SFV-Trainings mit Originalübungen und Zeiten.</small></button><button class="ep-card ep-auto" onclick="eplanShowAuto()"><span class="ep-icon">✨</span><b>Training nach Schwerpunkt generieren</b><small>SFV-Ablauf automatisch: Aufwärmen → Vielseitigkeit → Fussball spielen lernen → Fussball spielen → Ausklang.</small></button><button class="ep-card ep-own" onclick="eplanOwn()"><span class="ep-icon">▣</span><b>Eigenes Training planen</b><small>Den bestehenden FC-NE-Planer unverändert öffnen.</small></button><button class="ep-card ep-topic" onclick="eplanShowTopics()"><span class="ep-icon">🔎</span><b>Übungen nach Thema</b><small>Dribbling, Zweikampf, Passen, Torschuss und weitere Kategorien.</small></button></div><div id="epSFV" class="ep-sub"></div><div id="epAuto" class="ep-sub"></div><div id="epTopics" class="ep-sub"></div></div></div><script id="eplan-v2-js">
 (function(){
  const original=window.startWizard;
  window.__fcneOriginalStartWizard=original;
@@ -2825,5 +2825,127 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   });
 })();
 </script>
+
+<script id="fcne-v212-navigation">
+(function(){
+  function overlay(){return document.getElementById('eplanOverlay');}
+  function openOverlay(){
+    if(typeof showScreen==='function') showScreen('home');
+    const o=overlay(); if(!o)return;
+    o.classList.add('open');o.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';
+  }
+  function currentContext(){
+    const branch=window.FCNE_ACTIVE_BRANCH||'sfv';
+    const mode=window.FCNE_EASY_MODE||null;
+    if(document.getElementById('epAuto')?.classList.contains('open')) return {view:'generator',branch,mode};
+    if(document.getElementById('epLibrary')?.classList.contains('open')) return {view:'library',branch,mode};
+    if(document.getElementById('epBranch')?.classList.contains('open')){
+      if(branch==='easy2coach' && mode) return {view:'easy-mode',branch,mode};
+      if(branch==='easy2coach') return {view:'easy-choice',branch,mode:null};
+      return {view:'branch',branch,mode:null};
+    }
+    return {view:'root',branch:null,mode:null};
+  }
+  window.fcnePlannerCurrentContext=currentContext;
+
+  window.fcneRestorePlannerContext=function(ctx){
+    openOverlay();
+    ctx=ctx||{view:'root'};
+    if(ctx.view==='generator'){
+      window.FCNE_ACTIVE_BRANCH=ctx.branch||'sfv';window.FCNE_EASY_MODE=ctx.mode||null;
+      if(ctx.branch==='easy2coach' && ctx.mode && typeof fcneOpenEasyMode==='function') fcneOpenEasyMode(ctx.mode);
+      if(typeof fcneBranchGenerate==='function') fcneBranchGenerate();
+      return;
+    }
+    if(ctx.view==='library'){
+      window.FCNE_ACTIVE_BRANCH=ctx.branch||'sfv';window.FCNE_EASY_MODE=ctx.mode||null;
+      if(ctx.branch==='easy2coach' && ctx.mode && typeof fcneOpenEasyMode==='function') fcneOpenEasyMode(ctx.mode);
+      if(typeof fcneBranchLibrary==='function') fcneBranchLibrary();
+      return;
+    }
+    if(ctx.view==='easy-mode' && typeof fcneOpenEasyMode==='function'){fcneOpenEasyMode(ctx.mode||'field');return;}
+    if(ctx.view==='easy-choice' && typeof fcneOpenBranch==='function'){fcneOpenBranch('easy2coach');return;}
+    if(ctx.view==='branch' && typeof fcneOpenBranch==='function'){fcneOpenBranch(ctx.branch||'sfv');return;}
+    if(typeof eplanHome==='function')eplanHome();
+  };
+
+  window.eplanBack=function(){
+    const ctx=currentContext();
+    if(ctx.view==='generator' || ctx.view==='library'){
+      if(ctx.branch==='easy2coach' && ctx.mode && typeof fcneOpenEasyMode==='function') fcneOpenEasyMode(ctx.mode);
+      else if(typeof fcneOpenBranch==='function') fcneOpenBranch(ctx.branch||'sfv');
+      return;
+    }
+    if(ctx.view==='easy-mode'){
+      if(typeof fcneOpenBranch==='function') fcneOpenBranch('easy2coach');
+      return;
+    }
+    if(ctx.view==='easy-choice' || ctx.view==='branch'){
+      if(typeof eplanHome==='function')eplanHome();
+      return;
+    }
+    if(typeof eplanClose==='function')eplanClose();
+  };
+
+  // Merken, aus welchem Zweig der normale Wizard geöffnet wurde.
+  if(typeof window.fcneBranchCompose==='function'){
+    const baseCompose=window.fcneBranchCompose;
+    window.fcneBranchCompose=function(){
+      window.FCNE_WIZARD_RETURN_CONTEXT=currentContext();
+      window.FCNE_WIZARD_ENTRY_MODE='compose';
+      return baseCompose.apply(this,arguments);
+    };
+  }
+  if(typeof window.eplanAutoGenerate==='function'){
+    const baseGenerate=window.eplanAutoGenerate;
+    window.eplanAutoGenerate=function(){
+      window.FCNE_WIZARD_RETURN_CONTEXT=currentContext();
+      window.FCNE_WIZARD_ENTRY_MODE='generate';
+      return baseGenerate.apply(this,arguments);
+    };
+  }
+
+  if(typeof window.wizardBack==='function'){
+    const baseWizardBack=window.wizardBack;
+    window.wizardBack=function(){
+      const ctx=window.FCNE_WIZARD_RETURN_CONTEXT;
+      if(ctx && window.FCNE_WIZARD_ENTRY_MODE==='generate' && typeof STEPS!=='undefined' && wizardStep===STEPS.length-1){
+        window.fcneRestorePlannerContext({view:'generator',branch:ctx.branch||window.FCNE_ACTIVE_BRANCH||'sfv',mode:ctx.mode||window.FCNE_EASY_MODE||null});
+        return;
+      }
+      if(ctx && typeof wizardStep!=='undefined' && wizardStep===0){
+        window.fcneRestorePlannerContext(ctx);
+        return;
+      }
+      return baseWizardBack.apply(this,arguments);
+    };
+  }
+
+  // Übung aus der Planer-Bibliothek öffnen und beim Zurück genau dort landen.
+  document.addEventListener('click',function(ev){
+    const card=ev.target.closest && ev.target.closest('#epLibrary .fcne-lib-card');
+    if(!card)return;
+    const code=card.getAttribute('onclick')||'';
+    const match=code.match(/openExercise\((\d+)\)/);
+    if(!match)return;
+    ev.preventDefault();ev.stopImmediatePropagation();
+    window.FCNE_DETAIL_RETURN_CONTEXT=currentContext();
+    if(typeof eplanClose==='function')eplanClose();
+    if(typeof openExercise==='function')openExercise(Number(match[1]));
+  },true);
+
+  if(typeof window.closeExercise==='function'){
+    const baseCloseExercise=window.closeExercise;
+    window.closeExercise=function(){
+      const ctx=window.FCNE_DETAIL_RETURN_CONTEXT;
+      window.FCNE_DETAIL_RETURN_CONTEXT=null;
+      const r=baseCloseExercise.apply(this,arguments);
+      if(ctx)setTimeout(()=>window.fcneRestorePlannerContext(ctx),0);
+      return r;
+    };
+  }
+})();
+</script>
+
 </body>
 </html>
