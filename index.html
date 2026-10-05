@@ -13,7 +13,7 @@
 <style>
 :root{--green:#087f42;--green2:#055d2f;--bg:#f3f5f4;--muted:#6b736f}
 *{box-sizing:border-box}html,body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:#111}button,input,select{font:inherit}
-/* v2.12 – Schrittweise Zurück-Navigation in Planer, Bibliothek und Wizard */
+/* v2.14 – lokale Easy2Coach-Datenbank (IndexedDB) + schneller Generator */
 html.pwa-standalone .trainer-head{padding-top:max(64px,calc(18px + env(safe-area-inset-top)))!important}
 html.pwa-standalone .ep-head{padding-top:max(72px,calc(18px + env(safe-area-inset-top)))!important;padding-bottom:14px!important}
 html.pwa-standalone .topbar,html.pwa-standalone .detail-header{padding-top:max(58px,calc(10px + env(safe-area-inset-top)))!important}
@@ -358,7 +358,7 @@ body.category-mode .bottomnav{display:none!important}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.12 · Build 2026.10.04</div>
+  <div class="app-version">Version 2.14 · Build 2026.10.05</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -376,7 +376,7 @@ body.category-mode .bottomnav{display:none!important}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.12 · Build 2026.10.04</div>
+    <div class="app-version">Version 2.14 · Build 2026.10.05</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -399,7 +399,7 @@ body.category-mode .bottomnav{display:none!important}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.12</b><span>App-Version</span></div>
+        <div><b>Version 2.14</b><span>App-Version</span></div>
         <div><b>2026.10.04</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
@@ -2285,7 +2285,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     const imgs=((e.images&&e.images.length)?e.images:(e.image?[e.image]:[]));
     const imageHtml=imgs.length?imgs.map((src,n)=>`<div class="e2c-original-wrap"><img class="detail-hero e2c-original-image" src="${src}" alt="${title}" onclick="openZoom(this.src)"><div class="imported-tap">Easy2Coach Originalgrafik${imgs.length>1?' '+(n+1)+' / '+imgs.length:''} · antippen zum Vergrössern</div></div>`).join(''):`<div class="detail-hero fcne-card-loading" style="height:240px;border-radius:16px;display:grid;place-items:center;color:#6d786f">Originalgrafik wird online geladen …</div>`;
     const mats=(e.materials||[]).length?`<div class="v22-coaching"><div class="v22-coaching-title">🧰 Material</div><ul>${e.materials.map(x=>`<li>${escapeHtml(x)}</li>`).join('')}</ul></div>`:'';
-    node.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${title}</strong><small>Alternative / Easy2Coach · ${cat}</small></div><button class="heart" data-id="${e.id}" onclick="toggleFavorite('${e.id}')">♡</button></div><div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:${COLORS[e.category]||'#159a4a'}">${ICONS[e.category]||'⚽'} ${cat}</span><span class="fcne-live-pill">ONLINE</span></div>${imageHtml}<div class="facts"><div><b>${Number(e.duration)||15} Min</b><small>Dauer</small></div><div><b>${focus}</b><small>Schwerpunkt</small></div><div><b>${escapeHtml(e.players||'variabel')}</b><small>Spieler</small></div></div><div class="imported-note"><b>Alter:</b> ${escapeHtml(e.age||'wird geladen')} · <b>Niveau:</b> ${escapeHtml(e.level||'wird geladen')}</div>${mats}<div class="detail-actions"><button class="primary" onclick="selectFromDetail('${e.id}')">✓ Für Training wählen</button><button class="secondary" onclick="window.open('${e.source_url}','_blank','noopener')">↗ Original bei Easy2Coach</button></div><div class="source-note">Quelle: Easy2Coach – öffentliche Übungsdatenbank. Originalgrafik und Metadaten werden online von der Originalübung geladen.</div></div>`;
+    node.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${title}</strong><small>Alternative / Easy2Coach · ${cat}</small></div><button class="heart" data-id="${e.id}" onclick="toggleFavorite('${e.id}')">♡</button></div><div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:${COLORS[e.category]||'#159a4a'}">${ICONS[e.category]||'⚽'} ${cat}</span><span class="fcne-live-pill">DATEN LOKAL</span></div>${imageHtml}<div class="facts"><div><b>${Number(e.duration)||15} Min</b><small>Dauer</small></div><div><b>${focus}</b><small>Schwerpunkt</small></div><div><b>${escapeHtml(e.players||'variabel')}</b><small>Spieler</small></div></div><div class="imported-note"><b>Alter:</b> ${escapeHtml(e.age||'wird geladen')} · <b>Niveau:</b> ${escapeHtml(e.level||'wird geladen')}</div>${mats}<div class="detail-actions"><button class="primary" onclick="selectFromDetail('${e.id}')">✓ Für Training wählen</button><button class="secondary" onclick="window.open('${e.source_url}','_blank','noopener')">↗ Original bei Easy2Coach</button></div><div class="source-note">Quelle: Easy2Coach – öffentliche Übungsdatenbank. Originalgrafik und Metadaten werden online von der Originalübung geladen.</div></div>`;
   }
 
   const baseOpen=window.openExercise;
@@ -2307,7 +2307,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
       const box=document.getElementById('epBranch');
       if(box && !box.querySelector('.fcne-syncbox')){
         const menu=box.querySelector('.fcne-branch-menu-head');
-        const sync=document.createElement('div');sync.className='fcne-syncbox';sync.innerHTML=`<div class="fcne-syncrow"><b>🌐 Vollständiger Easy2Coach-Katalog</b><button class="fcne-syncbtn" onclick="fcneSyncEasy2CoachCatalog(true)">Jetzt synchronisieren</button></div><div class="fcne-syncstatus">${fcneBranchPool('easy2coach').length} Übungen momentan verfügbar</div><div class="fcne-syncbar"><i></i></div><div class="fcne-online-note">Online-Modus: Der öffentliche Easy2Coach-Katalog wird in die App eingelesen. Originalgrafiken werden beim Öffnen einer Übung nachgeladen.</div>`;
+        const sync=document.createElement('div');sync.className='fcne-syncbox';sync.innerHTML=`<div class="fcne-syncrow"><b>🌐 Lokale Easy2Coach-Datenbank</b><button class="fcne-syncbtn" onclick="fcneSyncEasy2CoachCatalog(true)">Datenbank aktualisieren</button></div><div class="fcne-syncstatus">${fcneBranchPool('easy2coach').length} Übungen momentan verfügbar</div><div class="fcne-syncbar"><i></i></div><div class="fcne-online-note">Die Übungsdaten werden lokal auf diesem Gerät gespeichert. Nur Aktualisierung und Originalgrafiken benötigen Internet.</div>`;
         menu.insertAdjacentElement('afterend',sync);
       }
       fcneSyncEasy2CoachCatalog(false);
@@ -2322,7 +2322,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     if(q)es=es.filter(e=>[e.title,e.category,e.focus,e.field,e.intro,e.easy2coach_catalog_context].concat((e.sections||[]).flat()).join(' ').toLowerCase().includes(q));
     es.sort((a,b)=>String(a.category).localeCompare(String(b.category),'de')||String(a.title).localeCompare(String(b.title),'de'));
     const c=document.getElementById('fcneLibCount'),list=document.getElementById('fcneLibList');if(!c||!list)return;
-    c.innerHTML=es.length+' Übungen gefunden'+(branch==='easy2coach'?` <span class="fcne-live-pill">ONLINE-KATALOG</span>`:'');
+    c.innerHTML=es.length+' Übungen gefunden'+(branch==='easy2coach'?` <span class="fcne-live-pill">LOKALE DATENBANK</span>`:'');
     if(!es.length){list.innerHTML='<div class="fcne-empty"><strong>Keine passende Übung</strong>Ändere den Filter oder den Suchbegriff.</div>';return;}
     const limit=branch==='easy2coach'?Math.min(catalogVisible,es.length):es.length, shown=es.slice(0,limit);
     list.innerHTML=shown.map(e=>{const idx=DATA.indexOf(e),img=e.image||'';return `<button class="fcne-lib-card" data-eid="${e.id}" onclick="eplanClose();openExercise(${idx})">${img?`<img src="${img}" alt="${esc18(e.title)}">`:`<div class="fcne-card-loading" style="width:86px;height:70px;border-radius:10px"></div>`}<span><small class="fcne-source-pill">${m.short}</small>${e.fcneLiveCatalog?'<small class="fcne-live-pill">ONLINE</small>':''}<b>${esc18(e.title)}</b><small>${esc18(e.category)} · ${Number(e.duration)||15} Min${e.focus?' · '+esc18(e.focus):''}</small></span><span class="arrow">›</span></button>`}).join('')+(limit<es.length?`<button class="fcne-loadmore" onclick="fcneLoadMoreE2C()">Weitere Übungen anzeigen (${es.length-limit} übrig)</button>`:'');
@@ -2457,7 +2457,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     if(window.FCNE_ACTIVE_BRANCH!=='easy2coach')return;
     const panel=document.getElementById('epLibrary'); if(!panel)return;
     const filter=panel.querySelector('.fcne-filter-box'); if(!filter||panel.querySelector('.fcne-sync-card'))return;
-    const box=document.createElement('div');box.className='fcne-sync-card';box.innerHTML='<div class="fcne-sync-row"><span class="fcne-syncstatus">Öffentlicher Easy2Coach-Katalog</span><span><b class="fcne-e2c-count">'+fcneBranchPool('easy2coach').length+'</b> / '+(meta.count||1671)+'</span></div><div class="fcne-sync-track"><i></i></div><div class="fcne-sync-actions"><button type="button" onclick="fcneSyncEasy2CoachCatalog(true)">↻ Katalog aktualisieren</button><small>Originalbilder & Details online</small></div>';
+    const box=document.createElement('div');box.className='fcne-sync-card';box.innerHTML='<div class="fcne-sync-row"><span class="fcne-syncstatus">Easy2Coach-Datenbank</span><span><b class="fcne-e2c-count">'+fcneBranchPool('easy2coach').length+'</b> / '+(meta.count||1671)+'</span></div><div class="fcne-sync-track"><i></i></div><div class="fcne-sync-actions"><button type="button" onclick="fcneSyncEasy2CoachCatalog(true)">↻ Katalog aktualisieren</button><small>Übungsdaten lokal · Originalbilder online</small></div>';
     filter.parentNode.insertBefore(box,filter);
   };
 
@@ -2674,15 +2674,11 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     let arr=easyPool(mode).filter(e=>e.category===ph&&!used.has(e.id));
     arr=arr.map(e=>({e,score:typeof focusScore==='function'?focusScore(e,focus):0})).sort((a,b)=>b.score-a.score||String(a.e.title).localeCompare(String(b.e.title),'de'));
     const ordered=arr.filter(x=>x.score>0).concat(arr.filter(x=>x.score<=0));
-    for(const x of ordered.slice(0,28)){
-      const e=x.e,ok=ageState(e);if(ok===false)continue;
-      if(e.fcneLiveCatalog&&window.fcneHydrateE2C && ok!==true){
-        try{await window.fcneHydrateE2C(e);}catch(_){ }
-        if(!modeAccepts(e,mode)||ageState(e)===false)continue;
-      }
-      return e;
-    }
-    return ordered[0]?.e||null;
+    // v2.13: Generator arbeitet sofort mit den bereits lokal verfügbaren Metadaten.
+    // Keine Detailseite wird während des Generierens online nachgeladen.
+    const known=ordered.filter(x=>ageState(x.e)===true);
+    const unknown=ordered.filter(x=>ageState(x.e)!==false);
+    return known[0]?.e || unknown[0]?.e || ordered[0]?.e || null;
   }
   function wait(show,text,mode){
     let x=document.getElementById('fcneV21Wait');
@@ -2695,13 +2691,17 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     const focus=document.getElementById('fcneAutoFocus')?.value||'Gemischt / allgemein';
     const target=Number(document.getElementById('fcneAutoDuration')?.value)||75;
     const players=Math.max(1,Number(document.getElementById('fcneAutoPlayers')?.value)||10);
-    wait(true,'Easy2Coach-Katalog und E-Junioren-Eignung werden geprüft …',mode);
+    wait(true,'Passende Übungen werden aus dem lokalen Pool ausgewählt …',mode);
     try{
-      if(allEasy().length<1200 && window.fcneSyncEasy2CoachCatalog) await window.fcneSyncEasy2CoachCatalog(false);
+      // v2.13: Kein blockierender Katalog-Abgleich mehr vor dem Generieren.
+      // Falls der lokale Katalog noch klein ist, darf ein Abgleich im Hintergrund starten.
+      if(allEasy().length<1200 && window.fcneSyncEasy2CoachCatalog){
+        setTimeout(()=>{ try{ window.fcneSyncEasy2CoachCatalog(false); }catch(_){} },0);
+      }
       const m=modeMeta(mode);
       draft={name:(mode==='hall'?'Hallentraining':'Training')+' – '+(typeof canonicalFocusLabel==='function'?canonicalFocusLabel(focus):focus),target,players,focus,date:(typeof v191Today==='function'?v191Today():''),notes:'Automatisch im Zweig '+m.short+' generiert',customDurations:{},selections:{},sourceBranch:'easy2coach',environment:mode};
       const used=new Set();
-      for(const ph of PHASES){wait(true,'Passende Übung für „'+ph+'“ wird ausgewählt …',mode);const e=await pickExercise(ph,focus,used,mode);if(e){draft.selections[ph]=e.id;used.add(e.id);}}
+      for(const ph of PHASES){const e=await pickExercise(ph,focus,used,mode);if(e){draft.selections[ph]=e.id;used.add(e.id);}}
       const missing=PHASES.filter(ph=>!draft.selections[ph]);
       if(missing.length){alert('Für '+m.title+' fehlen aktuell passende Übungen in: '+missing.join(', ')+'. Bitte einen anderen Schwerpunkt versuchen.');return;}
       const selected=PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])).filter(Boolean),base=selected.reduce((a,e)=>a+(Number(e.duration)||0),0)||target;
@@ -2944,6 +2944,227 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
       return r;
     };
   }
+})();
+</script>
+
+
+<style id="fcne-v214-localdb-css">
+.fcne-localdb-note{display:flex;align-items:flex-start;gap:8px;margin:8px 0 0;padding:9px 10px;border-radius:11px;background:#edf7f0;color:#365b43;font-size:10px;line-height:1.4}
+.fcne-localdb-note b{font-weight:900}.fcne-db-ready{color:#087f42!important}.fcne-db-updating{color:#8a6411!important}
+</style>
+<script id="fcne-v214-localdb">
+(function(){
+  const DB_NAME='fcne_training_local_v214';
+  const DB_VERSION=1;
+  const STORE='e2cExercises';
+  const META_STORE='meta';
+  const LEGACY_CATALOG='fcne_e2c_catalog_v18';
+  const LEGACY_SYNC='fcne_e2c_sync_v18';
+  let dbPromise=null;
+
+  function openDb(){
+    if(dbPromise)return dbPromise;
+    dbPromise=new Promise((resolve,reject)=>{
+      if(!('indexedDB' in window)){reject(new Error('IndexedDB nicht verfügbar'));return;}
+      const req=indexedDB.open(DB_NAME,DB_VERSION);
+      req.onupgradeneeded=()=>{
+        const db=req.result;
+        if(!db.objectStoreNames.contains(STORE)){
+          const s=db.createObjectStore(STORE,{keyPath:'id'});
+          s.createIndex('source_url','source_url',{unique:false});
+          s.createIndex('category','category',{unique:false});
+          s.createIndex('focus','focus',{unique:false});
+        }
+        if(!db.objectStoreNames.contains(META_STORE))db.createObjectStore(META_STORE,{keyPath:'key'});
+      };
+      req.onsuccess=()=>resolve(req.result);
+      req.onerror=()=>reject(req.error||new Error('IndexedDB konnte nicht geöffnet werden'));
+    });
+    return dbPromise;
+  }
+
+  function cloneExercise(e){
+    const keys=['id','title','category','duration','field','focus','intro','sections','source_provider','source_label','source_url','source_note','fcneBranch','age','players','level','materials','coaching','image','images','fcneLiveCatalog','easy2coach_catalog_context','fcneTrainingPlaces','environment'];
+    const x={};
+    keys.forEach(k=>{if(typeof e?.[k]!=='undefined')x[k]=e[k];});
+    x.id=x.id||('e2c-local-'+Math.random().toString(36).slice(2));
+    x.fcneBranch='easy2coach';
+    return x;
+  }
+
+  async function getAll(){
+    const db=await openDb();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readonly');
+      const req=tx.objectStore(STORE).getAll();
+      req.onsuccess=()=>resolve(Array.isArray(req.result)?req.result:[]);
+      req.onerror=()=>reject(req.error);
+    });
+  }
+  async function putAll(rows){
+    if(!Array.isArray(rows)||!rows.length)return 0;
+    const db=await openDb();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(STORE,'readwrite');
+      const s=tx.objectStore(STORE);
+      rows.forEach(e=>{try{s.put(cloneExercise(e));}catch(_){}});
+      tx.oncomplete=()=>resolve(rows.length);
+      tx.onerror=()=>reject(tx.error);
+      tx.onabort=()=>reject(tx.error||new Error('Speichern abgebrochen'));
+    });
+  }
+  async function putOne(e){return putAll(e?[e]:[]);}
+  async function setMeta(key,value){
+    const db=await openDb();
+    return new Promise((resolve,reject)=>{
+      const tx=db.transaction(META_STORE,'readwrite');
+      tx.objectStore(META_STORE).put({key,value});
+      tx.oncomplete=()=>resolve(value);tx.onerror=()=>reject(tx.error);
+    });
+  }
+  async function getMeta(key){
+    const db=await openDb();
+    return new Promise((resolve,reject)=>{
+      const req=db.transaction(META_STORE,'readonly').objectStore(META_STORE).get(key);
+      req.onsuccess=()=>resolve(req.result?.value??null);req.onerror=()=>reject(req.error);
+    });
+  }
+
+  function isEasy(e){
+    try{return (typeof fcneExerciseBranch==='function'?fcneExerciseBranch(e):e?.fcneBranch)==='easy2coach';}catch(_){return e?.fcneBranch==='easy2coach';}
+  }
+  function mergeRows(rows){
+    if(!Array.isArray(rows)||!rows.length)return 0;
+    const byId=new Map(DATA.map(e=>[e.id,e]));
+    const byUrl=new Map(DATA.filter(e=>e.source_url).map(e=>[e.source_url,e]));
+    let added=0,updated=0;
+    rows.forEach(raw=>{
+      if(!raw||!raw.id)return;
+      const e=cloneExercise(raw);
+      const existing=byId.get(e.id)||(e.source_url?byUrl.get(e.source_url):null);
+      if(existing){
+        // Lokale Detaildaten dürfen leere/alte Live-Daten ergänzen, aber keine eingebetteten SFV-Daten anfassen.
+        if(isEasy(existing)){
+          Object.keys(e).forEach(k=>{
+            const v=e[k];
+            if(v!=='' && v!==null && typeof v!=='undefined' && !(Array.isArray(v)&&!v.length)) existing[k]=v;
+          });
+          updated++;
+        }
+      }else{
+        DATA.push(e);byId.set(e.id,e);if(e.source_url)byUrl.set(e.source_url,e);added++;
+      }
+    });
+    return added+updated;
+  }
+
+  function easyRows(){return DATA.filter(isEasy).filter(e=>e.fcneLiveCatalog).map(cloneExercise);}
+  function totalEasy(){try{return typeof fcneBranchPool==='function'?fcneBranchPool('easy2coach').length:DATA.filter(isEasy).length;}catch(_){return DATA.filter(isEasy).length;}}
+  function updateStatus(msg,cls){
+    document.querySelectorAll('.fcne-syncstatus').forEach(el=>{el.textContent=msg;el.classList.remove('fcne-db-ready','fcne-db-updating');if(cls)el.classList.add(cls);});
+    document.querySelectorAll('.fcne-e2c-count').forEach(el=>el.textContent=totalEasy());
+  }
+  function refreshOpenLibrary(){
+    try{if(document.getElementById('epLibrary')?.classList.contains('open')&&typeof fcneRenderBranchLibrary==='function')fcneRenderBranchLibrary();}catch(_){}
+  }
+
+  async function migrateLegacyIfNeeded(current){
+    if(current.length)return current;
+    let legacy=[];
+    try{legacy=JSON.parse(localStorage.getItem(LEGACY_CATALOG)||'[]')||[];}catch(_){legacy=[];}
+    if(Array.isArray(legacy)&&legacy.length){
+      await putAll(legacy);
+      await setMeta('migratedAt',Date.now());
+      return legacy;
+    }
+    return [];
+  }
+
+  window.fcneLocalDbReady=(async()=>{
+    try{
+      updateStatus('Lokale Datenbank wird geöffnet …','fcne-db-updating');
+      let rows=await getAll();
+      rows=await migrateLegacyIfNeeded(rows);
+      mergeRows(rows);
+      const stored=rows.length;
+      const meta=await getMeta('lastRemoteUpdate');
+      const when=meta?new Date(meta).toLocaleDateString('de-CH'):'';
+      updateStatus('Lokale Datenbank bereit · '+totalEasy()+' Übungen'+(when?' · Update '+when:''),'fcne-db-ready');
+      refreshOpenLibrary();
+      // Nach erfolgreicher Migration ist der grosse Katalog nicht mehr auf localStorage angewiesen.
+      try{if(stored) localStorage.removeItem(LEGACY_CATALOG);}catch(_){}
+      return {ok:true,stored,total:totalEasy()};
+    }catch(err){
+      updateStatus('Lokale Datenbank nicht verfügbar · eingebauter Übungspool wird verwendet');
+      return {ok:false,error:String(err)};
+    }
+  })();
+
+  // Die bestehende Online-Synchronisation bleibt als MANUELLE Aktualisierung erhalten.
+  const remoteSync=window.fcneSyncEasy2CoachCatalog;
+  if(typeof remoteSync==='function'){
+    window.fcneSyncEasy2CoachCatalog=async function(force){
+      await window.fcneLocalDbReady.catch(()=>{});
+      if(!force){
+        updateStatus('Lokale Datenbank bereit · '+totalEasy()+' Übungen','fcne-db-ready');
+        return totalEasy();
+      }
+      updateStatus('Datenbank wird online aktualisiert …','fcne-db-updating');
+      let result;
+      try{
+        result=await remoteSync.call(this,true);
+        const rows=easyRows();
+        await putAll(rows);
+        await setMeta('lastRemoteUpdate',Date.now());
+        await setMeta('catalogCount',rows.length);
+        try{localStorage.removeItem(LEGACY_CATALOG);}catch(_){}
+        updateStatus('Lokal gespeichert · '+totalEasy()+' Easy2Coach-Übungen','fcne-db-ready');
+        refreshOpenLibrary();
+        return result||totalEasy();
+      }catch(err){
+        updateStatus('Update fehlgeschlagen · lokale Daten bleiben verfügbar');
+        throw err;
+      }
+    };
+  }
+
+  // Nach dem Öffnen einer Online-Übung werden geladene Detaildaten ebenfalls lokal gesichert.
+  if(typeof window.openExercise==='function'){
+    const openBefore=window.openExercise;
+    window.openExercise=function(i){
+      const e=DATA[i];
+      const r=openBefore.apply(this,arguments);
+      if(e&&isEasy(e)){
+        [1200,3500,8000].forEach(ms=>setTimeout(()=>putOne(e).catch(()=>{}),ms));
+      }
+      return r;
+    };
+  }
+
+  // Beim Generator kurz auf die lokale DB warten (max. 250 ms), nie auf das Internet.
+  if(typeof window.eplanAutoGenerate==='function'){
+    const generateBefore=window.eplanAutoGenerate;
+    window.eplanAutoGenerate=async function(){
+      try{await Promise.race([window.fcneLocalDbReady,new Promise(r=>setTimeout(r,250))]);}catch(_){}
+      return generateBefore.apply(this,arguments);
+    };
+  }
+
+  // Daten beim Verlassen nochmals kompakt sichern, falls Details neu geladen wurden.
+  document.addEventListener('visibilitychange',()=>{
+    if(document.visibilityState==='hidden') putAll(easyRows()).catch(()=>{});
+  });
+
+  // Kleine Info im Easy2Coach-Bereich ergänzen, sobald die Karte existiert.
+  const obs=new MutationObserver(()=>{
+    document.querySelectorAll('.fcne-syncbox,.fcne-sync-card').forEach(box=>{
+      if(box.querySelector('.fcne-localdb-note'))return;
+      const n=document.createElement('div');n.className='fcne-localdb-note';
+      n.innerHTML='<span>💾</span><div><b>Lokal gespeichert:</b> Übungsdaten bleiben auf diesem Gerät und stehen beim nächsten Start sofort wieder bereit. Originalbilder werden weiterhin online geladen.</div>';
+      box.appendChild(n);
+    });
+  });
+  obs.observe(document.body,{childList:true,subtree:true});
 })();
 </script>
 
