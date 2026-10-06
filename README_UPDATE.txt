@@ -1,21 +1,16 @@
-FC NE TRAININGSAPP – UPDATE v2.14
+FC NE Trainingsapp v2.15 – Update
 
-Auf GitHub ersetzen:
-- index.html
-- manifest.webmanifest
-- sw.js
+Änderungen:
+- Easy2Coach-Detailansicht öffnet jetzt zuverlässig aus Bibliothek, Trainingsübersicht und Traineransicht.
+- Detailansicht liegt technisch über der Traineransicht.
+- Easy2Coach-Details werden sofort aus lokalen Daten angezeigt; Online-Ergänzungen laden nur im Hintergrund nach.
+- Bild-Zoom liegt ebenfalls über der Traineransicht.
+- Lokale Easy2Coach-Datenbank aus v2.14 bleibt erhalten.
 
-Den Ordner icons unverändert lassen.
+GitHub:
+1. index.html ersetzen
+2. sw.js ersetzen
+3. manifest.webmanifest ersetzen
+4. icons-Ordner unverändert lassen
 
-WICHTIG:
-Die bereits auf dem iPhone installierte App muss normalerweise NICHT neu installiert werden.
-Beim nächsten Start prüft der Service Worker auf eine neue Version. Die Navigation wird netzwerk-first geladen, damit die aktuelle GitHub-Version bevorzugt wird.
-
-v2.14:
-- iPhone/PWA-Kopfbereich mit zusätzlichem Sicherheitsabstand
-- Manifest im HTML eingebunden
-- Apple-PWA-Metadaten ergänzt
-- Service Worker wird automatisch registriert und aktualisiert
-- Cache-Version v2.14
-
-Neu in v2.14: Easy2Coach-Katalog wird lokal in IndexedDB gespeichert. Automatische Hintergrund-Synchronisation blockiert den Generator nicht mehr; Aktualisierung manuell über "Datenbank aktualisieren".
+Auf dem iPhone ist normalerweise keine Neuinstallation nötig. App nach dem GitHub-Update komplett schliessen und neu öffnen.

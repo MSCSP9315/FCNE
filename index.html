@@ -3168,5 +3168,57 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 })();
 </script>
 
+
+<style id="fcne-v215-detail-fix-css">
+/* v2.15 – Detailansichten müssen auch aus der Traineransicht sichtbar sein */
+.exercise-detail{z-index:260!important}
+.exercise-detail .detail-header{z-index:265!important}
+.zoom-overlay{z-index:420!important}
+.zoom-overlay button{z-index:421!important}
+</style>
+<script id="fcne-v215-e2c-detail-fix">
+(function(){
+  function isEasy(e){
+    try{return (typeof fcneExerciseBranch==='function'?fcneExerciseBranch(e):e?.fcneBranch)==='easy2coach';}
+    catch(_){return e?.fcneBranch==='easy2coach';}
+  }
+  function esc(s){return String(s??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));}
+  function list(items){return (Array.isArray(items)?items:[]).filter(Boolean);}
+  function detailNode(i){
+    let n=document.getElementById('detail-'+i);
+    if(!n){n=document.createElement('section');n.id='detail-'+i;n.className='exercise-detail';document.body.appendChild(n);}
+    return n;
+  }
+  function renderEasyDetail(i){
+    const e=DATA[i]; if(!e||!isEasy(e))return null;
+    const n=detailNode(i), id=encodeURIComponent(e.id||''), title=esc(e.title||'Easy2Coach Übung');
+    const cat=esc(e.category||'Übung'), focus=esc(e.focus||'Gemischt / allgemein');
+    const imgs=list((e.images&&e.images.length)?e.images:(e.image?[e.image]:[]));
+    const imageHtml=imgs.length?imgs.map((src,k)=>`<div class="e2c-original-wrap"><img class="detail-hero e2c-original-image" src="${esc(src)}" alt="${title}" onclick="openZoom(this.src)" onerror="this.closest('.e2c-original-wrap').style.display='none'"><div class="imported-tap">Easy2Coach Originalgrafik${imgs.length>1?' '+(k+1)+' / '+imgs.length:''} · antippen zum Vergrössern</div></div>`).join(''):`<div class="imported-note"><b>Grafik:</b> Für diese Übung ist lokal noch keine Grafik gespeichert. Über „Original bei Easy2Coach“ kann die Originalübung geöffnet werden.</div>`;
+    const intro=e.intro?`<div class="sp-section"><h4>Übung</h4><p>${esc(e.intro)}</p></div>`:'';
+    const sections=list(e.sections).filter(x=>Array.isArray(x)&&x.length>1&&String(x[0]).toLowerCase()!=='quelle').map(x=>`<div class="sp-section"><h4>${esc(x[0])}</h4><p>${esc(x[1])}</p></div>`).join('');
+    const coach=list(e.coaching).length?`<div class="v22-coaching"><div class="v22-coaching-title">👀 Coaching-Punkte</div><ul>${list(e.coaching).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:(typeof v22CoachingHtml==='function'?v22CoachingHtml(e.id):'');
+    const mats=list(e.materials).length?`<div class="v22-coaching"><div class="v22-coaching-title">🧰 Material</div><ul>${list(e.materials).map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div>`:'';
+    const source=e.source_url?`<a class="sp-source-btn" href="${esc(e.source_url)}" target="_blank" rel="noopener">↗ Original bei Easy2Coach öffnen</a>`:'';
+    n.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${title}</strong><small>Alternative / Easy2Coach · ${cat}</small></div><button class="heart" data-id="${esc(e.id||'')}" onclick="toggleFavorite(decodeURIComponent('${id}'))">♡</button></div><div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:${(typeof COLORS!=='undefined'&&COLORS[e.category])||'#159a4a'}">${(typeof ICONS!=='undefined'&&ICONS[e.category])||'⚽'} ${cat}</span><span class="fcne-live-pill">LOKAL</span></div>${imageHtml}<div class="facts"><div><b>${Number(e.duration)||15} Min</b><small>Dauer</small></div><div><b>${focus}</b><small>Schwerpunkt</small></div><div><b>${esc(e.players||'variabel')}</b><small>Spieler</small></div></div><div class="imported-note"><b>Alter:</b> ${esc(e.age||'E-Junioren')} · <b>Niveau:</b> ${esc(e.level||'nicht angegeben')}${e.fcneTrainingPlaces?'<br><b>Trainingsort:</b> '+esc(e.fcneTrainingPlaces):''}</div>${intro}${sections}${coach}${mats}<div class="detail-actions"><button class="primary" onclick="selectFromDetail(decodeURIComponent('${id}'))">✓ Für Training wählen</button></div>${source}<div class="source-note">Quelle: Easy2Coach. Die App zeigt die lokal gespeicherten Metadaten und lädt verfügbare Originalgrafiken online nach.</div></div>`;
+    return n;
+  }
+
+  const previousOpen=window.openExercise;
+  window.openExercise=function(i){
+    const e=DATA[i];
+    if(!e||!isEasy(e))return previousOpen.apply(this,arguments);
+    const n=renderEasyDetail(i); if(!n)return;
+    n.classList.add('open');document.body.style.overflow='hidden';if(typeof syncHearts==='function')syncHearts();
+    // Details dürfen sofort öffnen; Online-Ergänzungen kommen nur im Hintergrund dazu.
+    if(typeof window.fcneHydrateE2C==='function' && e.source_url){
+      Promise.resolve(window.fcneHydrateE2C(e)).then(()=>{
+        if(n.classList.contains('open')){renderEasyDetail(i);n.classList.add('open');if(typeof syncHearts==='function')syncHearts();}
+      }).catch(()=>{});
+    }
+  };
+})();
+</script>
+
 </body>
 </html>
