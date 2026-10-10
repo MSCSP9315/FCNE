@@ -1,16 +1,15 @@
-FC NE Trainingsapp v2.16 – Update
+FC NE Trainingsapp – Update v2.17
 
-Änderungen:
-- Easy2Coach-Detailansicht öffnet jetzt zuverlässig aus Bibliothek, Trainingsübersicht und Traineransicht.
-- Detailansicht liegt technisch über der Traineransicht.
-- Easy2Coach-Details werden sofort aus lokalen Daten angezeigt; Online-Ergänzungen laden nur im Hintergrund nach.
-- Bild-Zoom liegt ebenfalls über der Traineransicht.
-- Lokale Easy2Coach-Datenbank aus v2.14 bleibt erhalten.
+Neu in v2.17:
+- Responsive Layout für kleine Smartphones
+- iPhone und iPad behalten die bisherige Darstellung
+- Karten, Navigation, Detailansicht, Traineransicht und Formulare passen sich automatisch an
+- Kein horizontales Scrollen auf schmalen Displays
+- Zusätzliche Optimierung für sehr kleine Displays und Querformat
 
-GitHub:
+GitHub-Update:
 1. index.html ersetzen
-2. sw.js ersetzen
-3. manifest.webmanifest ersetzen
-4. icons-Ordner unverändert lassen
+2. manifest.webmanifest ersetzen
+3. sw.js ersetzen
 
-Auf dem iPhone ist normalerweise keine Neuinstallation nötig. App nach dem GitHub-Update komplett schliessen und neu öffnen.
+Eine Neuinstallation der PWA ist nicht nötig.
