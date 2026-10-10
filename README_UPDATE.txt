@@ -1,4 +1,4 @@
-FC NE Trainingsapp v2.15 – Update
+FC NE Trainingsapp v2.16 – Update
 
 Änderungen:
 - Easy2Coach-Detailansicht öffnet jetzt zuverlässig aus Bibliothek, Trainingsübersicht und Traineransicht.
