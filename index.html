@@ -510,7 +510,7 @@ button,input,select,textarea{max-width:100%}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.21 · Build 2026.10.16</div>
+  <div class="app-version">Version 2.23 · Build 2026.10.19</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -528,7 +528,7 @@ button,input,select,textarea{max-width:100%}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.21 · Build 2026.10.16</div>
+    <div class="app-version">Version 2.23 · Build 2026.10.19</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -551,8 +551,8 @@ button,input,select,textarea{max-width:100%}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.21</b><span>App-Version</span></div>
-        <div><b>2026.10.16</b><span>Build / Stand</span></div>
+        <div><b>Version 2.23</b><span>App-Version</span></div>
+        <div><b>2026.10.19</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
       </div>
@@ -1329,7 +1329,7 @@ function v20PrintTraining(){window.print();}
 function v20Backup(){
  try{
    const payload={
-     app:'FC NE Trainingsapp',version:'2.18',exportedAt:new Date().toISOString(),
+     app:'FC NE Trainingsapp',version:'2.23',exportedAt:new Date().toISOString(),
      savedTrainings:JSON.parse(localStorage.getItem('fcne_saved_trainings_v07')||'[]'),
      favorites:JSON.parse(localStorage.getItem('fcne_favs_v07')||'[]'),
      trainingFavorites:JSON.parse(localStorage.getItem('fcne_training_favs_v26')||'[]'),
@@ -3543,7 +3543,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v219-smart-generator-material">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.21';
+  window.FCNE_APP_VERSION='2.23';
 
   const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const norm=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -3809,7 +3809,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     }
     const ordered=PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])).filter(Boolean);
     draft.customDurations=fitDurations(PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])),target);
-    draft.notes=(draft.notes||'').replace(/\s*·\s*Smart Generator v2\.18/g,'')+' · Smart Generator v2.21';
+    draft.notes=(draft.notes||'').replace(/\s*·\s*Smart Generator v2\.18/g,'')+' · Smart Generator v2.23';
     window.FCNE_LAST_SMART_META=smartRationale(focus,players,ordered,recent);
     if(typeof renderWizard==='function')renderWizard();
     return r;
@@ -3838,7 +3838,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   // Add a compact explanation to both SFV and Easy2Coach generator forms without changing their navigation.
   const obs=new MutationObserver(()=>{
     const auto=document.getElementById('epAuto');if(!auto||!auto.classList.contains('open')||auto.querySelector('.fcne-smart-note'))return;
-    const form=auto.querySelector('.fcne-auto-form');if(form){const n=document.createElement('div');n.className='fcne-smart-note';n.innerHTML='<b>🧠 Smart Generator v2.21</b><span>Berücksichtigt Schwerpunkt, Spielerzahl, E-Junioren-Eignung, letzte Trainings, Übungsähnlichkeit und möglichst wenig Materialumbau.</span>';form.insertAdjacentElement('afterend',n);}
+    const form=auto.querySelector('.fcne-auto-form');if(form){const n=document.createElement('div');n.className='fcne-smart-note';n.innerHTML='<b>🧠 Smart Generator v2.23</b><span>Berücksichtigt Schwerpunkt, Spielerzahl, E-Junioren-Eignung, letzte Trainings, Übungsähnlichkeit und möglichst wenig Materialumbau.</span>';form.insertAdjacentElement('afterend',n);}
   });
   obs.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
 
@@ -3849,7 +3849,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   }
 })();
 </script>
-<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.21';</script>
+<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.23';</script>
 
 \n<style id="fcne-v220-material-css">
 .fcne-mat-status{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f3f7f4;border:1px solid #dce7e0;border-radius:11px;padding:8px 10px;margin:8px 0 10px;font-size:10px;line-height:1.35;color:#42574a}
@@ -3861,7 +3861,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v220-material-engine">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.21';
+window.FCNE_APP_VERSION='2.23';
 const CACHE_KEY='fcne_material_exact_v220';
 const TRY_KEY='fcne_material_try_v220';
 const esc220=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4020,7 +4020,7 @@ window.materialListHtml=function(exercises){
   const grid=mats.map(m=>`<label class="material-item v218"><input type="checkbox"><span class="mat-ico">${m.ico||'•'}</span><span class="material-main"><span class="material-name"><span class="material-qty ${m.exact?'':'approx'}">${m.qty}×</span> ${esc220(m.name)}</span><small class="material-source">${m.exact?esc220(m.source||'Originalangabe'):esc220(m.source||'Schätzung')}</small></span></label>`).join('')||'<div class="v218-material-note">Noch keine Materialdaten vorhanden.</div>';
   let status='';if(st.total){if(st.missing===0)status=`<div class="fcne-mat-status good"><span>✓ Easy2Coach-Material für ${st.ok}/${st.total} Übungen aus der Original-Materialzeile geprüft.</span><button class="fcne-mat-refresh" onclick="fcneRefreshTrainingMaterialsV220(this)">↻ Neu prüfen</button></div>`;else status=`<div class="fcne-mat-status warn"><span>⚠ ${st.ok}/${st.total} E2C-Übungen verifiziert. ${st.missing} werden geprüft bzw. konnten noch nicht geladen werden.</span><button class="fcne-mat-refresh" onclick="fcneRefreshTrainingMaterialsV220(this)">↻ Material prüfen</button></div>`;}
   const per=(exercises||[]).map(e=>{const ms=matFor220(e,players);const raw=e.fcneMaterialLine?`<div class="fcne-material-original"><b>Original:</b> ${esc220(e.fcneMaterialLine)}</div>`:(e.fcneBranch==='easy2coach'?'<div class="fcne-mat-unverified">Noch keine Original-Materialzeile verifiziert.</div>':'');return `<div class="v218-ex-mat"><b>${esc220(e.title)}</b><div class="v218-mat-chips">${ms.map(m=>`<span class="v218-mat-chip">${m.exact?'':'≈ '}${m.qty}× ${esc220(m.name)}</span>`).join('')||'<span class="v218-mat-chip">keine Materialdaten</span>'}</div>${raw}</div>`;}).join('');
-  return `<div class="material-box" data-mat-sig="${esc220(sig)}"><h3>🧰 Materialliste</h3><div class="subline">Für das komplette Training. Bei wiederverwendetem Material zählt die höchste gleichzeitig benötigte Menge.</div>${status}<div class="material-grid v218">${grid}</div><div class="v218-material-note"><b>v2.21:</b> Mengen mit <b>≈</b> sind bewusst als Schätzung markiert. E2C-Spezialmaterial wird aus der Original-Materialzeile übernommen; unbekannte Geräte werden nicht mehr verworfen.</div><details class="v218-material-details"><summary>Material pro Übung + Originalangabe anzeigen</summary>${per}</details></div>`;
+  return `<div class="material-box" data-mat-sig="${esc220(sig)}"><h3>🧰 Materialliste</h3><div class="subline">Für das komplette Training. Bei wiederverwendetem Material zählt die höchste gleichzeitig benötigte Menge.</div>${status}<div class="material-grid v218">${grid}</div><div class="v218-material-note"><b>v2.23:</b> Mengen mit <b>≈</b> sind bewusst als Schätzung markiert. E2C-Spezialmaterial wird aus der Original-Materialzeile übernommen; unbekannte Geräte werden nicht mehr verworfen.</div><details class="v218-material-details"><summary>Material pro Übung + Originalangabe anzeigen</summary>${per}</details></div>`;
 };
 
 // Re-render material boxes after the page has restored cached exercise data.
@@ -4028,6 +4028,251 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
 })();
 </script>\n
 
-<script id="fcne-v221-marker">window.FCNE_APP_VERSION='2.21';</script>
+
+
+<style id="fcne-v222-pdf-style">
+/* v2.23 - Trainerkarte als PDF / Druckansicht */
+.trainer-pdf-btn{border:0;border-radius:12px;padding:10px 12px;background:#143f2a;color:#fff;font-weight:850;font-size:11px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:6px}
+.trainer-pdf-btn:disabled{opacity:.58}
+#fcnePdfBusy{position:fixed;inset:0;z-index:20050;background:rgba(9,31,20,.58);display:flex;align-items:center;justify-content:center;padding:18px}
+#fcnePdfBusy .box{width:min(360px,100%);background:#fff;border-radius:20px;padding:20px;text-align:center;box-shadow:0 18px 55px rgba(0,0,0,.22)}
+#fcnePdfBusy b{display:block;font-size:18px;margin-bottom:6px;color:#163b29}#fcnePdfBusy span{font-size:12px;line-height:1.45;color:#607067}
+#fcneTrainerPdf{display:none}
+@page{size:A4 portrait;margin:10mm}
+@media print{
+  body.fcne-print-trainer{background:#fff!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+  body.fcne-print-trainer *{visibility:hidden!important}
+  body.fcne-print-trainer #savedDetail{display:none!important}
+  body.fcne-print-trainer #fcneTrainerPdf,body.fcne-print-trainer #fcneTrainerPdf *{visibility:visible!important}
+  body.fcne-print-trainer #fcneTrainerPdf{display:block!important;position:absolute!important;left:0!important;top:0!important;width:100%!important;background:#fff!important;color:#17251d!important;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif!important;font-size:10pt!important;line-height:1.34!important}
+  #fcneTrainerPdf .pdf-header{display:grid;grid-template-columns:44px 1fr auto;gap:10px;align-items:center;border-bottom:3px solid #0b7a43;padding:0 0 7mm;margin-bottom:5mm}
+  #fcneTrainerPdf .pdf-logo{width:42px;height:42px;object-fit:contain}
+  #fcneTrainerPdf .pdf-header h1{font-size:20pt;line-height:1.08;margin:0;color:#123c29}
+  #fcneTrainerPdf .pdf-header p{margin:2mm 0 0;color:#617067;font-size:9pt}
+  #fcneTrainerPdf .pdf-version{text-align:right;font-size:8pt;color:#738077;white-space:nowrap}
+  #fcneTrainerPdf .pdf-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:2.5mm;margin:0 0 4mm}
+  #fcneTrainerPdf .pdf-meta>div{border:1px solid #dce7e0;border-radius:3mm;padding:2.5mm;background:#f5faf7}
+  #fcneTrainerPdf .pdf-meta b{display:block;font-size:10pt;color:#163e2b}#fcneTrainerPdf .pdf-meta span{font-size:7.5pt;color:#68776e}
+  #fcneTrainerPdf .pdf-box{border:1px solid #dce7e0;border-radius:3mm;padding:3mm;margin-bottom:4mm;break-inside:avoid-page}
+  #fcneTrainerPdf .pdf-box h2{font-size:12pt;margin:0 0 2mm;color:#173f2c}
+  #fcneTrainerPdf .pdf-materials{display:grid;grid-template-columns:repeat(3,1fr);gap:2mm}
+  #fcneTrainerPdf .pdf-material{border-radius:2.2mm;background:#f3f6f4;padding:2mm;font-size:8.7pt}
+  #fcneTrainerPdf .pdf-material b{color:#123f2a}
+  #fcneTrainerPdf .pdf-material small{display:block;color:#758078;font-size:7pt;margin-top:.5mm}
+  #fcneTrainerPdf .pdf-sequence{width:100%;border-collapse:collapse;font-size:8.5pt}
+  #fcneTrainerPdf .pdf-sequence td{padding:1.4mm 1mm;border-bottom:1px solid #edf1ee;vertical-align:top}
+  #fcneTrainerPdf .pdf-sequence td:first-child{width:15mm;font-weight:800;color:#0b7a43;white-space:nowrap}
+  #fcneTrainerPdf .pdf-exercise{border:1px solid #d7e3db;border-radius:3mm;padding:3mm;margin:0 0 4mm;break-inside:avoid-page;background:#fff}
+  #fcneTrainerPdf .pdf-exercise-head{display:grid;grid-template-columns:8mm 1fr auto;gap:2.5mm;align-items:center;margin-bottom:2.5mm}
+  #fcneTrainerPdf .pdf-step{width:8mm;height:8mm;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:900;font-size:8pt}
+  #fcneTrainerPdf .pdf-exercise-head h3{font-size:12pt;margin:0;color:#172d21}.pdf-exercise-head small{display:block;color:#64736a;font-size:7.6pt;margin-top:.6mm}
+  #fcneTrainerPdf .pdf-time{font-weight:900;color:#0b7a43;white-space:nowrap}
+  #fcneTrainerPdf .pdf-exercise-grid{display:grid;grid-template-columns:68mm 1fr;gap:3mm;align-items:start}
+  #fcneTrainerPdf .pdf-exercise img{width:68mm;max-height:57mm;object-fit:contain;border-radius:2mm;background:#f4f6f4;border:1px solid #e6ece8}
+  #fcneTrainerPdf .pdf-text h4{font-size:8.6pt;margin:0 0 1mm;color:#185033}.pdf-text ul,#fcneTrainerPdf .pdf-text ol{margin:0 0 2mm;padding-left:5mm}.pdf-text li{margin-bottom:.8mm;font-size:8.2pt}
+  #fcneTrainerPdf .pdf-section{margin-bottom:2mm}.pdf-section b{display:block;color:#185033;font-size:8.4pt;margin-bottom:.7mm}.pdf-section p{margin:0;font-size:8.2pt;white-space:pre-wrap}
+  #fcneTrainerPdf .pdf-note{font-size:7.4pt;color:#68766e;margin-top:1.5mm}
+  #fcneTrainerPdf .pdf-footer{border-top:1px solid #dbe4de;margin-top:4mm;padding-top:2mm;font-size:7.3pt;color:#78837c;text-align:center}
+}
+</style>
+<script id="fcne-v222-trainer-pdf-js">
+(function(){
+  'use strict';
+  const esc=v=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+  const phases222=()=>typeof PHASES!=='undefined'?PHASES:(window.PHASES||[]);
+  const data222=()=>typeof DATA!=='undefined'?DATA:(window.DATA||[]);
+  function selectedExercises(t){return phases222().map(ph=>data222().find(e=>e.id===t?.selections?.[ph])).filter(Boolean);}
+  function exerciseImage(e){
+    const idx=data222().indexOf(e);
+    const dom=idx>=0?document.querySelector('#detail-'+idx+' .detail-hero'):null;
+    return dom?.src || (Array.isArray(e?.images)&&e.images[0]) || e?.image || '';
+  }
+  function listBlock(title,items,ordered){
+    if(!Array.isArray(items)||!items.length)return '';
+    const tag=ordered?'ol':'ul';
+    return `<div class="pdf-section"><b>${esc(title)}</b><${tag}>${items.slice(0,7).map(x=>`<li>${esc(x)}</li>`).join('')}</${tag}></div>`;
+  }
+  function exerciseText(e){
+    const x=e?.fcneExplanation;
+    if(x){
+      return listBlock('Aufbau',x.setup,false)+listBlock('Ablauf',x.steps,true)+listBlock('Varianten',x.variations,false)+listBlock('Coaching',x.tips,false);
+    }
+    const secs=Array.isArray(e?.sections)?e.sections:[];
+    if(secs.length){
+      return secs.slice(0,5).map(s=>`<div class="pdf-section"><b>${esc(s?.[0]||'Ablauf')}</b><p>${esc(s?.[1]||'')}</p></div>`).join('');
+    }
+    return `<div class="pdf-section"><b>Ablauf</b><p>${esc(e?.intro||'Übung gemäss Grafik durchführen. Weitere Details sind in der App verfügbar.')}</p></div>`;
+  }
+  function materialHtml(exercises,players){
+    let mats=[];
+    try{if(typeof window.fcneTrainingMaterials==='function')mats=window.fcneTrainingMaterials(exercises,players)||[];}catch(e){}
+    if(!mats.length){try{mats=typeof trainingMaterials==='function'?trainingMaterials(exercises)||[]:[];}catch(e){}}
+    return mats.map(m=>{
+      const qty=Number(m?.qty)||0, approx=(m?.exact===false?'≈ ':'');
+      return `<div class="pdf-material"><b>${approx}${qty?qty+'× ':''}${esc(m?.name||'Material')}</b>${m?.source?`<small>${esc(m.source)}</small>`:''}</div>`;
+    }).join('') || '<div class="pdf-material"><b>Material in der App prüfen</b></div>';
+  }
+  function phaseColor(ph){try{return COLORS?.[ph]||'#16864b';}catch(e){return '#16864b';}}
+  function phaseIcon(ph){try{return ICONS?.[ph]||'⚽';}catch(e){return '⚽';}}
+  window.fcneBuildTrainerPdfSheet=function(t){
+    const exercises=selectedExercises(t),p=Math.max(1,Number(t?.players)||10);
+    let sheet=document.getElementById('fcneTrainerPdf');if(!sheet){sheet=document.createElement('div');sheet.id='fcneTrainerPdf';document.body.appendChild(sheet);}
+    const logo=document.querySelector('#trainerOverlay .trainer-head img')?.src||document.querySelector('.fcne-global-brand img')?.src||'';
+    const date=t?.date?new Date(t.date+'T12:00:00').toLocaleDateString('de-CH'):'–';
+    const seq=exercises.map(e=>`<tr><td>${Number((t?.customDurations||{})[e.id])||Number(e.duration)||0} Min</td><td><b>${esc(e.title)}</b><br><span>${phaseIcon(e.category)} ${esc(e.category)} · ${esc(e.focus||e.field||'')}</span></td></tr>`).join('');
+    const cards=exercises.map((e,n)=>{const dur=Number((t?.customDurations||{})[e.id])||Number(e.duration)||0;const img=exerciseImage(e);return `<section class="pdf-exercise"><div class="pdf-exercise-head"><div class="pdf-step" style="background:${phaseColor(e.category)}">${n+1}</div><div><h3>${esc(e.title)}</h3><small>${phaseIcon(e.category)} ${esc(e.category)} · ${esc(e.focus||e.field||'')} · ${esc(e.source_provider||e.sourceBranch||'')}</small></div><div class="pdf-time">${dur} Min</div></div><div class="pdf-exercise-grid">${img?`<img src="${esc(img)}" alt="${esc(e.title)}">`:'<div></div>'}<div class="pdf-text">${exerciseText(e)}</div></div></section>`;}).join('');
+    sheet.innerHTML=`<header class="pdf-header">${logo?`<img class="pdf-logo" src="${esc(logo)}" alt="FC NE">`:'<div></div>'}<div><h1>${esc(t?.name||'Training')}</h1><p>FC NE Trainerkarte · E-Junioren${t?.environment?' · '+esc(t.environment):''}</p></div><div class="pdf-version">v2.23<br>19.10.2026</div></header><div class="pdf-meta"><div><b>👥 ${p}</b><span>Spieler</span></div><div><b>🎯 ${esc(t?.focus||'Gemischt / allgemein')}</b><span>Schwerpunkt</span></div><div><b>⏱ ${Number(t?.total)||exercises.reduce((a,e)=>a+(Number((t?.customDurations||{})[e.id])||Number(e.duration)||0),0)} Min</b><span>Gesamtdauer</span></div><div><b>📅 ${esc(date)}</b><span>Datum</span></div></div><section class="pdf-box"><h2>🧰 Materialliste</h2><div class="pdf-materials">${materialHtml(exercises,p)}</div></section><section class="pdf-box"><h2>📋 Trainingsablauf</h2><table class="pdf-sequence"><tbody>${seq}</tbody></table></section><div class="pdf-exercises">${cards}</div>${t?.notes?`<section class="pdf-box"><h2>📝 Trainernotizen</h2><div>${esc(t.notes).replace(/\n/g,'<br>')}</div></section>`:''}<footer class="pdf-footer">FC NE Trainingsapp · Trainerkarte v2.23 · Nur für den internen Gebrauch</footer>`;
+    return sheet;
+  };
+  function busy(show){
+    let el=document.getElementById('fcnePdfBusy');
+    if(!show){el?.remove();return;}
+    if(!el){el=document.createElement('div');el.id='fcnePdfBusy';el.innerHTML='<div class="box"><b>📄 Trainerkarte wird vorbereitet</b><span>Übungsdaten, Material und Bilder werden für die PDF-Ansicht zusammengestellt …</span></div>';document.body.appendChild(el);}
+  }
+  function waitImages(root){const imgs=[...root.querySelectorAll('img')];return Promise.race([Promise.all(imgs.map(img=>img.complete?Promise.resolve():new Promise(res=>{img.addEventListener('load',res,{once:true});img.addEventListener('error',res,{once:true});}))),new Promise(res=>setTimeout(res,3500))]);}
+  window.fcneExportTrainerPdf=async function(btn){
+    const t=(typeof trainerCurrent!=='undefined'&&trainerCurrent)||window.trainerCurrent;
+    if(!t){alert('Bitte zuerst eine Trainerkarte öffnen.');return;}
+    const old=btn?.innerHTML;if(btn){btn.disabled=true;btn.innerHTML='PDF wird vorbereitet …';}busy(true);
+    try{
+      const ex=selectedExercises(t),todo=ex.filter(e=>e?.fcneBranch==='easy2coach'&&typeof window.fcneHydrateE2C==='function');
+      if(todo.length)await Promise.race([Promise.allSettled(todo.map(e=>window.fcneHydrateE2C(e))),new Promise(res=>setTimeout(res,5000))]);
+      const sheet=window.fcneBuildTrainerPdfSheet(t);await waitImages(sheet);
+      document.body.classList.add('fcne-print-trainer');busy(false);
+      const cleanup=()=>document.body.classList.remove('fcne-print-trainer');
+      window.addEventListener('afterprint',cleanup,{once:true});
+      setTimeout(()=>{try{window.print();}finally{setTimeout(cleanup,1500);}},100);
+    }catch(err){busy(false);document.body.classList.remove('fcne-print-trainer');alert('Die Trainerkarte konnte nicht für den PDF-Export vorbereitet werden.');}
+    finally{if(btn){btn.disabled=false;btn.innerHTML=old||'📄 Trainerkarte als PDF';}}
+  };
+  const prev=window.renderTrainerView;
+  if(typeof prev==='function')window.renderTrainerView=function(t){prev(t);const row=document.querySelector('#trainerBody .trainer-action-row');if(row&&!row.querySelector('.trainer-pdf-btn')){const b=document.createElement('button');b.className='trainer-pdf-btn';b.innerHTML='📄 Trainerkarte als PDF';b.onclick=function(){window.fcneExportTrainerPdf(this)};row.appendChild(b);}};
+  window.FCNE_APP_VERSION='2.23';
+})();
+</script>
+
+<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.23';</script>
+
+<style id="fcne-v223-fix-style">
+/* v2.23 – Detailheader + robuster PDF-Export */
+.exercise-detail .detail-header{
+  box-sizing:border-box!important;
+  width:min(720px,100%)!important;
+  grid-template-columns:40px minmax(0,1fr) 40px!important;
+  column-gap:8px!important;
+  overflow:hidden!important;
+}
+.exercise-detail .detail-title{
+  min-width:0!important;
+  width:100%!important;
+  max-width:100%!important;
+  text-align:center!important;
+  justify-self:stretch!important;
+  padding:0 3px!important;
+  box-sizing:border-box!important;
+}
+.exercise-detail .detail-title strong{
+  display:-webkit-box!important;
+  -webkit-box-orient:vertical!important;
+  -webkit-line-clamp:2!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  hyphens:auto!important;
+  line-height:1.12!important;
+  max-width:100%!important;
+}
+.exercise-detail .detail-title small{
+  display:block!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+.exercise-detail .round-back,.exercise-detail .heart{justify-self:center!important;margin:0!important;flex:0 0 auto!important}
+@media(max-width:380px){
+  .exercise-detail .detail-header{grid-template-columns:36px minmax(0,1fr) 36px!important;column-gap:5px!important;padding-left:7px!important;padding-right:7px!important}
+  .exercise-detail .detail-title strong{font-size:15px!important}
+  .exercise-detail .detail-title small{font-size:9.5px!important}
+  .exercise-detail .round-back{width:34px!important;height:34px!important}
+  .exercise-detail .heart{font-size:24px!important}
+}
+
+#fcnePdfPreview{position:fixed;inset:0;z-index:30050;background:#eef2ef;display:flex;flex-direction:column;overflow:hidden}
+#fcnePdfPreview .fcne-pdf-preview-head{flex:0 0 auto;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:9px;background:#fff;border-bottom:1px solid #d8e1db;padding:max(10px,env(safe-area-inset-top)) 10px 10px;box-shadow:0 2px 12px #00000012}
+#fcnePdfPreview .fcne-pdf-preview-head b{font-size:15px;line-height:1.15;color:#173d2a;text-align:center}
+#fcnePdfPreview .fcne-pdf-preview-head small{display:block;font-size:10px;font-weight:600;color:#69766f;margin-top:2px}
+#fcnePdfPreview .fcne-pdf-close,#fcnePdfPreview .fcne-pdf-print{border:0;border-radius:11px;min-height:40px;font-weight:850;padding:9px 11px}
+#fcnePdfPreview .fcne-pdf-close{background:#edf1ef;color:#27342d;font-size:20px;min-width:40px}
+#fcnePdfPreview .fcne-pdf-print{background:#087f42;color:#fff;font-size:11px;white-space:nowrap}
+#fcnePdfPreview .fcne-pdf-scroll{flex:1 1 auto;overflow:auto;-webkit-overflow-scrolling:touch;padding:12px 8px calc(20px + env(safe-area-inset-bottom))}
+#fcnePdfPreview .fcne-pdf-paper{box-sizing:border-box;width:min(794px,100%);margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 5px 28px #0002;padding:18px;color:#17251d;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;font-size:12px;line-height:1.4}
+.fcne-pdf-paper .pdf-header{display:grid;grid-template-columns:42px minmax(0,1fr) auto;gap:10px;align-items:center;border-bottom:3px solid #0b7a43;padding-bottom:12px;margin-bottom:14px}
+.fcne-pdf-paper .pdf-logo{width:40px;height:40px;object-fit:contain}.fcne-pdf-paper .pdf-header h1{font-size:22px;line-height:1.08;margin:0;color:#123c29}.fcne-pdf-paper .pdf-header p{margin:4px 0 0;color:#617067;font-size:11px}.fcne-pdf-paper .pdf-version{text-align:right;font-size:9px;color:#738077;white-space:nowrap}
+.fcne-pdf-paper .pdf-meta{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:12px}.fcne-pdf-paper .pdf-meta>div{border:1px solid #dce7e0;border-radius:9px;padding:8px;background:#f5faf7}.fcne-pdf-paper .pdf-meta b{display:block;font-size:11px;color:#163e2b}.fcne-pdf-paper .pdf-meta span{font-size:9px;color:#68776e}
+.fcne-pdf-paper .pdf-box{border:1px solid #dce7e0;border-radius:10px;padding:10px;margin-bottom:12px}.fcne-pdf-paper .pdf-box h2{font-size:14px;margin:0 0 7px;color:#173f2c}.fcne-pdf-paper .pdf-materials{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}.fcne-pdf-paper .pdf-material{border-radius:7px;background:#f3f6f4;padding:7px;font-size:10px}.fcne-pdf-paper .pdf-material small{display:block;color:#758078;font-size:8px;margin-top:2px}
+.fcne-pdf-paper .pdf-sequence{width:100%;border-collapse:collapse;font-size:10px}.fcne-pdf-paper .pdf-sequence td{padding:5px 3px;border-bottom:1px solid #edf1ee;vertical-align:top}.fcne-pdf-paper .pdf-sequence td:first-child{width:55px;font-weight:800;color:#0b7a43;white-space:nowrap}
+.fcne-pdf-paper .pdf-exercise{border:1px solid #d7e3db;border-radius:10px;padding:10px;margin-bottom:12px}.fcne-pdf-paper .pdf-exercise-head{display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:8px}.fcne-pdf-paper .pdf-step{width:30px;height:30px;border-radius:50%;color:#fff;display:grid;place-items:center;font-weight:900}.fcne-pdf-paper .pdf-exercise-head h3{font-size:14px;margin:0;color:#172d21}.fcne-pdf-paper .pdf-exercise-head small{display:block;color:#64736a;font-size:9px;margin-top:2px}.fcne-pdf-paper .pdf-time{font-weight:900;color:#0b7a43;white-space:nowrap}.fcne-pdf-paper .pdf-exercise-grid{display:grid;grid-template-columns:minmax(0,42%) minmax(0,1fr);gap:10px;align-items:start}.fcne-pdf-paper .pdf-exercise img{width:100%;max-height:240px;object-fit:contain;border-radius:8px;background:#f4f6f4;border:1px solid #e6ece8}.fcne-pdf-paper .pdf-section{margin-bottom:7px}.fcne-pdf-paper .pdf-section b{display:block;color:#185033;font-size:10px;margin-bottom:2px}.fcne-pdf-paper .pdf-section p,.fcne-pdf-paper .pdf-section li{font-size:9.5px}.fcne-pdf-paper .pdf-section ul,.fcne-pdf-paper .pdf-section ol{margin:0 0 6px;padding-left:18px}.fcne-pdf-paper .pdf-footer{border-top:1px solid #dbe4de;margin-top:12px;padding-top:7px;font-size:9px;color:#78837c;text-align:center}
+@media(max-width:600px){
+  #fcnePdfPreview .fcne-pdf-preview-head{grid-template-columns:40px minmax(0,1fr) auto;padding-left:7px;padding-right:7px}
+  #fcnePdfPreview .fcne-pdf-print{font-size:10px;padding:8px 9px}
+  #fcnePdfPreview .fcne-pdf-paper{padding:12px;border-radius:9px}
+  .fcne-pdf-paper .pdf-meta{grid-template-columns:1fr 1fr}.fcne-pdf-paper .pdf-materials{grid-template-columns:1fr 1fr}.fcne-pdf-paper .pdf-exercise-grid{grid-template-columns:1fr}.fcne-pdf-paper .pdf-exercise img{max-height:300px}
+}
+</style>
+<script id="fcne-v223-fix-js">
+(function(){
+  'use strict';
+  function currentTrainer(){try{return (typeof trainerCurrent!=='undefined'&&trainerCurrent)||window.trainerCurrent||null;}catch(e){return window.trainerCurrent||null;}}
+  function closePreview(){const p=document.getElementById('fcnePdfPreview');if(p)p.remove();}
+  window.fcneClosePdfPreview=closePreview;
+  function refreshPreview(t){
+    if(typeof window.fcneBuildTrainerPdfSheet!=='function')return false;
+    const sheet=window.fcneBuildTrainerPdfSheet(t);
+    const paper=document.querySelector('#fcnePdfPreview .fcne-pdf-paper');
+    if(paper)paper.innerHTML=sheet.innerHTML;
+    return true;
+  }
+  window.fcneOpenPdfPreview=function(){
+    const t=currentTrainer();
+    if(!t){alert('Bitte zuerst eine Trainerkarte öffnen.');return;}
+    closePreview();
+    const wrap=document.createElement('div');wrap.id='fcnePdfPreview';
+    wrap.innerHTML='<div class="fcne-pdf-preview-head"><button class="fcne-pdf-close" type="button" aria-label="Schliessen">×</button><div><b>Trainerkarte PDF<small>Vorschau – danach PDF speichern / drucken</small></b></div><button class="fcne-pdf-print" type="button">📄 PDF speichern / drucken</button></div><div class="fcne-pdf-scroll"><div class="fcne-pdf-paper"></div></div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('.fcne-pdf-close').onclick=closePreview;
+    wrap.querySelector('.fcne-pdf-print').onclick=window.fcnePrintTrainerPdf;
+    if(!refreshPreview(t)){closePreview();alert('Die Trainerkarte konnte nicht vorbereitet werden.');return;}
+    // E2C-Daten dürfen im Hintergrund nachladen, blockieren aber den PDF-Dialog nicht mehr.
+    try{
+      const phases=(typeof PHASES!=='undefined'?PHASES:window.PHASES)||[], data=(typeof DATA!=='undefined'?DATA:window.DATA)||[];
+      const ex=phases.map(ph=>data.find(e=>e.id===t?.selections?.[ph])).filter(Boolean);
+      const todo=ex.filter(e=>e&&e.fcneBranch==='easy2coach'&&typeof window.fcneHydrateE2C==='function');
+      if(todo.length)Promise.allSettled(todo.map(e=>window.fcneHydrateE2C(e))).then(()=>{if(document.getElementById('fcnePdfPreview'))refreshPreview(t);});
+    }catch(e){}
+  };
+  window.fcnePrintTrainerPdf=function(){
+    const t=currentTrainer();
+    if(!t){alert('Bitte zuerst eine Trainerkarte öffnen.');return;}
+    try{
+      if(typeof window.fcneBuildTrainerPdfSheet!=='function')throw new Error('builder missing');
+      window.fcneBuildTrainerPdfSheet(t);
+      document.body.classList.add('fcne-print-trainer');
+      let cleaned=false;
+      const cleanup=()=>{if(cleaned)return;cleaned=true;document.body.classList.remove('fcne-print-trainer');};
+      window.addEventListener('afterprint',cleanup,{once:true});
+      // Wichtig für iPhone/iPad: print() läuft direkt aus diesem zweiten Nutzertipp,
+      // ohne vorher auf Netzwerk oder Bilder zu warten.
+      if(typeof window.print==='function')window.print();else throw new Error('print unavailable');
+      setTimeout(cleanup,2500);
+    }catch(e){document.body.classList.remove('fcne-print-trainer');alert('Der PDF-/Druckdialog konnte nicht geöffnet werden.');}
+  };
+  // Bestehenden Button umbiegen: zuerst Vorschau, dann direkter Nutzertipp auf Drucken/PDF.
+  window.fcneExportTrainerPdf=function(){window.fcneOpenPdfPreview();};
+  window.FCNE_APP_VERSION='2.23';
+})();
+</script>
+<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.23';</script>
 </body>
 </html>
