@@ -581,7 +581,7 @@ button,input,select,textarea{max-width:100%}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.37 · E2C Dataset-Split · Build 2026.10.21</div>
+  <div class="app-version">Version 2.38 · Mode-Lock Fix · Build 2026.10.21</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -599,7 +599,7 @@ button,input,select,textarea{max-width:100%}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.37 · E2C Dataset-Split · Build 2026.10.21</div>
+    <div class="app-version">Version 2.38 · Mode-Lock Fix · Build 2026.10.21</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -5474,7 +5474,7 @@ try{console.info('FCNE HARD-SPLIT AUDIT',window.fcneAuditHardSplit235());}catch(
 
 // Versionsanzeige aktualisieren.
 document.querySelectorAll('.app-version').forEach(el=>{
-  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.37 · E2C Dataset-Split · Build 2026.10.21';
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.38 · Mode-Lock Fix · Build 2026.10.21';
 });
 })();
 </script>
@@ -5607,7 +5607,7 @@ window.fcneSwapExercise=function(phase){
 };
 
 document.querySelectorAll('.app-version').forEach(el=>{
-  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.37 · E2C Dataset-Split · Build 2026.10.21';
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.38 · Mode-Lock Fix · Build 2026.10.21';
 });
 })();
 </script>
@@ -5907,11 +5907,282 @@ window.fcneAudit237=function(){
 console.info('FCNE 2.37 DATASET AUDIT',window.fcneAudit237());
 
 document.querySelectorAll('.app-version').forEach(el=>{
-  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.37 · E2C Dataset-Split · Build 2026.10.21';
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.38 · Mode-Lock Fix · Build 2026.10.21';
 });
 })();
 </script>
 <script>window.FCNE_APP_VERSION='2.37 E2C-DATASET-SPLIT';</script>
+
+
+<style id="fcne-v238-mode-lock-css">
+.fcne-v238-modeproof{
+  display:flex;align-items:center;gap:7px;background:#eef8f2;border:1px solid #cde7d6;
+  color:#235f3d;border-radius:11px;padding:8px 10px;margin:7px 0 11px;font-size:10px;font-weight:800
+}
+</style>
+
+<script id="fcne-v238-mode-lock">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.38 MODE-LOCK-FIX';
+
+const esc238=v=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+
+function exerciseMode238(e){
+  if(!e)return null;
+  if(e.id==='5gegen5-1gegen1')return 'field';
+  if(typeof window.fcneAuthoritativeEasyMode==='function'){
+    const m=window.fcneAuthoritativeEasyMode(e);
+    if(m==='field'||m==='hall')return m;
+  }
+  const env=String(e.environment||'').toLowerCase();
+  if(env==='field'||env==='feld')return 'field';
+  if(env==='hall'||env==='halle')return 'hall';
+  return null;
+}
+
+/* Der entscheidende Fix:
+   Alte/stale environment-Werte werden NICHT mehr blind geglaubt.
+   Ein bestehender Plan wird anhand seiner realen Übungen beurteilt. */
+function inferPlanMode238(plan){
+  if(!plan)return null;
+
+  const selections=plan.selections||{};
+  let field=0,hall=0;
+
+  Object.values(selections).forEach(id=>{
+    const e=DATA.find(x=>x.id===id);
+    if(!e)return;
+    const m=exerciseMode238(e);
+    if(m==='field')field++;
+    if(m==='hall')hall++;
+    // PMF ist ein besonders starker Feld-Beleg.
+    if(e.id==='5gegen5-1gegen1'||/BRACK\.CH PMF/i.test(e.title||''))field+=3;
+  });
+
+  // Reale Übungen haben Vorrang vor jedem alten Statuswert.
+  if(field>hall)return 'field';
+  if(hall>field)return 'hall';
+
+  // Für neue Pläne ist ein expliziter Lock autoritativ.
+  if(plan.fcneModeLocked==='field'||plan.fcneModeLocked==='hall')return plan.fcneModeLocked;
+  if(plan.fcneTrainingMode==='field'||plan.fcneTrainingMode==='hall')return plan.fcneTrainingMode;
+
+  const name=String(plan.name||'').toLowerCase();
+  const notes=String(plan.notes||'').toLowerCase();
+  if(/feldtraining/.test(name)||/\bfeld\b/.test(notes))return 'field';
+  if(/hallentraining/.test(name)||/\bhalle\b/.test(notes))return 'hall';
+
+  if(plan.environment==='field'||plan.environment==='hall')return plan.environment;
+  if(window.FCNE_CONFIRMED_EASY_MODE==='field'||window.FCNE_CONFIRMED_EASY_MODE==='hall')return window.FCNE_CONFIRMED_EASY_MODE;
+  if(window.FCNE_EASY_MODE==='field'||window.FCNE_EASY_MODE==='hall')return window.FCNE_EASY_MODE;
+  return 'field';
+}
+window.fcneInferPlanMode=inferPlanMode238;
+
+function lockPlan238(plan,force){
+  if(!plan||plan.sourceBranch!=='easy2coach')return null;
+  const mode=force==='field'||force==='hall' ? force : inferPlanMode238(plan);
+  if(!mode)return null;
+  plan.environment=mode;
+  plan.fcneTrainingMode=mode;
+  plan.fcneModeLocked=mode;
+  return mode;
+}
+window.fcneLockPlanMode=lockPlan238;
+
+/* Feld/Halle-Auswahl setzt einen frischen, eindeutigen Modus. */
+const openModeBefore238=window.fcneOpenEasyMode;
+if(typeof openModeBefore238==='function'){
+  window.fcneOpenEasyMode=function(mode){
+    const m=mode==='hall'?'hall':'field';
+    window.FCNE_EASY_MODE=m;
+    window.FCNE_CONFIRMED_EASY_MODE=m;
+    window.FCNE_LAST_SELECTED_EASY_MODE=m;
+    return openModeBefore238.call(this,m);
+  };
+}
+
+/* Nach dem Generieren wird der Modus anhand des tatsächlich erzeugten Plans gesperrt.
+   Damit reparieren wir auch ältere Generatorpfade. */
+const generateBefore238=window.eplanAutoGenerate;
+if(typeof generateBefore238==='function'){
+  window.eplanAutoGenerate=async function(){
+    const requested=(window.FCNE_CONFIRMED_EASY_MODE==='hall'||window.FCNE_CONFIRMED_EASY_MODE==='field')
+      ? window.FCNE_CONFIRMED_EASY_MODE
+      : (window.FCNE_EASY_MODE==='hall'?'hall':'field');
+
+    const r=await generateBefore238.apply(this,arguments);
+
+    try{
+      if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'){
+        // Wenn die generierten Übungen klar einen Modus ergeben, gewinnt die Realität.
+        const inferred=inferPlanMode238(draft);
+        lockPlan238(draft,inferred||requested);
+        window.FCNE_EASY_MODE=draft.environment;
+        window.FCNE_CONFIRMED_EASY_MODE=draft.environment;
+      }
+    }catch(_){}
+    return r;
+  };
+}
+
+/* Vor JEDEM Rendern korrigieren wir einen alten falschen Modus. */
+const renderBefore238=window.renderWizard;
+if(typeof renderBefore238==='function'){
+  window.renderWizard=function(){
+    try{
+      if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'){
+        const mode=inferPlanMode238(draft);
+        lockPlan238(draft,mode);
+        window.FCNE_EASY_MODE=mode;
+        window.FCNE_CONFIRMED_EASY_MODE=mode;
+      }
+    }catch(_){}
+    return renderBefore238.apply(this,arguments);
+  };
+}
+
+/* Auch gespeicherte/Favoriten-Trainings werden beim Öffnen repariert. */
+const trainerBefore238=window.renderTrainerView;
+if(typeof trainerBefore238==='function'){
+  window.renderTrainerView=function(t){
+    try{
+      if(t?.sourceBranch==='easy2coach')lockPlan238(t,inferPlanMode238(t));
+    }catch(_){}
+    return trainerBefore238.apply(this,arguments);
+  };
+}
+
+function modePool238(mode){
+  if(typeof window.fcneEasyModePool==='function')return window.fcneEasyModePool(mode);
+  return DATA.filter(e=>exerciseMode238(e)===mode);
+}
+function score238(e,focus){
+  try{return typeof focusScore==='function'?focusScore(e,focus):0;}catch(_){return 0;}
+}
+function alternatives238(phase,mode,current,focus){
+  return modePool238(mode)
+    .filter(e=>e && e.category===phase && e.id!==current && exerciseMode238(e)===mode)
+    .sort((a,b)=>score238(b,focus)-score238(a,focus)||String(a.title||'').localeCompare(String(b.title||''),'de'));
+}
+
+/* Wechseln verwendet ausschliesslich den Modus des REALEN Trainingsplans. */
+window.fcneSwapExercise=function(phase){
+  if(typeof draft==='undefined'||!draft)return;
+
+  let mode=null;
+  if(draft.sourceBranch==='easy2coach'){
+    mode=inferPlanMode238(draft);
+    lockPlan238(draft,mode);
+    window.FCNE_EASY_MODE=mode;
+    window.FCNE_CONFIRMED_EASY_MODE=mode;
+
+    // Erst NACH Korrektur des Modus darf ein alter Plan repariert werden.
+    if(typeof window.fcneRepairEasyTraining==='function'){
+      try{window.fcneRepairEasyTraining(draft);}catch(_){}
+    }
+
+    // Nochmals aus den realen Übungen verifizieren.
+    mode=inferPlanMode238(draft);
+    lockPlan238(draft,mode);
+  }
+
+  const current=draft.selections?.[phase];
+  let pool;
+
+  if(draft.sourceBranch==='easy2coach'){
+    pool=alternatives238(phase,mode,current,draft.focus);
+  }else{
+    pool=(typeof window.fcneBranchPool==='function'?window.fcneBranchPool('sfv'):DATA)
+      .filter(e=>e && e.category===phase && e.id!==current)
+      .sort((a,b)=>score238(b,draft.focus)-score238(a,draft.focus));
+  }
+
+  const top=pool.slice(0,3), rest=pool.slice(3);
+  document.getElementById('fcneV232Swap')?.remove();
+
+  function card(e,extra){
+    return `<div class="fcne-v232-alt ${extra?'fcne-v236-extra':''}" ${extra?'hidden':''}>
+      ${e.image?`<img src="${e.image}" alt="${esc238(e.title)}">`:''}
+      <div style="flex:1">
+        <b>${esc238(e.title)}</b>
+        <small>${esc238(e.focus||phase)} · ${Number(e.duration)||15} Min${mode?' · '+(mode==='hall'?'Halle':'Feld'):''}</small>
+      </div>
+      <button class="fcne-v232-action fcne-v232-own" onclick="fcneApplySwap('${esc238(phase)}','${esc238(e.id)}')">Übernehmen</button>
+    </div>`;
+  }
+
+  const proof = draft.sourceBranch==='easy2coach'
+    ? `<div class="fcne-v238-modeproof">${mode==='hall'?'🏟️ Hallentraining':'⚽ Feldtraining'} · Modus aus dem aktuellen Trainingsplan geprüft</div>`
+    : '';
+
+  const wrap=document.createElement('div');
+  wrap.id='fcneV232Swap';
+  wrap.className='fcne-v232-modal';
+  wrap.innerHTML=`<div class="fcne-v232-sheet">
+    <h2>🔄 ${esc238(phase)} wechseln</h2>
+    ${proof}
+    <p>Die 3 passendsten Übungen stehen oben. Weitere passende Übungen kannst du aufklappen.</p>
+    ${top.length?top.map(e=>card(e,false)).join(''):'<div class="fcne-v235-warning">Keine passende Alternative für diesen Trainingsmodus vorhanden.</div>'}
+    ${rest.map(e=>card(e,true)).join('')}
+    ${rest.length?`<button id="fcneV236MoreBtn" class="fcne-v236-morebtn" onclick="fcneShowMoreAlternatives()">＋ Weitere passende Übungen anzeigen (${rest.length})</button>`:''}
+    <div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Swap').remove()">Schliessen</button></div>
+  </div>`;
+  document.body.appendChild(wrap);
+};
+
+window.fcneApplySwap=function(phase,id){
+  const e=DATA.find(x=>x.id===id);
+  if(!e||typeof draft==='undefined')return;
+
+  if(draft.sourceBranch==='easy2coach'){
+    const mode=inferPlanMode238(draft);
+    const em=exerciseMode238(e);
+    if(em!==mode){
+      alert('BLOCKIERT: Diese Übung ist '+(em==='hall'?'Halle':'Feld')+', dein aktuelles Training ist '+(mode==='hall'?'Halle':'Feld')+'.');
+      return;
+    }
+    lockPlan238(draft,mode);
+  }
+
+  draft.selections=draft.selections||{};
+  draft.selections[phase]=id;
+  document.getElementById('fcneV232Swap')?.remove();
+  if(typeof renderWizard==='function')renderWizard();
+};
+
+/* Diagnosefunktion für genau den Fehler aus den Screenshots. */
+window.fcneAuditMode238=function(plan){
+  const p=plan||((typeof draft!=='undefined')?draft:null);
+  if(!p)return {version:'2.38',error:'no plan'};
+  let field=0,hall=0,items=[];
+  Object.entries(p.selections||{}).forEach(([phase,id])=>{
+    const e=DATA.find(x=>x.id===id);
+    const m=exerciseMode238(e);
+    if(m==='field')field++;
+    if(m==='hall')hall++;
+    if(e?.id==='5gegen5-1gegen1'||/BRACK\.CH PMF/i.test(e?.title||''))field+=3;
+    items.push({phase,id,title:e?.title||'',mode:m});
+  });
+  return {
+    version:'2.38',
+    storedEnvironment:p.environment||null,
+    locked:p.fcneModeLocked||null,
+    inferred:inferPlanMode238(p),
+    fieldScore:field,
+    hallScore:hall,
+    items
+  };
+};
+try{console.info('FCNE MODE-LOCK AUDIT',window.fcneAuditMode238());}catch(_){}
+
+document.querySelectorAll('.app-version').forEach(el=>{
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.38 · Mode-Lock Fix · Build 2026.10.21';
+});
+})();
+</script>
+<script>window.FCNE_APP_VERSION='2.38 MODE-LOCK-FIX';</script>
 
 </body>
 </html>
