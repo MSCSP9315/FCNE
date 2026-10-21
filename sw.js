@@ -1,4 +1,4 @@
-const CACHE='fcne-training-v2.35-hard-split-20261021';
+const CACHE='fcne-training-v2.37-e2c-dataset-split-20261021';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install',e=>{
