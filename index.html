@@ -486,7 +486,7 @@ button,input,select,textarea{max-width:100%}
 </style>
 
 <style id="fcne-v224-detailheader-fix">
-/* v2.24 – Detailheader: exakt drei Elemente, auch bei statischen SFV-Karten */
+/* v2.27 – Detailheader: exakt drei Elemente, auch bei statischen SFV-Karten */
 .exercise-detail .detail-header > .fcne-global-brand{
   display:none!important;
 }
@@ -581,7 +581,7 @@ button,input,select,textarea{max-width:100%}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.24 · Build 2026.10.19</div>
+  <div class="app-version">Version 2.28 TEST · Build 2026.10.19</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -599,7 +599,7 @@ button,input,select,textarea{max-width:100%}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.24 · Build 2026.10.19</div>
+    <div class="app-version">Version 2.28 TEST · Build 2026.10.19</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -622,7 +622,7 @@ button,input,select,textarea{max-width:100%}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.24</b><span>App-Version</span></div>
+        <div><b>Version 2.28 TEST</b><span>App-Version</span></div>
         <div><b>2026.10.19</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
@@ -1400,7 +1400,7 @@ function v20PrintTraining(){window.print();}
 function v20Backup(){
  try{
    const payload={
-     app:'FC NE Trainingsapp',version:'2.24',exportedAt:new Date().toISOString(),
+     app:'FC NE Trainingsapp',version:'2.27',exportedAt:new Date().toISOString(),
      savedTrainings:JSON.parse(localStorage.getItem('fcne_saved_trainings_v07')||'[]'),
      favorites:JSON.parse(localStorage.getItem('fcne_favs_v07')||'[]'),
      trainingFavorites:JSON.parse(localStorage.getItem('fcne_training_favs_v26')||'[]'),
@@ -3614,7 +3614,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v219-smart-generator-material">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.24';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 
   const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const norm=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -3880,7 +3880,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
     }
     const ordered=PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])).filter(Boolean);
     draft.customDurations=fitDurations(PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])),target);
-    draft.notes=(draft.notes||'').replace(/\s*·\s*Smart Generator v2\.18/g,'')+' · Smart Generator v2.24';
+    draft.notes=(draft.notes||'').replace(/\s*·\s*Smart Generator v2\.18/g,'')+' · Smart Generator v2.27';
     window.FCNE_LAST_SMART_META=smartRationale(focus,players,ordered,recent);
     if(typeof renderWizard==='function')renderWizard();
     return r;
@@ -3909,7 +3909,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   // Add a compact explanation to both SFV and Easy2Coach generator forms without changing their navigation.
   const obs=new MutationObserver(()=>{
     const auto=document.getElementById('epAuto');if(!auto||!auto.classList.contains('open')||auto.querySelector('.fcne-smart-note'))return;
-    const form=auto.querySelector('.fcne-auto-form');if(form){const n=document.createElement('div');n.className='fcne-smart-note';n.innerHTML='<b>🧠 Smart Generator v2.24</b><span>Berücksichtigt Schwerpunkt, Spielerzahl, E-Junioren-Eignung, letzte Trainings, Übungsähnlichkeit und möglichst wenig Materialumbau.</span>';form.insertAdjacentElement('afterend',n);}
+    const form=auto.querySelector('.fcne-auto-form');if(form){const n=document.createElement('div');n.className='fcne-smart-note';n.innerHTML='<b>🧠 Smart Generator v2.27</b><span>Berücksichtigt Schwerpunkt, Spielerzahl, E-Junioren-Eignung, letzte Trainings, Übungsähnlichkeit und möglichst wenig Materialumbau.</span>';form.insertAdjacentElement('afterend',n);}
   });
   obs.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
 
@@ -3920,7 +3920,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   }
 })();
 </script>
-<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.24';</script>
+<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 \n<style id="fcne-v220-material-css">
 .fcne-mat-status{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f3f7f4;border:1px solid #dce7e0;border-radius:11px;padding:8px 10px;margin:8px 0 10px;font-size:10px;line-height:1.35;color:#42574a}
@@ -3932,7 +3932,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v220-material-engine">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.24';
+window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 const CACHE_KEY='fcne_material_exact_v220';
 const TRY_KEY='fcne_material_try_v220';
 const esc220=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4091,7 +4091,7 @@ window.materialListHtml=function(exercises){
   const grid=mats.map(m=>`<label class="material-item v218"><input type="checkbox"><span class="mat-ico">${m.ico||'•'}</span><span class="material-main"><span class="material-name"><span class="material-qty ${m.exact?'':'approx'}">${m.qty}×</span> ${esc220(m.name)}</span><small class="material-source">${m.exact?esc220(m.source||'Originalangabe'):esc220(m.source||'Schätzung')}</small></span></label>`).join('')||'<div class="v218-material-note">Noch keine Materialdaten vorhanden.</div>';
   let status='';if(st.total){if(st.missing===0)status=`<div class="fcne-mat-status good"><span>✓ Easy2Coach-Material für ${st.ok}/${st.total} Übungen aus der Original-Materialzeile geprüft.</span><button class="fcne-mat-refresh" onclick="fcneRefreshTrainingMaterialsV220(this)">↻ Neu prüfen</button></div>`;else status=`<div class="fcne-mat-status warn"><span>⚠ ${st.ok}/${st.total} E2C-Übungen verifiziert. ${st.missing} werden geprüft bzw. konnten noch nicht geladen werden.</span><button class="fcne-mat-refresh" onclick="fcneRefreshTrainingMaterialsV220(this)">↻ Material prüfen</button></div>`;}
   const per=(exercises||[]).map(e=>{const ms=matFor220(e,players);const raw=e.fcneMaterialLine?`<div class="fcne-material-original"><b>Original:</b> ${esc220(e.fcneMaterialLine)}</div>`:(e.fcneBranch==='easy2coach'?'<div class="fcne-mat-unverified">Noch keine Original-Materialzeile verifiziert.</div>':'');return `<div class="v218-ex-mat"><b>${esc220(e.title)}</b><div class="v218-mat-chips">${ms.map(m=>`<span class="v218-mat-chip">${m.exact?'':'≈ '}${m.qty}× ${esc220(m.name)}</span>`).join('')||'<span class="v218-mat-chip">keine Materialdaten</span>'}</div>${raw}</div>`;}).join('');
-  return `<div class="material-box" data-mat-sig="${esc220(sig)}"><h3>🧰 Materialliste</h3><div class="subline">Für das komplette Training. Bei wiederverwendetem Material zählt die höchste gleichzeitig benötigte Menge.</div>${status}<div class="material-grid v218">${grid}</div><div class="v218-material-note"><b>v2.24:</b> Mengen mit <b>≈</b> sind bewusst als Schätzung markiert. E2C-Spezialmaterial wird aus der Original-Materialzeile übernommen; unbekannte Geräte werden nicht mehr verworfen.</div><details class="v218-material-details"><summary>Material pro Übung + Originalangabe anzeigen</summary>${per}</details></div>`;
+  return `<div class="material-box" data-mat-sig="${esc220(sig)}"><h3>🧰 Materialliste</h3><div class="subline">Für das komplette Training. Bei wiederverwendetem Material zählt die höchste gleichzeitig benötigte Menge.</div>${status}<div class="material-grid v218">${grid}</div><div class="v218-material-note"><b>v2.28 TEST:</b> Mengen mit <b>≈</b> sind bewusst als Schätzung markiert. E2C-Spezialmaterial wird aus der Original-Materialzeile übernommen; unbekannte Geräte werden nicht mehr verworfen.</div><details class="v218-material-details"><summary>Material pro Übung + Originalangabe anzeigen</summary>${per}</details></div>`;
 };
 
 // Re-render material boxes after the page has restored cached exercise data.
@@ -4192,7 +4192,7 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
     const date=t?.date?new Date(t.date+'T12:00:00').toLocaleDateString('de-CH'):'–';
     const seq=exercises.map(e=>`<tr><td>${Number((t?.customDurations||{})[e.id])||Number(e.duration)||0} Min</td><td><b>${esc(e.title)}</b><br><span>${phaseIcon(e.category)} ${esc(e.category)} · ${esc(e.focus||e.field||'')}</span></td></tr>`).join('');
     const cards=exercises.map((e,n)=>{const dur=Number((t?.customDurations||{})[e.id])||Number(e.duration)||0;const img=exerciseImage(e);return `<section class="pdf-exercise"><div class="pdf-exercise-head"><div class="pdf-step" style="background:${phaseColor(e.category)}">${n+1}</div><div><h3>${esc(e.title)}</h3><small>${phaseIcon(e.category)} ${esc(e.category)} · ${esc(e.focus||e.field||'')} · ${esc(e.source_provider||e.sourceBranch||'')}</small></div><div class="pdf-time">${dur} Min</div></div><div class="pdf-exercise-grid">${img?`<img src="${esc(img)}" alt="${esc(e.title)}">`:'<div></div>'}<div class="pdf-text">${exerciseText(e)}</div></div></section>`;}).join('');
-    sheet.innerHTML=`<header class="pdf-header">${logo?`<img class="pdf-logo" src="${esc(logo)}" alt="FC NE">`:'<div></div>'}<div><h1>${esc(t?.name||'Training')}</h1><p>FC NE Trainerkarte · E-Junioren${t?.environment?' · '+esc(t.environment):''}</p></div><div class="pdf-version">v2.24<br>19.10.2026</div></header><div class="pdf-meta"><div><b>👥 ${p}</b><span>Spieler</span></div><div><b>🎯 ${esc(t?.focus||'Gemischt / allgemein')}</b><span>Schwerpunkt</span></div><div><b>⏱ ${Number(t?.total)||exercises.reduce((a,e)=>a+(Number((t?.customDurations||{})[e.id])||Number(e.duration)||0),0)} Min</b><span>Gesamtdauer</span></div><div><b>📅 ${esc(date)}</b><span>Datum</span></div></div><section class="pdf-box"><h2>🧰 Materialliste</h2><div class="pdf-materials">${materialHtml(exercises,p)}</div></section><section class="pdf-box"><h2>📋 Trainingsablauf</h2><table class="pdf-sequence"><tbody>${seq}</tbody></table></section><div class="pdf-exercises">${cards}</div>${t?.notes?`<section class="pdf-box"><h2>📝 Trainernotizen</h2><div>${esc(t.notes).replace(/\n/g,'<br>')}</div></section>`:''}<footer class="pdf-footer">FC NE Trainingsapp · Trainerkarte v2.24 · Nur für den internen Gebrauch</footer>`;
+    sheet.innerHTML=`<header class="pdf-header">${logo?`<img class="pdf-logo" src="${esc(logo)}" alt="FC NE">`:'<div></div>'}<div><h1>${esc(t?.name||'Training')}</h1><p>FC NE Trainerkarte · E-Junioren${t?.environment?' · '+esc(t.environment):''}</p></div><div class="pdf-version">v2.25<br>19.10.2026</div></header><div class="pdf-meta"><div><b>👥 ${p}</b><span>Spieler</span></div><div><b>🎯 ${esc(t?.focus||'Gemischt / allgemein')}</b><span>Schwerpunkt</span></div><div><b>⏱ ${Number(t?.total)||exercises.reduce((a,e)=>a+(Number((t?.customDurations||{})[e.id])||Number(e.duration)||0),0)} Min</b><span>Gesamtdauer</span></div><div><b>📅 ${esc(date)}</b><span>Datum</span></div></div><section class="pdf-box"><h2>🧰 Materialliste</h2><div class="pdf-materials">${materialHtml(exercises,p)}</div></section><section class="pdf-box"><h2>📋 Trainingsablauf</h2><table class="pdf-sequence"><tbody>${seq}</tbody></table></section><div class="pdf-exercises">${cards}</div>${t?.notes?`<section class="pdf-box"><h2>📝 Trainernotizen</h2><div>${esc(t.notes).replace(/\n/g,'<br>')}</div></section>`:''}<footer class="pdf-footer">FC NE Trainingsapp · Trainerkarte v2.27 · Nur für den internen Gebrauch</footer>`;
     return sheet;
   };
   function busy(show){
@@ -4218,14 +4218,14 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   const prev=window.renderTrainerView;
   if(typeof prev==='function')window.renderTrainerView=function(t){prev(t);const row=document.querySelector('#trainerBody .trainer-action-row');if(row&&!row.querySelector('.trainer-pdf-btn')){const b=document.createElement('button');b.className='trainer-pdf-btn';b.innerHTML='📄 Trainerkarte als PDF';b.onclick=function(){window.fcneExportTrainerPdf(this)};row.appendChild(b);}};
-  window.FCNE_APP_VERSION='2.24';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 })();
 </script>
 
-<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.24';</script>
+<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 <style id="fcne-v223-fix-style">
-/* v2.24 – Detailheader Fix + robuster PDF-Export */
+/* v2.27 – Detailheader Fix + robuster PDF-Export */
 .exercise-detail .detail-header{
   box-sizing:border-box!important;
   width:min(720px,100%)!important;
@@ -4341,10 +4341,317 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   // Bestehenden Button umbiegen: zuerst Vorschau, dann direkter Nutzertipp auf Drucken/PDF.
   window.fcneExportTrainerPdf=function(){window.fcneOpenPdfPreview();};
-  window.FCNE_APP_VERSION='2.24';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 })();
 </script>
-<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.24';</script>
-<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.24';</script>
+<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+
+<script id="fcne-v225-hallen-ausklang">
+(function(){
+  'use strict';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+  const specs=[
+    {
+      id:'fcne-hall-ausklang-penalty',title:'Penalty-Challenge',duration:10,players:'6–14',focus:'Torabschluss / Spass',
+      intro:'Ruhiger, motivierender Abschluss mit kurzen Penalty-Duellen. Ideal nach einem intensiven Hallentraining.',
+      org:'Ein Hallentor mit Torhüter. Die Spieler stehen mit Ball in einer lockeren Reihe bei einer markierten Schusslinie. Bei grosser Gruppe zwei Tore verwenden.',
+      flow:'Jeder Spieler schiesst einen Penalty. Danach Ball holen und hinten anstellen. Nach zwei Durchgängen kann ein kleines Finale gespielt werden.',
+      coaching:['Sauberer Anlauf statt Vollspann um jeden Preis','Vor dem Schuss kurz Ziel wählen','Torhüter aktiv einbinden und wechseln'],
+      variations:['Nur mit schwächerem Fuss schiessen','Zielzonen im Tor festlegen','Team-Challenge: Wie viele Treffer schafft die Gruppe?'],
+      materials:['1 Ball pro Spieler','1 Hallentor','4 Hütchen / Markierungsteller'],
+      type:'penalty'
+    },
+    {
+      id:'fcne-hall-ausklang-ziel',title:'Zielschiessen an Langbänke',duration:8,players:'6–14',focus:'Ballgefühl / Präzision',
+      intro:'Spielerischer Ausklang mit wenig Laufbelastung: Die Kinder sammeln Punkte, indem sie markierte Ziele anspielen.',
+      org:'Zwei Langbänke an der Hallenwand oder frei im Raum platzieren. Mit Hütchen 3 bis 4 Schusspositionen markieren. Jeder Spieler hat einen Ball.',
+      flow:'Die Spieler dribbeln locker zu einer Markierung und versuchen die Langbank gezielt anzuspielen. Treffer zählen als Punkt. Danach Ball kontrollieren und zur nächsten Position wechseln.',
+      coaching:['Innenseite für präzise Zuspiele nutzen','Standbein neben den Ball setzen','Nach dem Pass direkt wieder Ballkontrolle herstellen'],
+      variations:['Schwacher Fuss zählt doppelt','Entfernung der Markierungen verändern','Abwechselnd flach und mit dosiertem Chip spielen'],
+      materials:['1 Ball pro Spieler','2 Langbänke','8 Hütchen / Markierungsteller'],
+      type:'bench'
+    },
+    {
+      id:'fcne-hall-ausklang-freeze',title:'Dribbel-Freeze',duration:8,players:'6–16',focus:'Dribbling / Reaktion',
+      intro:'Locker auslaufen mit Ball: freies Dribbling und kurze Reaktionssignale statt weiterer hoher Belastung.',
+      org:'Ein grosses Hallenfeld mit Hütchen begrenzen. Jeder Spieler hat einen Ball und genügend Abstand zu den anderen.',
+      flow:'Alle dribbeln locker frei im Feld. Auf Zuruf oder Pfiff den Ball sofort stoppen und einfrieren. Danach folgt eine neue Aufgabe, z. B. Richtungswechsel oder Fusswechsel.',
+      coaching:['Viele kleine Ballkontakte','Kopf regelmässig heben','Tempo bewusst reduzieren und sauber arbeiten'],
+      variations:['Freeze nur mit Sohle','Bei Farbe zu passendem Hütchen dribbeln','Nach Freeze drei Jonglierkontakte versuchen'],
+      materials:['1 Ball pro Spieler','8 Hütchen / Markierungsteller'],
+      type:'freeze'
+    },
+    {
+      id:'fcne-hall-ausklang-passkreis',title:'Passkreis – gemeinsam 20 Pässe',duration:8,players:'6–14',focus:'Passspiel / Team',
+      intro:'Ruhiger Teamabschluss: Die Gruppe versucht gemeinsam eine Passserie ohne Fehler zu schaffen.',
+      org:'Spieler bilden einen grossen Kreis. Ein Ball startet bei einem beliebigen Spieler. Bei mehr als 10 Spielern kann mit zwei Gruppen gearbeitet werden.',
+      flow:'Der Ball wird flach im Kreis oder frei zu Mitspielern gepasst. Die Gruppe zählt laut mit. Ziel sind 20 saubere Pässe am Stück.',
+      coaching:['Passschärfe dem Abstand anpassen','Vor dem Zuspiel Blickkontakt aufnehmen','Ersten Kontakt vom Druck weg mitnehmen'],
+      variations:['Nur schwacher Fuss','Zwei Bälle gleichzeitig','Nach jedem Pass Position im Kreis wechseln'],
+      materials:['2 Bälle','6 Hütchen / Markierungsteller'],
+      type:'circle'
+    },
+    {
+      id:'fcne-hall-ausklang-ballgefuehl',title:'Ballgefühl-Challenge',duration:8,players:'6–16',focus:'Technik / Ballgefühl',
+      intro:'Kurze Technik-Challenge ohne Gegnerdruck. Jedes Kind arbeitet im eigenen Tempo und beendet das Training mit Erfolgserlebnissen.',
+      org:'Jeder Spieler hat einen Ball und einen freien Platz in der Halle. Die Gruppe verteilt sich grosszügig.',
+      flow:'Der Trainer gibt nacheinander kleine Aufgaben vor: Sohle rechts/links, Innen-Aussen, Ball um den Körper führen, Jonglieren, Ball stoppen und wieder aufnehmen.',
+      coaching:['Qualität vor Tempo','Beidfüssig arbeiten','Kinder eigene Lösungen ausprobieren lassen'],
+      variations:['30 Sekunden pro Aufgabe','Kinder dürfen eine Lieblingsaufgabe vormachen','Partner-Challenge mit kurzem Zupass'],
+      materials:['1 Ball pro Spieler'],
+      type:'skills'
+    },
+    {
+      id:'fcne-hall-ausklang-teamziel',title:'Team-Challenge – alle treffen',duration:10,players:'6–14',focus:'Torabschluss / Team',
+      intro:'Gemeinsamer Abschluss statt Einzelwettkampf: Das Training endet, wenn jedes Kind mindestens einmal getroffen hat.',
+      org:'Ein Hallentor, 1 Torhüter und eine Schusslinie mit Hütchen. Alle Feldspieler haben einen Ball. Torhüter regelmässig wechseln.',
+      flow:'Nacheinander schliessen die Spieler aus kurzer Distanz ab. Wer getroffen hat, unterstützt die noch offenen Spieler. Ziel: Alle schaffen gemeinsam mindestens einen Treffer.',
+      coaching:['Mutig, aber kontrolliert abschliessen','Torhüter beobachten','Teamkollegen positiv unterstützen'],
+      variations:['Schwacher Fuss für den zweiten Durchgang','Treffer nach kurzem Dribbling','Zwei Teams lösen die Aufgabe parallel'],
+      materials:['1 Ball pro Spieler','1 Hallentor','6 Hütchen / Markierungsteller'],
+      type:'team'
+    }
+  ];
+
+  function diagram(type,title){
+    const common=`<rect width="900" height="560" rx="28" fill="#f4f7f8"/><rect x="55" y="45" width="790" height="470" rx="18" fill="#e7f3f8" stroke="#2f6480" stroke-width="6"/><line x1="450" y1="45" x2="450" y2="515" stroke="#b7ced9" stroke-width="3"/><circle cx="450" cy="280" r="70" fill="none" stroke="#b7ced9" stroke-width="3"/>`;
+    const ball=(x,y)=>`<circle cx="${x}" cy="${y}" r="10" fill="#fff" stroke="#222" stroke-width="3"/><path d="M${x-4} ${y-3}l4-4 4 4-2 5h-4z" fill="#222"/>`;
+    const cone=(x,y,c='#e53b35')=>`<path d="M${x} ${y-14}l-12 24h24z" fill="${c}"/>`;
+    const player=(x,y,c='#1f7acb')=>`<circle cx="${x}" cy="${y}" r="17" fill="${c}" stroke="#fff" stroke-width="4"/>`;
+    let art='';
+    if(type==='penalty') art=`<rect x="730" y="200" width="35" height="160" fill="#fff" stroke="#222" stroke-width="5"/>${player(670,280,'#7b4bb7')}${ball(520,280)}${player(470,280)}${cone(500,320)}${cone(500,240)}`;
+    if(type==='bench') art=`<rect x="655" y="130" width="120" height="28" rx="5" fill="#b8834f" stroke="#5d4028" stroke-width="4"/><rect x="655" y="400" width="120" height="28" rx="5" fill="#b8834f" stroke="#5d4028" stroke-width="4"/>${player(260,185)}${player(260,375)}${ball(320,185)}${ball(320,375)}${cone(410,185)}${cone(410,375)}`;
+    if(type==='freeze') art=`${[180,330,480,630].map((x,i)=>player(x,180+(i%2)*190,i%2?'#e5534b':'#1f7acb')+ball(x+35,180+(i%2)*190)+cone(x-35,220+(i%2)*110)).join('')}`;
+    if(type==='circle') art=`${[[450,140],[610,205],[650,350],[450,420],[250,350],[290,205]].map((p,i)=>player(p[0],p[1],i%2?'#e5534b':'#1f7acb')).join('')}${ball(450,280)}<path d="M330 220 Q450 150 570 220 M570 340 Q450 410 330 340" fill="none" stroke="#1c6c43" stroke-width="5" stroke-dasharray="12 10"/>`;
+    if(type==='skills') art=`${[[220,180],[450,180],[680,180],[335,380],[565,380]].map((p,i)=>player(p[0],p[1],i%2?'#e5534b':'#1f7acb')+ball(p[0]+30,p[1]+18)).join('')}`;
+    if(type==='team') art=`<rect x="730" y="200" width="35" height="160" fill="#fff" stroke="#222" stroke-width="5"/>${player(680,280,'#7b4bb7')}${[220,300,380,460,540].map((x,i)=>player(x,180+(i%2)*200,i%2?'#e5534b':'#1f7acb')+ball(x+25,195+(i%2)*200)).join('')}${cone(585,250)}${cone(585,310)}`;
+    return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560">${common}<text x="450" y="30" font-family="Arial,sans-serif" font-size="24" font-weight="700" text-anchor="middle" fill="#163a4d">${title}</text>${art}</svg>`);
+  }
+
+  function add(spec){
+    if(DATA.some(e=>e.id===spec.id))return;
+    const img=diagram(spec.type,spec.title);
+    const e={
+      id:spec.id,title:spec.title,category:'Ausklang',duration:spec.duration,field:'Halle',focus:spec.focus,intro:spec.intro,
+      sections:[['Organisation',spec.org],['Ablauf',spec.flow],['Varianten',spec.variations.join(' · ')],['Coaching',spec.coaching.join(' · ')]],
+      source_provider:'FC NE / eigene Übung',source_label:'FC NE – Hallen-Ausklang',source_note:'Eigene ergänzende Übung für E-Junioren.',
+      fcneBranch:'easy2coach',environment:'hall',fcneTrainingPlaces:'Halle',age:'E-Junioren',players:spec.players,level:'E-Junioren',
+      materials:spec.materials,coaching:spec.coaching,image:img,images:[img],fcneMaterialsExact:true,fcneOwnExercise:true
+    };
+    DATA.push(e);
+    const idx=DATA.indexOf(e);
+    const sec=document.createElement('section');sec.id='detail-'+idx;sec.className='exercise-detail';
+    const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v||'');
+    sec.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${esc(spec.title)}</strong><small>FC NE · Eigene Hallenübung · Ausklang</small></div><button class="heart" data-id="${e.id}" onclick="toggleFavorite('${e.id}')">♡</button></div><div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:#c69af2">🧘 Ausklang</span><span class="big-badge" style="background:#e9f6ee;color:#17643b">🏟️ Halle</span></div><img class="detail-hero" src="${img}" alt="${esc(spec.title)}" onclick="openZoom(this.src)"><div class="facts"><div><b>⏱ ${spec.duration} Min</b><small>Dauer</small></div><div><b>👥 ${esc(spec.players)}</b><small>Spieler</small></div><div><b>🏟️ Halle</b><small>Trainingsort</small></div></div><div class="v22-coaching"><div class="v22-coaching-title">📍 Aufbau</div><p>${esc(spec.org)}</p></div><div class="v22-coaching"><div class="v22-coaching-title">▶️ Ablauf</div><p>${esc(spec.flow)}</p></div><div class="v22-coaching"><div class="v22-coaching-title">👀 Coaching-Punkte</div><ul>${spec.coaching.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="v22-coaching"><div class="v22-coaching-title">🔄 Varianten</div><ul>${spec.variations.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="v22-coaching"><div class="v22-coaching-title">🧰 Material</div><ul>${spec.materials.map(x=>`<li>${esc(x)}</li>`).join('')}</ul></div><div class="imported-note"><b>Quelle:</b> FC NE / eigene ergänzende Hallenübung.</div><div class="detail-actions"><button class="primary" onclick="selectFromDetail('${e.id}')">✓ Für Training wählen</button></div></div>`;
+    document.body.appendChild(sec);
+  }
+  specs.forEach(add);
+  // Falls gerade eine Hallenbibliothek offen ist, direkt neu zeichnen.
+  try{if(window.FCNE_ACTIVE_BRANCH==='easy2coach'&&window.FCNE_EASY_MODE==='hall'&&document.getElementById('epLibrary')?.classList.contains('open'))window.fcneRenderBranchLibrary?.();}catch(_){ }
+})();
+</script>
+<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+
+
+<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+
+
+<style id="fcne-v232-feedback-css">
+.fcne-v232-action{border:0;border-radius:10px;padding:7px 10px;font-weight:850;font-size:10px;cursor:pointer}
+.fcne-v232-swap{background:#eef7f1;color:#0b6f3b;border:1px solid #cfe8d8;margin-left:6px}
+.fcne-v232-own{background:#0b6f3b;color:#fff}
+.fcne-v232-row-actions{display:flex;gap:6px;align-items:center;margin-left:auto}
+.fcne-v232-modal{position:fixed;inset:0;background:#0008;z-index:99999;display:flex;align-items:center;justify-content:center;padding:18px}
+.fcne-v232-sheet{background:#fff;width:min(720px,100%);max-height:92vh;overflow:auto;border-radius:22px;padding:18px;box-shadow:0 18px 60px #0005}
+.fcne-v232-sheet h2{margin:0 0 6px}.fcne-v232-sheet p{margin:0 0 14px;color:#607067;font-size:12px;line-height:1.45}
+.fcne-v232-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fcne-v232-grid label{display:block;font-size:10px;font-weight:850;color:#43574c;margin-bottom:4px}
+.fcne-v232-grid input,.fcne-v232-grid select,.fcne-v232-grid textarea{width:100%;box-sizing:border-box;border:1px solid #dce5df;border-radius:10px;padding:9px;font:inherit}
+.fcne-v232-grid textarea{min-height:82px;resize:vertical}.fcne-v232-span{grid-column:1/-1}
+.fcne-v232-footer{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.fcne-v232-alt{border:1px solid #dce7e0;border-radius:14px;padding:10px;margin:8px 0;display:flex;gap:10px;align-items:center}
+.fcne-v232-alt img{width:74px;height:54px;object-fit:cover;border-radius:8px;background:#eef2ef}.fcne-v232-alt b{display:block}.fcne-v232-alt small{display:block;color:#6c7b72;margin-top:2px}
+.fcne-v232-hallnote{background:#eef7fb;border:1px solid #cce5f1;color:#31586a;border-radius:13px;padding:10px 12px;margin:10px 0;font-size:11px;line-height:1.45}
+@media(max-width:560px){.fcne-v232-grid{grid-template-columns:1fr}.fcne-v232-span{grid-column:1}.fcne-v232-row-actions{margin-left:0}.sequence-row{flex-wrap:wrap}}
+</style>
+
+<script id="fcne-v232-feedback">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+
+const OWN_KEY='fcne_own_exercises_v232';
+const esc232=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const norm232=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+
+function makePlaceholder(title){
+  const t=String(title||'Eigene Übung').slice(0,34).replace(/[<>&"]/g,'');
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560"><rect width="900" height="560" rx="28" fill="#f2f7f4"/><rect x="55" y="55" width="790" height="450" rx="22" fill="#dff0e5" stroke="#167347" stroke-width="6"/><circle cx="450" cy="280" r="90" fill="none" stroke="#167347" stroke-width="5"/><line x1="450" y1="55" x2="450" y2="505" stroke="#167347" stroke-width="4"/><text x="450" y="255" text-anchor="middle" font-family="Arial" font-size="30" font-weight="700" fill="#155d3d">Eigene Übung</text><text x="450" y="300" text-anchor="middle" font-family="Arial" font-size="22" fill="#345f4d">${t}</text><text x="450" y="345" text-anchor="middle" font-family="Arial" font-size="64">⚽</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+
+function ensureDetail(e){
+  let idx=DATA.indexOf(e); if(idx<0)return;
+  let sec=document.getElementById('detail-'+idx);
+  if(!sec){sec=document.createElement('section');sec.id='detail-'+idx;sec.className='exercise-detail';document.body.appendChild(sec);}
+  const img=e.image||makePlaceholder(e.title);
+  const sections=(e.sections||[]).map(s=>`<div class="sp-section"><h4>${esc232(s[0])}</h4><p>${esc232(s[1])}</p></div>`).join('');
+  const mats=(e.materials||[]).map(x=>`<li>${esc232(x)}</li>`).join('');
+  sec.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${esc232(e.title)}</strong><small>Eigene Übung · ${esc232(e.category)}</small></div><button class="heart" data-id="${esc232(e.id)}" onclick="toggleFavorite('${esc232(e.id)}')">♡</button></div><div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:${(typeof COLORS!=='undefined'&&COLORS[e.category])||'#7add8b'}">${(typeof ICONS!=='undefined'&&ICONS[e.category])||'⚽'} ${esc232(e.category)}</span></div><img class="detail-hero" src="${img}" alt="${esc232(e.title)}" onclick="openZoom(this.src)"><div class="facts"><div><b>${Number(e.duration)||15} Min</b><small>Dauer</small></div><div><b>${esc232(e.players||'variabel')}</b><small>Spieler</small></div><div><b>${esc232(e.fcneTrainingPlaces||'Feld')}</b><small>Ort</small></div></div>${sections}${mats?`<div class="v22-coaching"><div class="v22-coaching-title">🧰 Material</div><ul>${mats}</ul></div>`:''}<div class="detail-actions"><button class="primary" onclick="selectFromDetail('${esc232(e.id)}')">✓ Für Training wählen</button></div></div>`;
+}
+
+function loadOwn(){
+  let own=[];try{own=JSON.parse(localStorage.getItem(OWN_KEY)||'[]')||[];}catch(_){}
+  own.forEach(e=>{
+    if(!DATA.some(x=>x.id===e.id)){DATA.push(e);ensureDetail(e);}
+  });
+}
+loadOwn();
+
+window.fcneOpenOwnExercise=function(){
+  const old=document.getElementById('fcneV232Own');if(old)old.remove();
+  const wrap=document.createElement('div');wrap.id='fcneV232Own';wrap.className='fcne-v232-modal';
+  wrap.innerHTML=`<div class="fcne-v232-sheet"><h2>＋ Eigene Übung</h2><p>Die Übung wird lokal auf diesem Gerät gespeichert und kann danach im Easy2Coach-Zweig beim Zusammenstellen und Generieren verwendet werden.</p>
+  <div class="fcne-v232-grid">
+    <div><label>Name</label><input id="v232name" placeholder="z. B. Farben-Vierer"></div>
+    <div><label>Trainingsphase</label><select id="v232cat">${['Aufwärmen','Vielseitigkeit','Fussball spielen lernen','Fussball spielen','Ausklang'].map(x=>`<option>${x}</option>`).join('')}</select></div>
+    <div><label>Ort</label><select id="v232place"><option>Feld</option><option>Halle</option></select></div>
+    <div><label>Schwerpunkt</label><input id="v232focus" placeholder="Dribbling, Passen, Torschuss …"></div>
+    <div><label>Spielerzahl</label><input id="v232players" placeholder="z. B. 8–16"></div>
+    <div><label>Dauer (Min.)</label><input id="v232dur" type="number" min="5" max="60" value="15"></div>
+    <div class="fcne-v232-span"><label>Organisation / Aufbau</label><textarea id="v232org"></textarea></div>
+    <div class="fcne-v232-span"><label>Ablauf</label><textarea id="v232flow"></textarea></div>
+    <div class="fcne-v232-span"><label>Coachingpunkte</label><textarea id="v232coach" placeholder="Je Zeile ein Punkt"></textarea></div>
+    <div class="fcne-v232-span"><label>Material</label><input id="v232mat" placeholder="z. B. 1 Ball pro Spieler, 8 Hütchen, 2 Tore"></div>
+    <div class="fcne-v232-span"><label>Eigenes Bild / Foto (optional)</label><input id="v232img" type="file" accept="image/*"></div>
+  </div>
+  <div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Own').remove()">Abbrechen</button><button class="fcne-v232-action fcne-v232-own" onclick="fcneSaveOwnExercise()">Speichern</button></div></div>`;
+  document.body.appendChild(wrap);
+};
+
+function fileToSmallDataUrl(file){
+  return new Promise(resolve=>{
+    if(!file)return resolve(null);
+    const rd=new FileReader();rd.onload=()=>{const im=new Image();im.onload=()=>{const max=900,scale=Math.min(1,max/im.width,max/im.height),c=document.createElement('canvas');c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext('2d').drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL('image/jpeg',.78));};im.onerror=()=>resolve(null);im.src=rd.result;};rd.onerror=()=>resolve(null);rd.readAsDataURL(file);
+  });
+}
+window.fcneSaveOwnExercise=async function(){
+  const g=id=>document.getElementById(id);
+  const title=g('v232name').value.trim();if(!title){alert('Bitte einen Namen eingeben.');return;}
+  const place=g('v232place').value, cat=g('v232cat').value, img=await fileToSmallDataUrl(g('v232img').files?.[0]);
+  const coach=g('v232coach').value.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const e={id:'own-'+Date.now(),title,category:cat,duration:Number(g('v232dur').value)||15,field:place,focus:g('v232focus').value.trim()||'Gemischt / allgemein',players:g('v232players').value.trim()||'variabel',intro:'Eigene Trainerübung',sections:[['Organisation',g('v232org').value.trim()||'—'],['Ablauf',g('v232flow').value.trim()||'—'],['Coaching',coach.join(' · ')||'—']],materials:g('v232mat').value.split(/[,;\n]+/).map(x=>x.trim()).filter(Boolean),coaching:coach,source_provider:'Eigene Übung',source_label:'FC NE – eigene Trainerübung',source_note:'Lokal vom Trainer erfasst.',fcneBranch:'easy2coach',environment:place==='Halle'?'hall':'field',fcneTrainingPlaces:place,image:img||makePlaceholder(title),images:[img||makePlaceholder(title)],level:'E-Junioren'};
+  DATA.push(e);ensureDetail(e);
+  let own=[];try{own=JSON.parse(localStorage.getItem(OWN_KEY)||'[]')||[];}catch(_){}
+  own.push(e);localStorage.setItem(OWN_KEY,JSON.stringify(own));
+  document.getElementById('fcneV232Own')?.remove();
+  alert('Eigene Übung gespeichert. Sie steht ab jetzt im passenden Feld-/Hallen-Pool zur Verfügung.');
+};
+
+function injectOwnButton(){
+  const box=document.getElementById('epBranch');if(!box||box.querySelector('.fcne-v232-ownbtn'))return;
+  if((window.FCNE_ACTIVE_BRANCH||'')!=='easy2coach')return;
+  const btn=document.createElement('button');btn.className='fcne-action-card fcne-v232-ownbtn';btn.onclick=window.fcneOpenOwnExercise;
+  btn.innerHTML='<span class="action-ico">➕</span><span><b>Eigene Übung</b><small>Eigene Feld- oder Hallenübung erfassen und im Generator verwenden.</small></span><span class="go">›</span>';
+  box.appendChild(btn);
+}
+new MutationObserver(injectOwnButton).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['class']});
+
+/* Aktueller SFV-Hallenstandard: E/FF-11 4v4 oder 5v5 mit Torspieler statt starrem 6v6. */
+function hallStandard(){
+  const p=Math.max(1,Number((typeof draft!=='undefined'&&draft?.players)||10));
+  let variant,org,flow,players;
+  if(p<=9){
+    variant='4 vs 4';players='6–9';
+    org='3 Feldspieler + 1 Torspieler pro Team. Bei 9 Kindern 1 Wechselspieler mit kurzen, häufigen Wechseln.';
+    flow='Freies 4 gegen 4. Nach Tor oder spätestens nach 2–3 Minuten Wechselspieler rotieren.';
+  }else if(p<=12){
+    variant='5 vs 5';players='10–12';
+    org='4 Feldspieler + 1 Torspieler pro Team. Zusätzliche Kinder wechseln rollierend alle 2–3 Minuten.';
+    flow='Freies 5 gegen 5 mit schnellen Wechseln und möglichst wenig Unterbrechungen.';
+  }else{
+    variant='4 vs 4 / 5 vs 5';players='13–16';
+    org='Bei genügend Hallenfläche möglichst zwei kleine Spielfelder parallel organisieren. Falls nur ein Feld möglich ist: drei kleine Teams bilden und sehr kurze Rotationen spielen.';
+    flow='Ziel ist maximale aktive Spielzeit: bevorzugt zwei parallele 4-gegen-4-Spiele; alternativ 5 gegen 5 mit 2–3-Minuten-Rotation.';
+  }
+  let e=DATA.find(x=>x.id==='fcne-halle-sfv-4v4-5v5');
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560"><rect width="900" height="560" rx="28" fill="#f4f7f8"/><rect x="55" y="45" width="790" height="470" rx="18" fill="#d8eef7" stroke="#1c5c7d" stroke-width="7"/><line x1="450" y1="45" x2="450" y2="515" stroke="#1c5c7d" stroke-width="5"/><circle cx="450" cy="280" r="72" fill="none" stroke="#1c5c7d" stroke-width="5"/><rect x="35" y="220" width="28" height="120" fill="#fff" stroke="#263238" stroke-width="5"/><rect x="837" y="220" width="28" height="120" fill="#fff" stroke="#263238" stroke-width="5"/><g fill="#1677d2" stroke="#fff" stroke-width="4"><circle cx="170" cy="280" r="18"/><circle cx="270" cy="170" r="18"/><circle cx="270" cy="390" r="18"/><circle cx="82" cy="280" r="20"/></g><g fill="#e53935" stroke="#fff" stroke-width="4"><circle cx="730" cy="280" r="18"/><circle cx="630" cy="170" r="18"/><circle cx="630" cy="390" r="18"/><circle cx="818" cy="280" r="20"/></g><circle cx="450" cy="280" r="12" fill="#fff" stroke="#222" stroke-width="3"/><text x="450" y="31" font-family="Arial" font-size="24" font-weight="700" text-anchor="middle" fill="#163a4d">E-Junioren Halle · ${variant} mit Torspieler</text></svg>`;
+  const img='data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+  const obj={id:'fcne-halle-sfv-4v4-5v5',title:'Hallenfussball – '+variant+' mit Torspieler',category:'Fussball spielen',duration:20,field:'Halle',focus:'Spielformen',intro:'Hallen-Spielform nach aktueller SFV-Empfehlung für E/FF-11: 4 vs 4 bzw. 5 vs 5 mit Torspieler.',sections:[['Organisation',org],['Ablauf',flow],['Coaching','Breite und Tiefe geben, schnell umschalten, mutig 1 gegen 1 spielen und Wechselzeiten kurz halten.'],['Hinweis','Für E/FF-11 empfiehlt der SFV in der Halle 4 vs 4 oder 5 vs 5. Ziel: kleine Teams, viele Ballkontakte und wenig Wartezeit.']],source_provider:'SFV Hallenempfehlung / FC NE',source_label:'SFV Hallenformat E/FF-11',source_note:'Aktualisiert 2026: Halle 4vs4 / 5vs5 mit Torspieler.',fcneBranch:'easy2coach',environment:'hall',fcneTrainingPlaces:'Halle',players,level:'E-Junioren',materials:['1 Ball im Spiel + Ersatzbälle','Leibchen','2 Hallentore'],coaching:['Viele Ballkontakte ermöglichen','Kurze Wechsel','Breite und Tiefe nutzen','Schnell umschalten'],image:img,images:[img]};
+  if(!e){e=obj;DATA.push(e);}else Object.assign(e,obj);
+  ensureDetail(e);return e;
+}
+const oldFixed=window.fcneFixedGameForMode;
+window.fcneFixedGameForMode=function(mode){return mode==='hall'?hallStandard():(oldFixed?oldFixed(mode):null);};
+hallStandard();
+
+/* Sicherheitsregel Material: 1 Ball pro Spieler wird immer exakt auf Spielerzahl gesetzt. */
+const oldMat232=window.fcneMaterialForExercise;
+if(oldMat232){
+  window.fcneMaterialForExercise=function(e,players){
+    const arr=oldMat232(e,players)||[],p=Math.max(1,Number(players)||10);
+    const txt=norm232([e?.title,e?.intro,e?.focus,e?.field].concat((e?.sections||[]).flat(),e?.materials||[]).join(' '));
+    const oneEach=/1 ball pro spieler|ein ball pro spieler|jeder spieler.{0,30}ball|jedes kind.{0,30}ball|alle kinder.{0,30}ball|mit ball pro kind|jeder.{0,15}einen ball/.test(txt);
+    if(oneEach){
+      let b=arr.find(x=>x.key==='balls');
+      if(b){b.qty=p;b.exact=true;b.source='1 Ball pro Spieler';}
+      else arr.unshift({key:'balls',name:'Bälle',ico:'⚽',qty:p,exact:true,source:'1 Ball pro Spieler'});
+    }
+    return arr;
+  };
+}
+
+/* Übung im fertigen Plan gezielt austauschen. */
+window.fcneSwapExercise=function(phase){
+  if(typeof draft==='undefined'||!draft)return;
+  const branch=draft.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv',mode=draft.environment||window.FCNE_EASY_MODE||'field';
+  let pool=(typeof window.fcneBranchPool==='function'?window.fcneBranchPool(branch):DATA).filter(e=>e.category===phase);
+  if(branch==='easy2coach'&&mode)pool=pool.filter(e=>mode==='hall'?window.fcneIsHallExercise(e):!window.fcneIsHallExercise(e));
+  if(phase==='Fussball spielen'&&branch==='easy2coach'&&mode==='hall'){
+    const f=hallStandard();pool=[f];
+  }
+  const current=draft.selections?.[phase];
+  pool=pool.filter(e=>e.id!==current);
+  if(typeof focusScore==='function')pool.sort((a,b)=>(focusScore(b,draft.focus)-focusScore(a,draft.focus))||String(a.title).localeCompare(String(b.title),'de'));
+  pool=pool.slice(0,3);
+  const old=document.getElementById('fcneV232Swap');if(old)old.remove();
+  const wrap=document.createElement('div');wrap.id='fcneV232Swap';wrap.className='fcne-v232-modal';
+  wrap.innerHTML=`<div class="fcne-v232-sheet"><h2>🔄 ${esc232(phase)} wechseln</h2><p>Nur diese eine Übung wird ersetzt. Der restliche Trainingsplan bleibt unverändert.</p>${pool.length?pool.map(e=>`<div class="fcne-v232-alt"><img src="${e.image||makePlaceholder(e.title)}"><div style="flex:1"><b>${esc232(e.title)}</b><small>${esc232(e.focus||e.field||'')} · ${Number(e.duration)||15} Min.</small></div><button class="fcne-v232-action fcne-v232-own" onclick="fcneApplySwap('${esc232(phase)}','${esc232(e.id)}')">Übernehmen</button></div>`).join(''):'<p>Keine weitere passende Alternative gefunden.</p>'}<div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Swap').remove()">Schliessen</button></div></div>`;
+  document.body.appendChild(wrap);
+};
+window.fcneApplySwap=function(phase,id){draft.selections=draft.selections||{};draft.selections[phase]=id;document.getElementById('fcneV232Swap')?.remove();if(typeof renderWizard==='function')renderWizard();};
+
+/* Wechsel-Buttons in der finalen Trainingsübersicht ergänzen. */
+const baseRender232=window.renderWizard;
+window.renderWizard=function(){
+  const r=baseRender232.apply(this,arguments);
+  try{
+    if(typeof STEPS!=='undefined'&&wizardStep===STEPS.length-1){
+      const rows=[...document.querySelectorAll('#wizardBody .sequence-row')];
+      rows.forEach((row,i)=>{
+        if(row.querySelector('.fcne-v232-swap')||!PHASES[i])return;
+        const actions=document.createElement('div');actions.className='fcne-v232-row-actions';
+        const b=document.createElement('button');b.type='button';b.className='fcne-v232-action fcne-v232-swap';b.textContent='🔄 Wechseln';
+        b.onclick=(ev)=>{ev.stopPropagation();window.fcneSwapExercise(PHASES[i]);};
+        actions.appendChild(b);row.appendChild(actions);
+      });
+      if((draft?.sourceBranch||window.FCNE_ACTIVE_BRANCH)==='easy2coach'&&(draft?.environment||window.FCNE_EASY_MODE)==='hall'){
+        const card=document.querySelector('#wizardBody .wizard-card');
+        if(card&&!card.querySelector('.fcne-v232-hallnote')){
+          const n=document.createElement('div');n.className='fcne-v232-hallnote';
+          n.innerHTML='<b>🏟️ Hallenlogik E/FF-11:</b> Der Spielteil verwendet jetzt 4 vs 4 bzw. 5 vs 5 mit Torspieler. Bei grossen Gruppen werden kurze Rotationen bzw. – wenn die Halle es zulässt – zwei kleine Felder empfohlen.';
+          card.appendChild(n);
+        }
+      }
+    }
+  }catch(_){}
+  return r;
+};
+
+})();
+</script>
+<script>window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+
 </body>
 </html>
