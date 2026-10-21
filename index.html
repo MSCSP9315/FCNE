@@ -3193,9 +3193,16 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 (function(){
   if(!('serviceWorker' in navigator)) return;
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('./sw.js', {scope:'./'})
+    navigator.serviceWorker.register('./sw.js?v=2.32.1', {scope:'./'})
       .then(function(reg){
         try{reg.update();}catch(e){}
+        navigator.serviceWorker.addEventListener('controllerchange', function(){
+          try{
+            if(sessionStorage.getItem('fcne-sw-reloaded-2321')) return;
+            sessionStorage.setItem('fcne-sw-reloaded-2321','1');
+            location.reload();
+          }catch(e){}
+        });
       })
       .catch(function(err){console.warn('FC NE Service Worker:', err);});
   });
@@ -3614,7 +3621,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v219-smart-generator-material">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
 
   const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const norm=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -3920,7 +3927,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   }
 })();
 </script>
-<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
 
 \n<style id="fcne-v220-material-css">
 .fcne-mat-status{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f3f7f4;border:1px solid #dce7e0;border-radius:11px;padding:8px 10px;margin:8px 0 10px;font-size:10px;line-height:1.35;color:#42574a}
@@ -3932,7 +3939,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v220-material-engine">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
 const CACHE_KEY='fcne_material_exact_v220';
 const TRY_KEY='fcne_material_try_v220';
 const esc220=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4218,11 +4225,11 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   const prev=window.renderTrainerView;
   if(typeof prev==='function')window.renderTrainerView=function(t){prev(t);const row=document.querySelector('#trainerBody .trainer-action-row');if(row&&!row.querySelector('.trainer-pdf-btn')){const b=document.createElement('button');b.className='trainer-pdf-btn';b.innerHTML='📄 Trainerkarte als PDF';b.onclick=function(){window.fcneExportTrainerPdf(this)};row.appendChild(b);}};
-  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
 })();
 </script>
 
-<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
 
 <style id="fcne-v223-fix-style">
 /* v2.27 – Detailheader Fix + robuster PDF-Export */
@@ -4341,16 +4348,16 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   // Bestehenden Button umbiegen: zuerst Vorschau, dann direkter Nutzertipp auf Drucken/PDF.
   window.fcneExportTrainerPdf=function(){window.fcneOpenPdfPreview();};
-  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
 })();
 </script>
-<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
-<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
 
 <script id="fcne-v225-hallen-ausklang">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
   const specs=[
     {
       id:'fcne-hall-ausklang-penalty',title:'Penalty-Challenge',duration:10,players:'6–14',focus:'Torabschluss / Spass',
@@ -4451,10 +4458,10 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   try{if(window.FCNE_ACTIVE_BRANCH==='easy2coach'&&window.FCNE_EASY_MODE==='hall'&&document.getElementById('epLibrary')?.classList.contains('open'))window.fcneRenderBranchLibrary?.();}catch(_){ }
 })();
 </script>
-<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
 
 
-<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
 
 
 <style id="fcne-v232-feedback-css">
@@ -4479,7 +4486,7 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
 <script id="fcne-v232-feedback">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
+window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
 
 const OWN_KEY='fcne_own_exercises_v232';
 const esc232=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4651,7 +4658,13 @@ window.renderWizard=function(){
 
 })();
 </script>
-<script>window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script>window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+
+
+<script id="fcne-v2321-update-marker">
+window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+console.info('FC NE Trainingsapp', window.FCNE_APP_VERSION);
+</script>
 
 </body>
 </html>
