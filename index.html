@@ -581,7 +581,7 @@ button,input,select,textarea{max-width:100%}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.28 TEST · Build 2026.10.19</div>
+  <div class="app-version">Version 2.35 HARD-SPLIT · Build 2026.10.21</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -599,7 +599,7 @@ button,input,select,textarea{max-width:100%}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.28 TEST · Build 2026.10.19</div>
+    <div class="app-version">Version 2.35 HARD-SPLIT · Build 2026.10.21</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -622,7 +622,7 @@ button,input,select,textarea{max-width:100%}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.28 TEST</b><span>App-Version</span></div>
+        <div><b>Version 2.35 HARD-SPLIT</b><span>App-Version</span></div>
         <div><b>2026.10.19</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
@@ -3193,16 +3193,9 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 (function(){
   if(!('serviceWorker' in navigator)) return;
   window.addEventListener('load', function(){
-    navigator.serviceWorker.register('./sw.js?v=2.32.1', {scope:'./'})
+    navigator.serviceWorker.register('./sw.js', {scope:'./'})
       .then(function(reg){
         try{reg.update();}catch(e){}
-        navigator.serviceWorker.addEventListener('controllerchange', function(){
-          try{
-            if(sessionStorage.getItem('fcne-sw-reloaded-2321')) return;
-            sessionStorage.setItem('fcne-sw-reloaded-2321','1');
-            location.reload();
-          }catch(e){}
-        });
       })
       .catch(function(err){console.warn('FC NE Service Worker:', err);});
   });
@@ -3621,7 +3614,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v219-smart-generator-material">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 
   const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const norm=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -3927,7 +3920,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   }
 })();
 </script>
-<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 \n<style id="fcne-v220-material-css">
 .fcne-mat-status{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f3f7f4;border:1px solid #dce7e0;border-radius:11px;padding:8px 10px;margin:8px 0 10px;font-size:10px;line-height:1.35;color:#42574a}
@@ -3939,7 +3932,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v220-material-engine">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 const CACHE_KEY='fcne_material_exact_v220';
 const TRY_KEY='fcne_material_try_v220';
 const esc220=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4225,11 +4218,11 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   const prev=window.renderTrainerView;
   if(typeof prev==='function')window.renderTrainerView=function(t){prev(t);const row=document.querySelector('#trainerBody .trainer-action-row');if(row&&!row.querySelector('.trainer-pdf-btn')){const b=document.createElement('button');b.className='trainer-pdf-btn';b.innerHTML='📄 Trainerkarte als PDF';b.onclick=function(){window.fcneExportTrainerPdf(this)};row.appendChild(b);}};
-  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 })();
 </script>
 
-<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 <style id="fcne-v223-fix-style">
 /* v2.27 – Detailheader Fix + robuster PDF-Export */
@@ -4348,16 +4341,16 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   // Bestehenden Button umbiegen: zuerst Vorschau, dann direkter Nutzertipp auf Drucken/PDF.
   window.fcneExportTrainerPdf=function(){window.fcneOpenPdfPreview();};
-  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 })();
 </script>
-<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
-<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
+<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 <script id="fcne-v225-hallen-ausklang">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+  window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
   const specs=[
     {
       id:'fcne-hall-ausklang-penalty',title:'Penalty-Challenge',duration:10,players:'6–14',focus:'Torabschluss / Spass',
@@ -4458,10 +4451,10 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   try{if(window.FCNE_ACTIVE_BRANCH==='easy2coach'&&window.FCNE_EASY_MODE==='hall'&&document.getElementById('epLibrary')?.classList.contains('open'))window.fcneRenderBranchLibrary?.();}catch(_){ }
 })();
 </script>
-<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 
-<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 
 <style id="fcne-v232-feedback-css">
@@ -4486,7 +4479,7 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
 <script id="fcne-v232-feedback">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
+window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';
 
 const OWN_KEY='fcne_own_exercises_v232';
 const esc232=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4658,13 +4651,835 @@ window.renderWizard=function(){
 
 })();
 </script>
-<script>window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';</script>
+<script>window.FCNE_APP_VERSION='2.32 TRAINERFEEDBACK';</script>
 
 
-<script id="fcne-v2321-update-marker">
-window.FCNE_APP_VERSION='2.32.1 TRAINERFEEDBACK + PWA UPDATE FIX';
-console.info('FC NE Trainingsapp', window.FCNE_APP_VERSION);
+<style id="fcne-v233-swapfix-css">
+.fcne-v233-info{background:#f2f8f4;border:1px solid #d4eadb;border-radius:12px;padding:9px 11px;margin:7px 0 12px;color:#476155;font-size:11px;line-height:1.4}
+.fcne-v233-altmeta{display:flex;gap:5px;flex-wrap:wrap;margin-top:4px}
+.fcne-v233-pill{background:#eef3f0;border-radius:999px;padding:3px 7px;font-size:9px;font-weight:800;color:#52675c}
+</style>
+<script id="fcne-v233-swapfix">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.33 WECHSEL-FIX';
+
+const esc233=v=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const norm233=v=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss');
+
+function branch233(e){
+  if(typeof window.fcneExerciseBranch==='function'){
+    try{return window.fcneExerciseBranch(e);}catch(_){}
+  }
+  const raw=[e?.fcneBranch,e?.source_provider,e?.source,e?.provider,e?.source_label,e?.source_note].filter(Boolean).join(' ').toLowerCase();
+  return /easy\s*2\s*coach|easy2coach|alternative|eigene uebung|eigene übung|fc ne/.test(raw)?'easy2coach':'sfv';
+}
+function hall233(e){
+  if(!e)return false;
+  if(e.environment==='hall'||e.fcneTrainingPlaces==='Halle'||e.location==='Halle')return true;
+  if(typeof window.fcneIsHallExercise==='function'){
+    try{if(window.fcneIsHallExercise(e))return true;}catch(_){}
+  }
+  const txt=[e.title,e.field,e.focus,e.intro,e.source_label,e.source_note].concat((e.sections||[]).flat()).join(' ').toLowerCase();
+  return /hallentraining|hallen[- ]?fu(?:ß|ss)ball|\bhalle\b|turnhalle|sporthalle|indoor|futsal|langbank|kleinkasten/.test(txt);
+}
+function phase233(e,phase){
+  if(!e)return false;
+  if(e.category===phase)return true;
+  const cats=Array.isArray(e.categories)?e.categories:[];
+  return cats.includes(phase);
+}
+function img233(title,sub){
+  const t=String(title||'Hallenfussball').slice(0,40).replace(/[<>&"]/g,'');
+  const s=String(sub||'').slice(0,36).replace(/[<>&"]/g,'');
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560">
+  <rect width="900" height="560" rx="28" fill="#f4f8fa"/>
+  <rect x="55" y="55" width="790" height="450" rx="18" fill="#dcedf5" stroke="#245f7e" stroke-width="7"/>
+  <line x1="450" y1="55" x2="450" y2="505" stroke="#245f7e" stroke-width="5"/>
+  <circle cx="450" cy="280" r="70" fill="none" stroke="#245f7e" stroke-width="5"/>
+  <rect x="35" y="220" width="28" height="120" fill="#fff" stroke="#263238" stroke-width="5"/>
+  <rect x="837" y="220" width="28" height="120" fill="#fff" stroke="#263238" stroke-width="5"/>
+  <g fill="#1976d2" stroke="#fff" stroke-width="4">
+    <circle cx="155" cy="280" r="18"/><circle cx="265" cy="170" r="18"/><circle cx="265" cy="390" r="18"/><circle cx="83" cy="280" r="20"/>
+  </g>
+  <g fill="#e53935" stroke="#fff" stroke-width="4">
+    <circle cx="745" cy="280" r="18"/><circle cx="635" cy="170" r="18"/><circle cx="635" cy="390" r="18"/><circle cx="817" cy="280" r="20"/>
+  </g>
+  <circle cx="450" cy="280" r="12" fill="#fff" stroke="#222" stroke-width="3"/>
+  <text x="450" y="31" text-anchor="middle" font-family="Arial" font-size="23" font-weight="700" fill="#173d50">${t}</text>
+  <text x="450" y="540" text-anchor="middle" font-family="Arial" font-size="18" fill="#416678">${s}</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+
+function hallVariant233(){
+  const p=Math.max(1,Number((typeof draft!=='undefined'&&draft?.players)||10));
+  if(p<=9)return {label:'4 vs 4',players:'6–9',org:'3 Feldspieler + 1 Torspieler pro Team. Bei 9 Kindern mit einem kurzen Rotationswechsel.',rotation:'Kurze Wechsel, damit alle viel spielen.'};
+  if(p<=12)return {label:'5 vs 5',players:'10–12',org:'4 Feldspieler + 1 Torspieler pro Team. Zusätzliche Kinder wechseln rollierend.',rotation:'Alle 2–3 Minuten wechseln.'};
+  return {label:'4 vs 4 / 5 vs 5',players:'13–16',org:'Bei genügend Platz zwei kleine Spielfelder parallel. Falls nur ein Feld möglich ist: 3 kleine Teams und sehr kurze Rotationen.',rotation:'Ziel: möglichst wenig Wartezeit.'};
+}
+
+function ensureDetail233(e){
+  const idx=DATA.indexOf(e);if(idx<0)return;
+  let sec=document.getElementById('detail-'+idx);
+  if(!sec){sec=document.createElement('section');sec.id='detail-'+idx;sec.className='exercise-detail';document.body.appendChild(sec);}
+  const sections=(e.sections||[]).map(s=>`<div class="sp-section"><h4>${esc233(s[0])}</h4><p>${esc233(s[1])}</p></div>`).join('');
+  const mats=(e.materials||[]).map(x=>`<li>${esc233(x)}</li>`).join('');
+  sec.innerHTML=`<div class="detail-header"><button class="round-back" onclick="closeExercise()">‹</button><div class="detail-title"><strong>${esc233(e.title)}</strong><small>FC NE Hallenspielform · Fussball spielen</small></div><button class="heart" data-id="${esc233(e.id)}" onclick="toggleFavorite('${esc233(e.id)}')">♡</button></div>
+  <div class="detail-content"><div class="detail-meta"><span class="big-badge" style="background:#7add8b">🥅 Fussball spielen</span></div>
+  <img class="detail-hero" src="${e.image}" alt="${esc233(e.title)}" onclick="openZoom(this.src)">
+  <div class="facts"><div><b>${Number(e.duration)||20} Min</b><small>Dauer</small></div><div><b>${esc233(e.players)}</b><small>Spieler</small></div><div><b>Halle</b><small>Trainingsort</small></div></div>
+  ${sections}${mats?`<div class="v22-coaching"><div class="v22-coaching-title">🧰 Material</div><ul>${mats}</ul></div>`:''}
+  <div class="detail-actions"><button class="primary" onclick="selectFromDetail('${esc233(e.id)}')">✓ Für Training wählen</button></div></div>`;
+}
+
+function ensureHallAlternatives233(){
+  const v=hallVariant233();
+  const defs=[
+    {
+      id:'fcne-hall-play-free-v233',
+      title:`Hallenfussball – ${v.label} freies Spiel`,
+      focus:'Freies Spiel',
+      desc:'Normales Hallenspiel mit Torspieler. Möglichst wenig unterbrechen.',
+      coach:'Breite und Tiefe nutzen, mutig 1 gegen 1 spielen und nach Ballverlust sofort umschalten.'
+    },
+    {
+      id:'fcne-hall-play-dribble-v233',
+      title:`Hallenfussball – ${v.label} mit Dribbelbonus`,
+      focus:'Dribbling / 1 gegen 1',
+      desc:'Normales Hallenspiel. Ein Tor nach erfolgreichem 1-gegen-1 oder Dribbling zählt doppelt.',
+      coach:'Mut zum 1 gegen 1 fördern, freie Räume erkennen und trotzdem das Zusammenspiel beibehalten.'
+    },
+    {
+      id:'fcne-hall-play-pass-v233',
+      title:`Hallenfussball – ${v.label} mit Passbonus`,
+      focus:'Passen / Freilaufen',
+      desc:'Normales Hallenspiel. Ein Tor nach mehreren kontrollierten Pässen oder einem klaren Doppelpass zählt doppelt.',
+      coach:'Freilaufen, Dreiecke bilden, Passqualität und schnelles Weiterspielen fördern.'
+    }
+  ];
+  return defs.map((d,n)=>{
+    let e=DATA.find(x=>x.id===d.id);
+    const obj={
+      id:d.id,title:d.title,category:'Fussball spielen',duration:20,field:'Halle',focus:d.focus,
+      intro:d.desc,
+      sections:[
+        ['Organisation',v.org],
+        ['Ablauf',d.desc+' '+v.rotation],
+        ['Coaching',d.coach],
+        ['Spielerzahl','Für E/FF-11 in der Halle: 4 gegen 4 oder 5 gegen 5 mit Torspieler; bei grossen Gruppen kurze Rotationen bzw. zwei kleine Felder.']
+      ],
+      source_provider:'Alternative / FC NE',source_label:'FC NE Hallenspielform',
+      source_note:'Hallenformat E/FF-11 · 4vs4 / 5vs5 mit Torspieler.',
+      fcneBranch:'easy2coach',environment:'hall',fcneTrainingPlaces:'Halle',players:v.players,level:'E-Junioren',
+      materials:['1 Spielball + Ersatzbälle','Leibchen für 2–3 Teams','2 Hallentore'],
+      coaching:[d.coach],image:img233(d.title,d.focus),images:[img233(d.title,d.focus)]
+    };
+    if(!e){e=obj;DATA.push(e);}else Object.assign(e,obj);
+    ensureDetail233(e);
+    return e;
+  });
+}
+ensureHallAlternatives233();
+
+function currentId233(phase){return typeof draft!=='undefined'&&draft?.selections?draft.selections[phase]:null;}
+
+function candidates233(phase){
+  const branch=(typeof draft!=='undefined'&&draft?.sourceBranch)||window.FCNE_ACTIVE_BRANCH||'sfv';
+  const mode=(typeof draft!=='undefined'&&draft?.environment)||window.FCNE_EASY_MODE||'field';
+  let pool=DATA.filter(e=>phase233(e,phase));
+
+  if(branch==='easy2coach'){
+    pool=pool.filter(e=>{
+      if(mode==='hall') return hall233(e) && branch233(e)!=='sfv';
+      return !hall233(e) && branch233(e)==='easy2coach';
+    });
+    // Hallenspiel erhält bewusst mehrere echte Spielform-Varianten.
+    if(mode==='hall'&&phase==='Fussball spielen'){
+      const built=ensureHallAlternatives233();
+      pool=[...built,...pool.filter(e=>!/^fcne-hall-play-/.test(e.id||''))];
+    }
+  }else{
+    pool=pool.filter(e=>branch233(e)==='sfv');
+  }
+
+  const seen=new Set();
+  pool=pool.filter(e=>{
+    if(!e?.id||seen.has(e.id))return false;
+    seen.add(e.id);return true;
+  });
+
+  const current=currentId233(phase);
+  pool=pool.filter(e=>e.id!==current);
+
+  if(typeof focusScore==='function'){
+    try{pool.sort((a,b)=>(focusScore(b,draft?.focus)-focusScore(a,draft?.focus))||String(a.title).localeCompare(String(b.title),'de'));}catch(_){}
+  }
+  return pool.slice(0,5);
+}
+
+window.fcneSwapExercise=function(phase){
+  if(typeof draft==='undefined'||!draft)return;
+  const pool=candidates233(phase);
+  const mode=draft.environment||window.FCNE_EASY_MODE||'field';
+  const old=document.getElementById('fcneV232Swap');if(old)old.remove();
+  const wrap=document.createElement('div');wrap.id='fcneV232Swap';wrap.className='fcne-v232-modal';
+
+  const info=(mode==='hall'&&phase==='Fussball spielen')
+    ? '<div class="fcne-v233-info"><b>🏟️ Hallenspiel E/FF-11:</b> Die Alternativen bleiben bei 4vs4 bzw. 5vs5 mit Torspieler. Geändert wird die Spielform bzw. der Schwerpunkt – nicht die empfohlene Teamgrösse.</div>'
+    : '';
+
+  wrap.innerHTML=`<div class="fcne-v232-sheet"><h2>🔄 ${esc233(phase)} wechseln</h2>
+  <p>Nur diese eine Übung wird ersetzt. Der restliche Trainingsplan bleibt unverändert.</p>${info}
+  ${pool.length?pool.slice(0,3).map(e=>`<div class="fcne-v232-alt">
+    <img src="${e.image||img233(e.title,e.focus||'')}">
+    <div style="flex:1"><b>${esc233(e.title)}</b>
+      <div class="fcne-v233-altmeta"><span class="fcne-v233-pill">${esc233(e.focus||phase)}</span><span class="fcne-v233-pill">${Number(e.duration)||15} Min.</span>${mode==='hall'?'<span class="fcne-v233-pill">Halle</span>':''}</div>
+    </div>
+    <button class="fcne-v232-action fcne-v232-own" onclick="fcneApplySwap('${esc233(phase)}','${esc233(e.id)}')">Übernehmen</button>
+  </div>`).join(''):'<div class="fcne-v233-info"><b>Noch keine Alternative vorhanden.</b><br>Für diese Phase gibt es im gewählten Pool momentan nur die aktuelle Übung. Über „Eigene Übung“ kannst du eine weitere passende Übung ergänzen.</div>'}
+  <div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Swap').remove()">Schliessen</button></div></div>`;
+  document.body.appendChild(wrap);
+};
+
+/* Alte 6vs6-Auswahl in offenen Hallentrainings automatisch migrieren. */
+function migrateOldHallGame233(){
+  if(typeof draft==='undefined'||!draft||draft.sourceBranch!=='easy2coach'||draft.environment!=='hall')return;
+  const id=draft.selections?.['Fussball spielen'];
+  const e=DATA.find(x=>x.id===id);
+  const old6=id==='fcne-halle-6v6-tw'||/6\s*(?:vs|gegen)\s*6/i.test(e?.title||'');
+  if(old6){
+    const first=ensureHallAlternatives233()[0];
+    draft.selections=draft.selections||{};
+    draft.selections['Fussball spielen']=first.id;
+    draft.customDurations=draft.customDurations||{};
+    if(!draft.customDurations[first.id])draft.customDurations[first.id]=20;
+  }
+}
+
+const render233=window.renderWizard;
+window.renderWizard=function(){
+  migrateOldHallGame233();
+  return render233.apply(this,arguments);
+};
+
+/* Nach Generieren ebenfalls sicherstellen, dass kein alter 6vs6-Spielteil verbleibt. */
+const auto233=window.eplanAutoGenerate;
+if(typeof auto233==='function'){
+  window.eplanAutoGenerate=async function(){
+    const r=await auto233.apply(this,arguments);
+    migrateOldHallGame233();
+    if(document.getElementById('screen-wizard')?.classList.contains('active')&&typeof renderWizard==='function')renderWizard();
+    return r;
+  };
+}
+})();
 </script>
+<script>window.FCNE_APP_VERSION='2.33 WECHSEL-FIX';</script>
+
+
+<style id="fcne-v234-strict-css">
+.fcne-v234-modebar{display:flex;align-items:center;gap:7px;margin:8px 0 14px;padding:9px 11px;border-radius:12px;background:#f2f7f4;color:#385548;font-size:11px;font-weight:800}
+.fcne-v234-modebar.hall{background:#eef5ff;color:#31537d}.fcne-v234-modebar.field{background:#edf8f1;color:#24603d}
+.fcne-v234-audit{font-size:9px;color:#7a877f;margin-top:4px}
+</style>
+<script id="fcne-v234-strict-field-hall">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.34 STRICT FIELD/HALL';
+
+const RETIRED_IDS=new Set(['fcne-halle-6v6-tw']);
+const esc234=v=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+const norm234=v=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+function isEasy234(e){
+  if(!e)return false;
+  if(typeof window.fcneExerciseBranch==='function'){
+    try{return window.fcneExerciseBranch(e)==='easy2coach';}catch(_){}
+  }
+  const raw=norm234([e.fcneBranch,e.source_provider,e.source,e.provider,e.source_label,e.source_note].filter(Boolean).join(' '));
+  return /easy\s*2\s*coach|easy2coach|alternative|eigene uebung|fc ne/.test(raw);
+}
+function strongHallText234(e){
+  return norm234([e?.title,e?.source_url,e?.source_label,e?.source_note,e?.field,e?.location].filter(Boolean).join(' '));
+}
+function environment234(e){
+  if(!e||!isEasy234(e))return null;
+  const env=norm234(e.environment).trim();
+  if(env==='hall'||env==='halle'||env==='indoor'||env==='futsal')return 'hall';
+  if(env==='field'||env==='feld'||env==='outdoor')return 'field';
+
+  const id=norm234(e.id);
+  if(/^fcne-(?:hall|halle)-/.test(id))return 'hall';
+  if(e.fcneOwnExercise){
+    const ownPlace=norm234([e.fcneTrainingPlaces,e.field,e.location].filter(Boolean).join(' '));
+    if(/halle|indoor|futsal/.test(ownPlace))return 'hall';
+    return 'field';
+  }
+
+  const strong=strongHallText234(e);
+  if(/(?:^|\b)hallentraining\b|(?:^|\b)hallenparcours\b|(?:^|\b)hallenfussball\b|(?:^|\b)turnhalle\b|(?:^|\b)sporthalle\b|(?:^|\b)futsal\b/.test(strong))return 'hall';
+  if(/\/hallentraining-|\/hallenparcours-|\/hallenfussball-/.test(strong))return 'hall';
+  if(norm234(e.field).trim()==='halle')return 'hall';
+
+  const places=norm234(e.fcneTrainingPlaces||e.training_places||'');
+  const hasHall=/\bhalle\b|\bindoor\b|\bfutsal\b|\bsporthalle\b|\bturnhalle\b/.test(places);
+  const hasField=/\bfeld\b|\brasen\b|\bkunstrasen\b|\boutdoor\b|\bsportplatz\b/.test(places);
+  if(hasHall&&!hasField)return 'hall';
+
+  // Strenge Regel: Alles, was nicht eindeutig Halle ist, gehört zum Feld-Pool.
+  // Dadurch kann eine Hallenübung niemals wegen eines schwachen Texttreffers im Feldwechsel landen.
+  return 'field';
+}
+window.fcneExerciseEnvironment=environment234;
+window.fcneIsHallExercise=e=>environment234(e)==='hall';
+window.fcneIsFieldExercise=e=>environment234(e)==='field';
+
+function allEasy234(){return DATA.filter(e=>isEasy234(e)&&!RETIRED_IDS.has(String(e.id||'')));}
+window.fcneEasyModePool=function(mode){
+  const m=mode==='hall'?'hall':'field';
+  return allEasy234().filter(e=>environment234(e)===m);
+};
+
+// Merke die vom Trainer bewusst gewählte Easy2Coach-Trainingsart. Dieser Wert ist im laufenden Plan autoritativ.
+window.FCNE_CONFIRMED_EASY_MODE=(window.FCNE_EASY_MODE==='hall'||window.FCNE_EASY_MODE==='field')?window.FCNE_EASY_MODE:null;
+const openMode234=window.fcneOpenEasyMode;
+if(typeof openMode234==='function'){
+  window.fcneOpenEasyMode=function(mode){
+    window.FCNE_CONFIRMED_EASY_MODE=mode==='hall'?'hall':'field';
+    return openMode234.apply(this,arguments);
+  };
+}
+const home234=window.eplanHome;
+if(typeof home234==='function'){
+  window.eplanHome=function(){window.FCNE_CONFIRMED_EASY_MODE=null;return home234.apply(this,arguments);};
+}
+const reuse234=window.reuseSaved;
+if(typeof reuse234==='function'){
+  window.reuseSaved=function(i){
+    const env=Array.isArray(saved)&&saved[i]&&(saved[i].environment==='hall'||saved[i].environment==='field')?saved[i].environment:null;
+    const r=reuse234.apply(this,arguments);if(env)window.FCNE_CONFIRMED_EASY_MODE=env;return r;
+  };
+}
+
+function modeForPlan234(plan){
+  const p=plan||((typeof draft!=='undefined')?draft:null);
+  const isCurrentDraft=(typeof draft!=='undefined'&&p===draft);
+  if(isCurrentDraft && (window.FCNE_ACTIVE_BRANCH||p?.sourceBranch)==='easy2coach' && (window.FCNE_CONFIRMED_EASY_MODE==='hall'||window.FCNE_CONFIRMED_EASY_MODE==='field')) return window.FCNE_CONFIRMED_EASY_MODE;
+  if(p?.environment==='hall'||p?.environment==='field')return p.environment;
+  if(window.FCNE_EASY_MODE==='hall'||window.FCNE_EASY_MODE==='field')return window.FCNE_EASY_MODE;
+  const clue=norm234([p?.name,p?.notes].filter(Boolean).join(' '));
+  if(/hallentraining|easy2coach\s*[·-]?\s*halle|zweig:\s*easy2coach\s*[·-]?\s*halle/.test(clue))return 'hall';
+  return 'field';
+}
+window.fcneCurrentEasyMode=modeForPlan234;
+
+// Letzter globaler Pool-Guard: im Easy2Coach-Plan werden Feld und Halle nach allen älteren Wrappern nochmals strikt getrennt.
+const poolBefore234=window.fcneBranchPool;
+if(typeof poolBefore234==='function'){
+  window.fcneBranchPool=function(branch){
+    let arr=poolBefore234.apply(this,arguments)||[];
+    arr=arr.filter(e=>!RETIRED_IDS.has(String(e?.id||'')));
+    const explicit=arguments.length>0&&branch!=null;
+    const src=(typeof draft!=='undefined'&&draft?.sourceBranch)||window.FCNE_ACTIVE_BRANCH||'sfv';
+    if(!explicit&&src==='easy2coach'){
+      const mode=modeForPlan234(typeof draft!=='undefined'?draft:null);
+      arr=arr.filter(e=>{
+        // Der bisherige PMF-Feldspielteil bleibt als erlaubte Standard-Sonderregel bestehen.
+        if(mode==='field'&&e?.category==='Fussball spielen'&&!isEasy234(e)){
+          try{return window.fcneFixedGameForMode?.('field')?.id===e.id;}catch(_){return false;}
+        }
+        return !isEasy234(e)||environment234(e)===mode;
+      });
+    }
+    return arr;
+  };
+}
+
+function score234(e,focus){
+  try{return typeof focusScore==='function'?focusScore(e,focus):0;}catch(_){return 0;}
+}
+function strictCandidates234(phase,mode,focus,currentId){
+  let pool=allEasy234().filter(e=>e.category===phase&&environment234(e)===mode&&e.id!==currentId);
+  pool.sort((a,b)=>score234(b,focus)-score234(a,focus)||String(a.title||'').localeCompare(String(b.title||''),'de'));
+  return pool;
+}
+window.fcneStrictCandidates=function(phase,mode,focus,currentId){return strictCandidates234(phase,mode==='hall'?'hall':'field',focus,currentId);};
+
+function allowedCurrent234(e,phase,mode){
+  if(!e)return false;
+  if(RETIRED_IDS.has(String(e.id||'')))return false;
+  if(isEasy234(e))return e.category===phase&&environment234(e)===mode;
+  if(mode==='field'&&phase==='Fussball spielen'){
+    try{return window.fcneFixedGameForMode?.('field')?.id===e.id;}catch(_){return false;}
+  }
+  return false;
+}
+function repairPlan234(plan){
+  if(!plan||plan.sourceBranch!=='easy2coach'||!plan.selections)return false;
+  const mode=modeForPlan234(plan),focus=plan.focus||'Gemischt / allgemein';
+  plan.environment=mode;
+  let changed=false;const used=new Set(Object.values(plan.selections||{}).filter(Boolean));
+  PHASES.forEach(phase=>{
+    const id=plan.selections[phase],cur=DATA.find(e=>e.id===id);
+    if(allowedCurrent234(cur,phase,mode))return;
+    let replacement=null;
+    if(mode==='hall'&&phase==='Fussball spielen'){
+      const hallPool=strictCandidates234(phase,'hall',focus,null).filter(e=>!RETIRED_IDS.has(String(e.id||'')));
+      replacement=hallPool.find(e=>!used.has(e.id))||hallPool[0]||null;
+    }else if(mode==='field'&&phase==='Fussball spielen'){
+      try{replacement=window.fcneFixedGameForMode?.('field')||null;}catch(_){}
+      if(!replacement){const p=strictCandidates234(phase,'field',focus,null);replacement=p.find(e=>!used.has(e.id))||p[0]||null;}
+    }else{
+      const p=strictCandidates234(phase,mode,focus,null);replacement=p.find(e=>!used.has(e.id))||p[0]||null;
+    }
+    if(replacement){
+      plan.selections[phase]=replacement.id;used.add(replacement.id);changed=true;
+      plan.customDurations=plan.customDurations||{};
+      if(!plan.customDurations[replacement.id])plan.customDurations[replacement.id]=Number(replacement.duration)||15;
+    }
+  });
+  return changed;
+}
+window.fcneRepairEasyTraining=repairPlan234;
+
+// Generator-Nachkontrolle: selbst wenn ein älterer Wrapper etwas Falsches einsetzt, wird der fertige Plan vor Anzeige repariert.
+const autoBefore234=window.eplanAutoGenerate;
+if(typeof autoBefore234==='function'){
+  window.eplanAutoGenerate=async function(){
+    const selectedMode=(window.FCNE_EASY_MODE==='hall'||window.FCNE_EASY_MODE==='field')?window.FCNE_EASY_MODE:window.FCNE_CONFIRMED_EASY_MODE;
+    if((window.FCNE_ACTIVE_BRANCH||'sfv')==='easy2coach'&&selectedMode)window.FCNE_CONFIRMED_EASY_MODE=selectedMode;
+    const r=await autoBefore234.apply(this,arguments);
+    if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'){
+      repairPlan234(draft);
+      if(document.getElementById('screen-wizard')?.classList.contains('active')&&typeof renderWizard==='function')renderWizard();
+    }
+    return r;
+  };
+}
+
+// Render-Guard für manuell erstellte, generierte und ältere gespeicherte Trainings.
+const renderBefore234=window.renderWizard;
+if(typeof renderBefore234==='function'){
+  window.renderWizard=function(){
+    try{if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach')repairPlan234(draft);}catch(_){}
+    return renderBefore234.apply(this,arguments);
+  };
+}
+const trainerRenderBefore234=window.renderTrainerView;
+if(typeof trainerRenderBefore234==='function'){
+  window.renderTrainerView=function(t){try{if(t?.sourceBranch==='easy2coach')repairPlan234(t);}catch(_){}return trainerRenderBefore234.apply(this,arguments);};
+}
+
+// Wechsel-Funktion komplett neu: Kandidaten kommen ausschliesslich aus dem bestätigten Pool des aktuellen Trainings.
+window.fcneSwapExercise=function(phase){
+  if(typeof draft==='undefined'||!draft)return;
+  if(draft.sourceBranch==='easy2coach')repairPlan234(draft);
+  const branch=draft.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv';
+  const mode=branch==='easy2coach'?modeForPlan234(draft):null;
+  const current=draft.selections?.[phase];
+  let pool=[];
+  if(branch==='easy2coach') pool=strictCandidates234(phase,mode,draft.focus,current);
+  else {
+    try{pool=(window.fcneBranchPool?.('sfv')||[]).filter(e=>e.category===phase&&e.id!==current).sort((a,b)=>score234(b,draft.focus)-score234(a,draft.focus));}catch(_){}
+  }
+  pool=pool.slice(0,3);
+
+  const old=document.getElementById('fcneV232Swap');if(old)old.remove();
+  const wrap=document.createElement('div');wrap.id='fcneV232Swap';wrap.className='fcne-v232-modal';
+  const modeBar=branch==='easy2coach'?`<div class="fcne-v234-modebar ${mode}">${mode==='hall'?'🏟️ Hallentraining – nur Hallenübungen':'⚽ Feldtraining – Hallenübungen vollständig ausgeschlossen'}</div>`:'';
+  const cards=pool.length?pool.map(e=>{
+    const img=e.image||e.images?.[0]||'';
+    return `<div class="fcne-v232-alt">${img?`<img src="${img}">`:''}<div style="flex:1"><b>${esc234(e.title)}</b><div class="fcne-v233-altmeta"><span class="fcne-v233-pill">${esc234(e.focus||phase)}</span><span class="fcne-v233-pill">${Number(e.duration)||15} Min.</span>${branch==='easy2coach'?`<span class="fcne-v233-pill">${mode==='hall'?'Halle':'Feld'}</span>`:''}</div></div><button class="fcne-v232-action fcne-v232-own" onclick="fcneApplySwap('${esc234(phase)}','${esc234(e.id)}')">Übernehmen</button></div>`;
+  }).join(''):`<div class="fcne-v233-info"><b>Keine weitere passende Alternative vorhanden.</b><br>Im gewählten ${mode==='hall'?'Hallen':'Feld'}-Pool gibt es für diese Phase momentan keine zweite passende Übung.</div>`;
+  wrap.innerHTML=`<div class="fcne-v232-sheet"><h2>🔄 ${esc234(phase)} wechseln</h2><p>Nur diese eine Übung wird ersetzt. Der restliche Trainingsplan bleibt unverändert.</p>${modeBar}${cards}<div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Swap').remove()">Schliessen</button></div></div>`;
+  document.body.appendChild(wrap);
+};
+window.fcneApplySwap=function(phase,id){
+  const e=DATA.find(x=>x.id===id);if(!e||typeof draft==='undefined')return;
+  if(draft.sourceBranch==='easy2coach'){
+    const mode=modeForPlan234(draft);
+    if(!isEasy234(e)||environment234(e)!==mode){alert('Diese Übung gehört nicht zum gewählten '+(mode==='hall'?'Hallen':'Feld')+'training.');return;}
+  }
+  draft.selections=draft.selections||{};draft.selections[phase]=id;
+  document.getElementById('fcneV232Swap')?.remove();
+  if(typeof renderWizard==='function')renderWizard();
+};
+
+// Direkte Auswahl aus einer Übungsdetailansicht darf einen laufenden Easy2Coach-Plan ebenfalls nie kreuzen.
+const selectBefore234=window.selectFromDetail;
+if(typeof selectBefore234==='function'){
+  window.selectFromDetail=function(id){
+    const e=DATA.find(x=>x.id===id);
+    if(e&&typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'&&isEasy234(e)){
+      const mode=modeForPlan234(draft);
+      if(environment234(e)!==mode){alert('Diese Übung gehört zum '+(environment234(e)==='hall'?'Hallentraining':'Feldtraining')+' und kann hier nicht eingesetzt werden.');return;}
+    }
+    return selectBefore234.apply(this,arguments);
+  };
+}
+
+// Diagnose für künftige Tests: 0 Fremdübungen pro Pool ist Pflicht.
+window.fcneAuditEasyPools=function(){
+  const all=allEasy234(),field=all.filter(e=>environment234(e)==='field'),hall=all.filter(e=>environment234(e)==='hall');
+  const hallMarkers=e=>/(?:^|\b)hallentraining\b|(?:^|\b)hallenparcours\b|(?:^|\b)hallenfussball\b/.test(strongHallText234(e));
+  return {total:all.length,field:field.length,hall:hall.length,fieldHallContamination:field.filter(hallMarkers).map(e=>e.title),retiredVisible:all.filter(e=>RETIRED_IDS.has(String(e.id||''))).map(e=>e.id)};
+};
+try{const a=window.fcneAuditEasyPools();console.info('FCNE v2.34 Pool-Audit',a);}catch(_){}
+})();
+</script>
+<script>window.FCNE_APP_VERSION='2.34 STRICT FIELD/HALL';</script>
+
+
+<style id="fcne-v235-hard-split-css">
+.fcne-v235-mode{display:inline-flex;align-items:center;gap:6px;padding:5px 9px;border-radius:999px;font-size:10px;font-weight:900;margin:0 0 10px}
+.fcne-v235-mode.field{background:#e9f7ee;color:#17633b}.fcne-v235-mode.hall{background:#edf4ff;color:#315b93}
+.fcne-v235-warning{background:#fff7df;border:1px solid #eed99a;border-radius:12px;padding:9px 11px;color:#705a18;font-size:10px;line-height:1.4;margin:8px 0}
+</style>
+<script id="fcne-v235-hard-split">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.35 HARD-SPLIT';
+
+/*
+  HARD-SPLIT 2.35
+  - Eingebettete Easy2Coach-Hallenübungen sind EXPLIZIT per ID klassifiziert.
+  - Eingebettete Easy2Coach-Feldübungen sind alle übrigen e2c-0001..0177.
+  - Online-/Cache-Datensätze ohne eindeutige Klassifikation sind "unclassified"
+    und dürfen NICHT ins Feldtraining gelangen.
+  - Generator, Zusammenstellen, Bibliothek, Wechseln und gespeicherte Trainings
+    verwenden dieselbe autoritative Klassifikation.
+*/
+const HALL_IDS_235=new Set([
+  'e2c-0056',
+  ...Array.from({length:40},(_,i)=>'e2c-'+String(61+i).padStart(4,'0'))
+]);
+const RETIRED_235=new Set(['fcne-halle-6v6-tw']);
+
+const norm235=v=>String(v??'').toLowerCase()
+  .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+  .normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+
+function isEasy235(e){
+  if(!e)return false;
+  if(e.fcneBranch==='easy2coach')return true;
+  const raw=norm235([e.source_provider,e.source_label,e.source_note,e.provider,e.source].filter(Boolean).join(' '));
+  return /easy\s*2\s*coach|easy2coach|fc ne \/ eigene uebung|fc ne –/.test(raw);
+}
+
+function explicitPlaces235(e){
+  return norm235([e?.fcneTrainingPlaces,e?.training_places,e?.location,e?.environment].filter(Boolean).join(' '));
+}
+
+function strongHall235(e){
+  const text=norm235([e?.title,e?.source_url,e?.source_label,e?.source_note,e?.easy2coach_catalog_context].filter(Boolean).join(' '));
+  return /(?:^|\b)hallentraining(?:\b|[-_/])|(?:^|\b)hallenparcours(?:\b|[-_/])|(?:^|\b)hallenfussball(?:\b|[-_/])|(?:^|\b)turnhalle\b|(?:^|\b)sporthalle\b|(?:^|\b)futsal\b|\/hallentraining-|\/hallenparcours-|\/hallenfussball-/.test(text);
+}
+
+function hardMode235(e){
+  if(!e||!isEasy235(e)||RETIRED_235.has(String(e.id||'')))return null;
+
+  // Eigene Übungen und von uns ergänzte Übungen haben eine explizite Umgebung.
+  const env=norm235(e.environment).trim();
+  if(['hall','halle','indoor','futsal'].includes(env))return 'hall';
+  if(['field','feld','outdoor'].includes(env))return 'field';
+
+  const places=explicitPlaces235(e);
+  const hasHall=/(?:^|\b)(halle|indoor|futsal|sporthalle|turnhalle)(?:\b|$)/.test(places);
+  const hasField=/(?:^|\b)(feld|rasen|kunstrasen|outdoor|sportplatz)(?:\b|$)/.test(places);
+  if(hasHall&&!hasField)return 'hall';
+  if(hasField&&!hasHall)return 'field';
+
+  const id=String(e.id||'');
+  if(/^fcne-hall-/.test(id)||HALL_IDS_235.has(id))return 'hall';
+
+  // Die 177 fest eingebauten Easy2Coach-Datensätze sind vollständig klassifiziert:
+  // 41 Hallenübungen (oben), alle übrigen sind Feld.
+  if(/^e2c-\d{4}$/.test(id))return 'field';
+
+  // Online-/Cache-Daten: Halle nur bei eindeutigem Hallenbezug.
+  if(e.fcneLiveCatalog){
+    if(strongHall235(e))return 'hall';
+    return 'unclassified';
+  }
+
+  // Sonstige E2C-Daten niemals automatisch dem Feld zuschlagen.
+  if(strongHall235(e))return 'hall';
+  return 'unclassified';
+}
+window.fcneHardExerciseMode=hardMode235;
+window.fcneIsHallExercise=e=>hardMode235(e)==='hall';
+window.fcneIsFieldExercise=e=>hardMode235(e)==='field';
+
+function strict235(mode){
+  const m=mode==='hall'?'hall':'field';
+  return DATA.filter(e=>isEasy235(e)&&hardMode235(e)===m&&!RETIRED_235.has(String(e.id||'')));
+}
+window.fcneEasyModePool=mode=>strict235(mode);
+
+let hardSelected235=(window.FCNE_EASY_MODE==='hall'||window.FCNE_EASY_MODE==='field')?window.FCNE_EASY_MODE:null;
+const openMode235=window.fcneOpenEasyMode;
+if(typeof openMode235==='function'){
+  window.fcneOpenEasyMode=function(mode){
+    hardSelected235=mode==='hall'?'hall':'field';
+    window.FCNE_EASY_MODE=hardSelected235;
+    window.FCNE_CONFIRMED_EASY_MODE=hardSelected235;
+    const r=openMode235.apply(this,arguments);
+    setTimeout(()=>{
+      try{
+        const count=strict235(hardSelected235).length;
+        const lib=[...document.querySelectorAll('#epBranch .fcne-action-card')].find(b=>/Übungssammlung/.test(b.textContent||''));
+        const sm=lib?.querySelector('small');if(sm)sm.textContent=count+' strikt klassifizierte Übungen · '+(hardSelected235==='field'?'nur Feld':'nur Halle');
+      }catch(_){}
+    },0);
+    return r;
+  };
+}
+const home235=window.eplanHome;
+if(typeof home235==='function'){
+  window.eplanHome=function(){
+    hardSelected235=null;
+    window.FCNE_CONFIRMED_EASY_MODE=null;
+    return home235.apply(this,arguments);
+  };
+}
+
+function currentMode235(plan){
+  const p=plan||((typeof draft!=='undefined')?draft:null);
+  if(p?.sourceBranch==='easy2coach'&&(p.environment==='field'||p.environment==='hall'))return p.environment;
+  if(hardSelected235==='field'||hardSelected235==='hall')return hardSelected235;
+  if(window.FCNE_EASY_MODE==='field'||window.FCNE_EASY_MODE==='hall')return window.FCNE_EASY_MODE;
+  return 'field';
+}
+window.fcneCurrentEasyMode=currentMode235;
+
+// Letzte autoritative Pool-Schicht: alle älteren Filter werden umgangen.
+const oldPool235=window.fcneBranchPool;
+window.fcneBranchPool=function(branch){
+  const src=(typeof draft!=='undefined'&&draft?.sourceBranch)||window.FCNE_ACTIVE_BRANCH||'sfv';
+  const easyRequest=branch==='easy2coach'||((arguments.length===0||branch==null)&&src==='easy2coach');
+  if(easyRequest){
+    const mode=currentMode235(typeof draft!=='undefined'?draft:null);
+    return strict235(mode);
+  }
+  return typeof oldPool235==='function'?oldPool235.apply(this,arguments):DATA;
+};
+
+function score235(e,focus){
+  try{return typeof focusScore==='function'?focusScore(e,focus):0;}catch(_){return 0;}
+}
+function candidates235(phase,mode,focus,currentId){
+  return strict235(mode)
+    .filter(e=>e.category===phase&&e.id!==currentId)
+    .sort((a,b)=>score235(b,focus)-score235(a,focus)||String(a.title||'').localeCompare(String(b.title||''),'de'));
+}
+
+function fixedFieldGame235(){
+  return DATA.find(e=>e.id==='5gegen5-1gegen1')||null;
+}
+function allowed235(e,phase,mode){
+  if(!e)return false;
+  if(mode==='field'&&phase==='Fussball spielen'&&e.id==='5gegen5-1gegen1')return true;
+  return isEasy235(e)&&e.category===phase&&hardMode235(e)===mode;
+}
+
+function repair235(plan){
+  if(!plan||plan.sourceBranch!=='easy2coach'||!plan.selections)return false;
+  const mode=currentMode235(plan);
+  plan.environment=mode;
+  let changed=false;
+  const used=new Set();
+  PHASES.forEach(phase=>{
+    const cur=DATA.find(e=>e.id===plan.selections?.[phase]);
+    if(allowed235(cur,phase,mode)){used.add(cur.id);return;}
+
+    let rep=null;
+    if(mode==='field'&&phase==='Fussball spielen')rep=fixedFieldGame235();
+
+    if(!rep){
+      const pool=candidates235(phase,mode,plan.focus||'Gemischt / allgemein',null);
+      rep=pool.find(e=>!used.has(e.id))||pool[0]||null;
+    }
+    if(rep){
+      plan.selections[phase]=rep.id;
+      plan.customDurations=plan.customDurations||{};
+      if(!plan.customDurations[rep.id])plan.customDurations[rep.id]=Number(rep.duration)||15;
+      used.add(rep.id);changed=true;
+    }
+  });
+  return changed;
+}
+window.fcneRepairEasyTraining=repair235;
+
+// Generator: vollständig neu und nur aus dem HARD-SPLIT-Pool.
+const oldGenerate235=window.eplanAutoGenerate;
+function wait235(show,mode){
+  let x=document.getElementById('fcneV235Wait');
+  if(show){
+    if(!x){
+      x=document.createElement('div');x.id='fcneV235Wait';x.className='fcne-gen-wait';
+      x.innerHTML='<div><b></b><span>Strikt klassifizierte Übungen werden zusammengestellt …</span></div>';
+      document.body.appendChild(x);
+    }
+    x.querySelector('b').textContent=mode==='hall'?'🏟️ Hallentraining wird erstellt':'⚽ Feldtraining wird erstellt';
+  }else x?.remove();
+}
+window.eplanAutoGenerate=async function(){
+  if((window.FCNE_ACTIVE_BRANCH||'sfv')!=='easy2coach'){
+    return typeof oldGenerate235==='function'?oldGenerate235.apply(this,arguments):undefined;
+  }
+  const mode=(window.FCNE_EASY_MODE==='hall'?'hall':'field');
+  hardSelected235=mode;window.FCNE_CONFIRMED_EASY_MODE=mode;
+  const focus=document.getElementById('fcneAutoFocus')?.value||'Gemischt / allgemein';
+  const target=Number(document.getElementById('fcneAutoDuration')?.value)||75;
+  const players=Math.max(1,Number(document.getElementById('fcneAutoPlayers')?.value)||10);
+  wait235(true,mode);
+  try{
+    draft={
+      name:(mode==='hall'?'Hallentraining':'Feldtraining')+' – '+(typeof canonicalFocusLabel==='function'?canonicalFocusLabel(focus):focus),
+      target,players,focus,date:(typeof v191Today==='function'?v191Today():''),
+      notes:'Easy2Coach '+(mode==='hall'?'Halle':'Feld')+' · HARD-SPLIT 2.35',
+      customDurations:{},selections:{},sourceBranch:'easy2coach',environment:mode
+    };
+    const used=new Set();
+    for(const phase of PHASES){
+      let e=null;
+      if(mode==='field'&&phase==='Fussball spielen')e=fixedFieldGame235();
+      if(!e){
+        const pool=candidates235(phase,mode,focus,null);
+        e=pool.find(x=>!used.has(x.id))||pool[0]||null;
+      }
+      if(e){draft.selections[phase]=e.id;used.add(e.id);}
+    }
+    const missing=PHASES.filter(p=>!draft.selections[p]);
+    if(missing.length){
+      alert('Im strikt getrennten '+(mode==='hall'?'Hallen':'Feld')+'-Pool fehlen Übungen für: '+missing.join(', ')+'.');
+      return;
+    }
+    repair235(draft);
+    const selected=PHASES.map(ph=>DATA.find(e=>e.id===draft.selections[ph])).filter(Boolean);
+    const base=selected.reduce((a,e)=>a+(Number(e.duration)||0),0)||target;
+    selected.forEach(e=>draft.customDurations[e.id]=Math.max(5,Math.round((Number(e.duration)||10)*target/base/5)*5));
+    if(typeof eplanClose==='function')eplanClose();
+    if(typeof showScreen==='function')showScreen('wizard');
+    wizardStep=STEPS.length-1;
+    if(typeof renderWizard==='function')renderWizard();
+  } finally {wait235(false);}
+};
+
+// Render-/Trainerkarten-Guard.
+const render235=window.renderWizard;
+if(typeof render235==='function'){
+  window.renderWizard=function(){
+    try{if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach')repair235(draft);}catch(_){}
+    return render235.apply(this,arguments);
+  };
+}
+const trainer235=window.renderTrainerView;
+if(typeof trainer235==='function'){
+  window.renderTrainerView=function(t){
+    try{if(t?.sourceBranch==='easy2coach')repair235(t);}catch(_){}
+    return trainer235.apply(this,arguments);
+  };
+}
+
+// Wechseln: exakt derselbe HARD-SPLIT-Pool.
+window.fcneSwapExercise=function(phase){
+  if(typeof draft==='undefined'||!draft)return;
+  if(draft.sourceBranch==='easy2coach')repair235(draft);
+  const branch=draft.sourceBranch||window.FCNE_ACTIVE_BRANCH||'sfv';
+  const mode=branch==='easy2coach'?currentMode235(draft):null;
+  const current=draft.selections?.[phase];
+  let pool=[];
+  if(branch==='easy2coach'){
+    pool=candidates235(phase,mode,draft.focus,current);
+  }else{
+    pool=(typeof oldPool235==='function'?oldPool235('sfv'):DATA.filter(e=>!isEasy235(e)))
+      .filter(e=>e.category===phase&&e.id!==current)
+      .sort((a,b)=>score235(b,draft.focus)-score235(a,draft.focus));
+  }
+  pool=pool.slice(0,3);
+
+  const esc=v=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'');
+  document.getElementById('fcneV232Swap')?.remove();
+  const wrap=document.createElement('div');wrap.id='fcneV232Swap';wrap.className='fcne-v232-modal';
+  const modeBadge=branch==='easy2coach'
+    ? `<div class="fcne-v235-mode ${mode}">${mode==='hall'?'🏟️ Nur Halle':'⚽ Nur Feld · Hallenübungen technisch gesperrt'}</div>`:'';
+  const cards=pool.length?pool.map(e=>`<div class="fcne-v232-alt">
+    ${e.image?`<img src="${e.image}">`:''}
+    <div style="flex:1"><b>${esc(e.title)}</b><small>${esc(e.focus||phase)} · ${Number(e.duration)||15} Min</small></div>
+    <button class="fcne-v232-action fcne-v232-own" onclick="fcneApplySwap('${esc(phase)}','${esc(e.id)}')">Übernehmen</button>
+  </div>`).join(''):`<div class="fcne-v235-warning">Keine weitere strikt passende ${mode==='hall'?'Hallen':'Feld'}übung in dieser Phase vorhanden.</div>`;
+  wrap.innerHTML=`<div class="fcne-v232-sheet"><h2>🔄 ${esc(phase)} wechseln</h2>${modeBadge}<p>Nur diese Übung wird ersetzt. Der Rest bleibt unverändert.</p>${cards}<div class="fcne-v232-footer"><button class="ep-btn" onclick="document.getElementById('fcneV232Swap').remove()">Schliessen</button></div></div>`;
+  document.body.appendChild(wrap);
+};
+window.fcneApplySwap=function(phase,id){
+  const e=DATA.find(x=>x.id===id);if(!e||typeof draft==='undefined')return;
+  if(draft.sourceBranch==='easy2coach'){
+    const mode=currentMode235(draft);
+    if(hardMode235(e)!==mode){
+      alert('BLOCKIERT: Diese Übung gehört nicht zum '+(mode==='hall'?'Hallen':'Feld')+'training.');
+      return;
+    }
+  }
+  draft.selections=draft.selections||{};draft.selections[phase]=id;
+  document.getElementById('fcneV232Swap')?.remove();
+  if(typeof renderWizard==='function')renderWizard();
+};
+
+// Detailauswahl ebenfalls hart sperren.
+const select235=window.selectFromDetail;
+if(typeof select235==='function'){
+  window.selectFromDetail=function(id){
+    const e=DATA.find(x=>x.id===id);
+    if(e&&typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'){
+      const mode=currentMode235(draft);
+      if(isEasy235(e)&&hardMode235(e)!==mode){
+        alert('BLOCKIERT: '+(hardMode235(e)==='hall'?'Hallenübung':'Nicht klassifizierte Übung')+' kann im '+(mode==='field'?'Feld':'Hallen')+'training nicht verwendet werden.');
+        return;
+      }
+    }
+    return select235.apply(this,arguments);
+  };
+}
+
+// Gespeicherte Trainings beim Wiederverwenden sofort reparieren.
+const reuse235=window.reuseSaved;
+if(typeof reuse235==='function'){
+  window.reuseSaved=function(i){
+    const r=reuse235.apply(this,arguments);
+    try{
+      if(typeof draft!=='undefined'&&draft?.sourceBranch==='easy2coach'){
+        hardSelected235=draft.environment==='hall'?'hall':'field';
+        window.FCNE_EASY_MODE=hardSelected235;
+        repair235(draft);
+        if(typeof renderWizard==='function')renderWizard();
+      }
+    }catch(_){}
+    return r;
+  };
+}
+
+// Diagnose: Diese Werte müssen im Feld-Pool 0 ergeben.
+window.fcneAuditHardSplit235=function(){
+  const field=strict235('field'),hall=strict235('hall');
+  return {
+    version:'2.35',
+    field:field.length,
+    hall:hall.length,
+    fieldHallIds:field.filter(e=>HALL_IDS_235.has(String(e.id||''))).map(e=>e.id),
+    fieldHallTitles:field.filter(e=>strongHall235(e)).map(e=>e.title),
+    unclassified:DATA.filter(e=>isEasy235(e)&&hardMode235(e)==='unclassified').length
+  };
+};
+try{console.info('FCNE HARD-SPLIT AUDIT',window.fcneAuditHardSplit235());}catch(_){}
+
+// Versionsanzeige aktualisieren.
+document.querySelectorAll('.app-version').forEach(el=>{
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.35 HARD-SPLIT · Build 2026.10.21';
+});
+})();
+</script>
+<script>window.FCNE_APP_VERSION='2.35 HARD-SPLIT';</script>
 
 </body>
 </html>

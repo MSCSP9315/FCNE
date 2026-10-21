@@ -1,4 +1,4 @@
-const CACHE='fcne-training-v2.32.1-20261021';
+const CACHE='fcne-training-v2.35-hard-split-20261021';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install',e=>{
@@ -23,7 +23,6 @@ self.addEventListener('activate',e=>{
 self.addEventListener('fetch',e=>{
   if(e.request.method!=='GET') return;
   const u=new URL(e.request.url);
-
   if(e.request.mode==='navigate'){
     e.respondWith(
       fetch(e.request,{cache:'no-store'})
@@ -36,7 +35,6 @@ self.addEventListener('fetch',e=>{
     );
     return;
   }
-
   if(u.origin===self.location.origin){
     e.respondWith(
       fetch(e.request,{cache:'no-store'})
