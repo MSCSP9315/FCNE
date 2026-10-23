@@ -1,0 +1,61 @@
+name: FCNE v2.31 Versionsanzeige einmalig
+on:
+  push:
+    paths:
+      - '.github/workflows/fcne-versionanzeige-einmalig.yml'
+permissions:
+  contents: write
+jobs:
+  version-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add only app version labels
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          
+          p = Path("index.html")
+          data = p.read_bytes()
+          blob_sha = hashlib.sha1(b"blob " + str(len(data)).encode() + b"\0" + data).hexdigest()
+          assert blob_sha == "7d608fe6f3bfbd4def76dca9cf1ff9a84bc0ea06", f"Unbekannte Basis: {blob_sha}"
+          s = data.decode("utf-8")
+          
+          def change(old, new, count):
+              global s
+              assert s.count(old) == count, f"Vorkommen unerwartet ({old[:50]}): {s.count(old)}"
+              s = s.replace(old, new)
+          
+          css = """
+          /* FC NE: Geladene Version auf den Startseiten sichtbar anzeigen. */
+          .fcne-version-tag{display:inline-flex;align-items:center;margin-top:10px;padding:5px 10px;border:1px solid rgba(255,255,255,.35);border-radius:999px;background:rgba(0,0,0,.17);color:#fff;font-size:11px;font-weight:800;line-height:1.2;letter-spacing:.15px;white-space:nowrap;position:relative;z-index:3}
+          @media print{.fcne-version-tag{display:none!important}}
+          """
+          change("</style>", css + "</style>", 15) if False else None
+          assert s.count("</style>") >= 1
+          s = s.replace("</style>", css + "</style>", 1)
+          change("<p>Wähle deine Junioren-Kategorie</p>",
+                 '<p>Wähle deine Junioren-Kategorie</p>\n<span class="fcne-version-tag" aria-label="Geladene App-Version">v2.31 CLEAN</span>', 1)
+          change("<p>E-Junioren · FC Neukirch-Egnach</p>",
+                 '<p>E-Junioren · FC Neukirch-Egnach</p>\n<span class="fcne-version-tag" aria-label="Geladene App-Version">v2.31 CLEAN</span>', 1)
+          change("Version 2.28 TEST · Build 2026.10.19", "Version 2.31 CLEAN · Stand 23.10.2026", 2)
+          change("<b>Version 2.28 TEST</b>", "<b>Version 2.31 CLEAN</b>", 1)
+          change("<b>2026.10.19</b>", "<b>23.10.2026</b>", 1)
+          change("window.FCNE_APP_VERSION='2.30 TEST';", "window.FCNE_APP_VERSION='2.31 CLEAN';", 11)
+          change("<b>v2.28 TEST:</b>", "<b>Hinweis:</b>", 1)
+          assert s.count('class="fcne-version-tag"') == 2
+          p.write_text(s, encoding="utf-8")
+          print("VERSION UI patched. App code and exercises unchanged.")
+          PY
+      - name: Commit version display and remove one-time workflow
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git rm .github/workflows/fcne-versionanzeige-einmalig.yml
+          git add index.html
+          git diff --cached --check
+          git commit -m 'Show v2.31 CLEAN on start screens; update version labels only'
+          git push origin HEAD:main
