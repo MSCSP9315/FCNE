@@ -1,4 +1,4 @@
-const CACHE='fcne-training-v2.32.1-20261021';
+const CACHE='fcne-training-v2.31-clean-20261023';
 const APP_SHELL=['./','./index.html','./manifest.webmanifest'];
 
 self.addEventListener('install',e=>{
