@@ -1,5 +1,5 @@
-const CACHE='fcne-training-v2.31-clean-20261023';
-const APP_SHELL=['./','./index.html','./manifest.webmanifest'];
+const CACHE='fcne-training-v2.34-halle-feld-20261030';
+const APP_SHELL=['./','./index.html','./manifest.webmanifest','./fcne-modefix-v234.js','./fcne-swap-ui-v234.js','./fcne-hall-game-v234.js','./fcne-swap-lock-v234.js'];
 
 self.addEventListener('install',e=>{
   e.waitUntil(
