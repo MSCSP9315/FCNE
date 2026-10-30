@@ -586,7 +586,7 @@ button,input,select,textarea{max-width:100%}
 </div><div class="category-note"><b>Aktuell:</b> E-Junioren ist vollständig aufgebaut. Die anderen Kategorien ergänzen wir danach mit den jeweils passenden offiziellen Inhalten.</div>
 <footer class="category-app-footer">
   <strong>FC NE Trainingsapp</strong>
-  <div class="app-version">Version 2.31 CLEAN · Stand 23.10.2026</div>
+  <div class="app-version">Version 2.34 · Halle/Feld-Fix · Stand 23.10.2026</div>
   <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
   <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
   <div class="usage-line">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -605,7 +605,7 @@ button,input,select,textarea{max-width:100%}
   </div>
   <footer class="app-footer">
     <strong>FC NE Trainingsapp</strong>
-    <div class="app-version">Version 2.31 CLEAN · Stand 23.10.2026</div>
+    <div class="app-version">Version 2.34 · Halle/Feld-Fix · Stand 23.10.2026</div>
     <div>Für den Trainingsalltag beim FC Neukirch-Egnach</div>
     <div class="app-credit">Konzept &amp; Weiterentwicklung: Simon Pfister</div>
     <div class="app-credit">Nur für den internen Gebrauch · Weitergabe oder Veröffentlichung nur mit Zustimmung.</div>
@@ -628,7 +628,7 @@ button,input,select,textarea{max-width:100%}
       <h3>Trainingsplanung für den Kinderfussball</h3>
       <p>Die App unterstützt die Vorbereitung und Durchführung von Trainingseinheiten mit getrennten Bereichen für SFV sowie alternative Übungen und Easy2Coach.</p>
       <div class="about-meta">
-        <div><b>Version 2.31 CLEAN</b><span>App-Version</span></div>
+        <div><b>Version 2.34 · Halle/Feld-Fix</b><span>App-Version</span></div>
         <div><b>23.10.2026</b><span>Build / Stand</span></div>
         <div><b>PWA</b><span>iPhone · iPad · Browser</span></div>
         <div><b>E-Junioren</b><span>Aktiver Trainingsbereich</span></div>
@@ -3620,7 +3620,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v219-smart-generator-material">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.31 CLEAN';
+  window.FCNE_APP_VERSION='2.34 HALLE/FELD';
 
   const esc=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
   const norm=(v)=>String(v??'').toLowerCase().replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss').normalize('NFD').replace(/[\u0300-\u036f]/g,'');
@@ -3926,7 +3926,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
   }
 })();
 </script>
-<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
+<script id="fcne-v219-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
 
 \n<style id="fcne-v220-material-css">
 .fcne-mat-status{display:flex;align-items:center;justify-content:space-between;gap:8px;background:#f3f7f4;border:1px solid #dce7e0;border-radius:11px;padding:8px 10px;margin:8px 0 10px;font-size:10px;line-height:1.35;color:#42574a}
@@ -3938,7 +3938,7 @@ function closeZoom(){document.getElementById('zoomOverlay').classList.remove('op
 <script id="fcne-v220-material-engine">
 (function(){
 'use strict';
-window.FCNE_APP_VERSION='2.31 CLEAN';
+window.FCNE_APP_VERSION='2.34 HALLE/FELD';
 const CACHE_KEY='fcne_material_exact_v220';
 const TRY_KEY='fcne_material_try_v220';
 const esc220=(v)=>typeof escapeHtml==='function'?escapeHtml(v):String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
@@ -4224,11 +4224,11 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   const prev=window.renderTrainerView;
   if(typeof prev==='function')window.renderTrainerView=function(t){prev(t);const row=document.querySelector('#trainerBody .trainer-action-row');if(row&&!row.querySelector('.trainer-pdf-btn')){const b=document.createElement('button');b.className='trainer-pdf-btn';b.innerHTML='📄 Trainerkarte als PDF';b.onclick=function(){window.fcneExportTrainerPdf(this)};row.appendChild(b);}};
-  window.FCNE_APP_VERSION='2.31 CLEAN';
+  window.FCNE_APP_VERSION='2.34 HALLE/FELD';
 })();
 </script>
 
-<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
+<script id="fcne-v222-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
 
 <style id="fcne-v223-fix-style">
 /* v2.27 – Detailheader Fix + robuster PDF-Export */
@@ -4347,16 +4347,16 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   };
   // Bestehenden Button umbiegen: zuerst Vorschau, dann direkter Nutzertipp auf Drucken/PDF.
   window.fcneExportTrainerPdf=function(){window.fcneOpenPdfPreview();};
-  window.FCNE_APP_VERSION='2.31 CLEAN';
+  window.FCNE_APP_VERSION='2.34 HALLE/FELD';
 })();
 </script>
-<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
-<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
+<script id="fcne-v223-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
+<script id="fcne-v224-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
 
 <script id="fcne-v225-hallen-ausklang">
 (function(){
   'use strict';
-  window.FCNE_APP_VERSION='2.31 CLEAN';
+  window.FCNE_APP_VERSION='2.34 HALLE/FELD';
   const specs=[
     {
       id:'fcne-hall-ausklang-penalty',title:'Penalty-Challenge',duration:10,players:'6–14',focus:'Torabschluss / Spass',
@@ -4457,10 +4457,10 @@ setTimeout(()=>{try{(DATA||[]).forEach(applyCache220);}catch(e){}},0);
   try{if(window.FCNE_ACTIVE_BRANCH==='easy2coach'&&window.FCNE_EASY_MODE==='hall'&&document.getElementById('epLibrary')?.classList.contains('open'))window.fcneRenderBranchLibrary?.();}catch(_){ }
 })();
 </script>
-<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
+<script id="fcne-v225-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
 
 
-<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.31 CLEAN';</script>
+<script id="fcne-v228-marker">window.FCNE_APP_VERSION='2.34 HALLE/FELD';</script>
 
-</body>
+<!-- Stable v2.31 CLEAN base + reviewed Halle/Feld v2.34 fixes -->\n<script src="./fcne-modefix-v234.js?v=20261030-234"></script>\n<script src="./fcne-swap-ui-v234.js?v=20261030-234"></script>\n<script src="./fcne-hall-game-v234.js?v=20261030-234"></script>\n<script src="./fcne-swap-lock-v234.js?v=20261030-234"></script>\n</body>
 </html>
