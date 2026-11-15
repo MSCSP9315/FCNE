@@ -1,0 +1,46 @@
+name: Upgrade production to v2.43 MH library
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/upgrade_v243.py"
+      - ".github/workflows/upgrade-v243.yml"
+permissions:
+  contents: write
+jobs:
+  upgrade:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests beautifulsoup4
+      - run: python tools/upgrade_v243.py
+      - name: Validate generated files
+        run: |
+          test -s index.html
+          test -s mh_library.json
+          test -s sw.js
+          grep -q "fcne-v243-prod" index.html
+          grep -q "2.43 MH-LIBRARY" index.html
+          python - <<'PY'
+          import json
+          d=json.load(open("mh_library.json",encoding="utf-8"))
+          assert len(d["units"])==29
+          assert len(d["exercises"])==129
+          print("Validated:",len(d["units"]),"units,",len(d["exercises"]),"exercises")
+          PY
+      - name: Commit production update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sw.js mh_library.json
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Upgrade production to v2.43 MH library"
+            git push
+          fi
