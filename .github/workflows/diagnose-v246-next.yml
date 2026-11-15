@@ -1,0 +1,16 @@
+name: Diagnose v2.46 wizard next
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/diagnose_v246_next.py"
+      - ".github/workflows/diagnose-v246-next.yml"
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/diagnose_v246_next.py
