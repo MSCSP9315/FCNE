@@ -11,8 +11,9 @@ try:
         page.on("pageerror",lambda exc: errors.append(str(exc)))
         page.goto("http://127.0.0.1:8765/index.html",wait_until="networkidle")
 
-        # Open Training planen
-        page.locator("#nav-wizard").click()
+        # Open Training planen via the app's public entry function.
+        # The bottom nav can be hidden on the initial category screen.
+        page.evaluate("startWizard()")
         page.wait_for_selector("#eplanOverlay.open")
 
         # MH branch
