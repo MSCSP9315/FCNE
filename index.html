@@ -4821,5 +4821,85 @@ document.querySelectorAll('.app-version').forEach(el=>{
 </script>
 <script>window.FCNE_APP_VERSION='2.46 MH-COMPOSE-FIX';</script>
 
+
+<script id="fcne-v248-mh-wizard">
+(function(){
+'use strict';
+window.FCNE_APP_VERSION='2.48 MH-WIZARD-FLOW';
+
+function ensureMHWizardStubs(){
+  DATA.filter(e=>e?.fcneBranch==='mh').forEach(e=>{
+    const idx=DATA.indexOf(e);
+    if(idx<0)return;
+    let sec=document.getElementById('detail-'+idx);
+    if(!sec){
+      sec=document.createElement('section');
+      sec.id='detail-'+idx;
+      sec.className='exercise-detail';
+      document.body.appendChild(sec);
+    }
+    if(!sec.querySelector('.detail-hero')){
+      const img=document.createElement('img');
+      img.className='detail-hero';
+      img.alt=e.title||'MH Übung';
+      img.src=e.image||'data:image/svg+xml;charset=utf-8,'+encodeURIComponent(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360"><rect width="100%" height="100%" fill="#f3eef9"/><text x="50%" y="50%" text-anchor="middle" dominant-baseline="middle" fill="#6d28d9" font-family="Arial" font-size="24">MH / fussballtraining.li</text></svg>'
+      );
+      sec.appendChild(img);
+    }
+  });
+}
+
+const compose248=window.fcneBranchCompose;
+window.fcneBranchCompose=async function(){
+  if((window.FCNE_ACTIVE_BRANCH||'sfv')!=='mh'){
+    return typeof compose248==='function'?compose248.apply(this,arguments):undefined;
+  }
+  try{
+    await window.fcneLoadMH();
+    ensureMHWizardStubs();
+    window.FCNE_ACTIVE_BRANCH='mh';
+
+    const pool=window.fcneBranchPool('mh');
+    if(!Array.isArray(pool)||!pool.length)throw new Error('MH-Übungen sind noch nicht geladen');
+
+    if(typeof window.eplanClose==='function')window.eplanClose();
+
+    draft={
+      name:'MH Training',
+      target:75,
+      players:10,
+      focus:'Gemischt / allgemein',
+      date:(typeof v191Today==='function'?v191Today():new Date().toISOString().slice(0,10)),
+      notes:'Zweig: MH / fussballtraining.li',
+      customDurations:{},
+      selections:{},
+      sourceBranch:'mh',
+      environment:'field'
+    };
+    window.FCNE_WIZARD_RETURN_CONTEXT={view:'branch',branch:'mh',mode:null};
+    window.FCNE_WIZARD_ENTRY_MODE='compose';
+    wizardStep=0;
+    showScreen('wizard');
+    renderWizard();
+  }catch(err){
+    console.error('FCNE MH wizard flow error',err);
+    alert('Training zusammenstellen konnte nicht geöffnet werden: '+(err?.message||String(err)));
+  }
+};
+
+const render248=window.renderWizard;
+window.renderWizard=function(){
+  if(typeof draft!=='undefined'&&draft?.sourceBranch==='mh')ensureMHWizardStubs();
+  return typeof render248==='function'?render248.apply(this,arguments):undefined;
+};
+
+document.querySelectorAll('.app-version').forEach(el=>{
+  if(/Version/i.test(el.textContent||''))el.textContent='Version 2.48 · MH Wizard-Flow · Build 2026.11.15';
+});
+})();
+</script>
+<script>window.FCNE_APP_VERSION='2.48 MH-WIZARD-FLOW';</script>
+
 </body>
 </html>
