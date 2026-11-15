@@ -1,0 +1,17 @@
+name: Clear stale Pages deployment
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/clear-stale-pages.yml"
+permissions:
+  actions: write
+jobs:
+  cancel-stale:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancel stale Pages run
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh api --method POST "repos/$GH_REPO/actions/runs/43759145167/cancel" || true
