@@ -1,0 +1,36 @@
+name: Apply v2.45 MH open fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/fix_v245.py"
+      - ".github/workflows/fix-v245.yml"
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/fix_v245.py
+      - name: Validate patch
+        run: |
+          grep -q "fcne-v245-mh-open" index.html
+          grep -q "2.45 MH-OPEN-FIX" index.html
+          grep -q "v2.45-mh-open-fix" sw.js
+      - name: Commit v2.45
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sw.js
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Apply v2.45 MH complete-training open fix"
+            git push
+          fi
