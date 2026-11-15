@@ -21,17 +21,19 @@ try:
         page.locator("#fcneMhBranchCard").click()
         page.wait_for_function("() => window.FCNE_ACTIVE_BRANCH === 'mh'")
 
-        # Complete training must open visibly.
-        page.get_by_text("29 komplette Trainingseinheiten",exact=False).first.click()
-        page.wait_for_selector(".fcne-mh-unit-card")
+        # Complete training must open visibly. Restrict to the visible MH branch panel,
+        # because the home-card contains the same words but is hidden at this point.
+        mh_branch=page.locator("#epBranch.open")
+        mh_branch.get_by_text("29 komplette Trainingseinheiten",exact=True).click()
+        page.wait_for_selector("#epLibrary.open .fcne-mh-unit-card")
         page.locator(".fcne-mh-unit-card").first.click()
         page.wait_for_selector("#mhUnitOverlay.open")
         assert page.locator("#mhUnitOverlay.open").is_visible()
         page.locator("#mhUnitOverlay .round-back").click()
 
         # Return to MH branch, then compose.
-        page.get_by_role("button",name="‹ Zurück zu MH").click()
-        page.get_by_text("Training zusammenstellen",exact=True).click()
+        page.locator("#epLibrary.open").get_by_role("button",name="‹ Zurück zu MH").click()
+        page.locator("#epBranch.open").get_by_text("Training zusammenstellen",exact=True).click()
         page.wait_for_selector("#screen-wizard.active")
         assert page.locator("#screen-wizard.active").is_visible()
         assert page.evaluate("draft.sourceBranch")=="mh"
