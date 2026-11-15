@@ -142,6 +142,11 @@ closing.update({"id":"mh-closing-generic","title":"MH Abschlussspiel","category"
 if len(units)!=29 or len(exs)!=129: raise SystemExit(f"MH validation failed: units={len(units)} exercises={len(exs)}")
 img_count=sum(bool(e.get("image")) for e in exs)
 print(f"MH scrape: {len(units)} units, {len(exs)} exercises, {img_count} image URLs")
+missing_imgs=[e for e in exs if not e.get("image")]
+if missing_imgs:
+    print("MISSING_IMAGES:")
+    for e in missing_imgs:
+        print(e["id"],"|",e["title"],"|",e["source_url"])
 if img_count<120: raise SystemExit(f"MH image validation failed: only {img_count} image URLs")
 MHFILE.write_text(json.dumps({"source":"https://fussballtraining.li/publikationen/die-neuen/gratisbuch-fussballtraining","units":units,"exercises":exs,"closing":closing},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
 
