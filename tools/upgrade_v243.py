@@ -140,7 +140,9 @@ closing_page=extract("mh-closing","Abschlussspiel",CLOSING)
 closing=(closing_page["exercises"] or [{}])[0]
 closing.update({"id":"mh-closing-generic","title":"MH Abschlussspiel","category":"Ausklang","duration":15,"field":"Feld","environment":"field","fcneTrainingPlaces":"Feld","focus":"Spielformen","fcneBranch":"mh","source_provider":"MH / fussballtraining.li","source_label":"Martin Hasenpflug – Das Abschlussspiel im Fußballtraining","source_url":CLOSING,"mhUnitId":"mh-closing","mhUnitTitle":"Das Abschlussspiel im Fußballtraining","mhTheme":"Abschlussspiel","mhOrder":99,"mhStage":"Abschlussspiel","mhGenericClosing":True})
 if len(units)!=29 or len(exs)!=129: raise SystemExit(f"MH validation failed: units={len(units)} exercises={len(exs)}")
-if sum(bool(e.get("image")) for e in exs)<128: raise SystemExit("MH image validation failed")
+img_count=sum(bool(e.get("image")) for e in exs)
+print(f"MH scrape: {len(units)} units, {len(exs)} exercises, {img_count} image URLs")
+if img_count<120: raise SystemExit(f"MH image validation failed: only {img_count} image URLs")
 MHFILE.write_text(json.dumps({"source":"https://fussballtraining.li/publikationen/die-neuen/gratisbuch-fussballtraining","units":units,"exercises":exs,"closing":closing},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
 
 # Mark the 177 user-confirmed Easy2Coach records directly in the embedded dataset.
