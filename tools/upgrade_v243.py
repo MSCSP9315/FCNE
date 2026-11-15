@@ -92,11 +92,22 @@ def extract(uid,theme,url):
         mm=re.search(r"Organisation\s*(?:&|und)\s*Ablauf\s*(?:\(([^)]*)\))?",marker,re.I)
         stage=clean(mm.group(1) if mm and mm.group(1) else re.sub(r"Organisation\s*(?:&|und)\s*Ablauf","",marker,flags=re.I))
         image="";alt=""
-        for j in range(idx-1,-1,-1):
+        # The exercise image is commonly nested in the same paragraph as
+        # "Organisation & Ablauf". BeautifulSoup emits the parent text event
+        # before the nested <img>, so first search FORWARD inside this exact
+        # exercise segment. This avoids shifting every image by one exercise.
+        for j in range(idx+1,nxt):
             if events[j][0]=="img":
                 a=events[j][1]["alt"];s=events[j][1]["src"]
                 if not re.search(r"(Martin Hasenpflug|Viererkette bei|Pin It|Bücher|Cover|logo)",a,re.I):
                     image=s;alt=a;break
+        # Fallback for pages where the image is placed directly before the marker.
+        if not image:
+            for j in range(idx-1,-1,-1):
+                if events[j][0]=="img":
+                    a=events[j][1]["alt"];s=events[j][1]["src"]
+                    if not re.search(r"(Martin Hasenpflug|Viererkette bei|Pin It|Bücher|Cover|logo)",a,re.I):
+                        image=s;alt=a;break
         seg=[v for k,v in events[idx:nxt] if k=="text"]
         fields={"Organisation & Ablauf":[],"Spieleranzahl":[],"Wettbewerb":[],"Variation":[],"Tipp":[]};cur="Organisation & Ablauf"
         for s in seg:
