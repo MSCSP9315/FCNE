@@ -92,7 +92,7 @@ def extract(uid,theme,url):
         mm=re.search(r"Organisation\s*(?:&|und)\s*Ablauf\s*(?:\(([^)]*)\))?",marker,re.I)
         stage=clean(mm.group(1) if mm and mm.group(1) else re.sub(r"Organisation\s*(?:&|und)\s*Ablauf","",marker,flags=re.I))
         image="";alt=""
-        for j in range(idx-1,max(-1,idx-12),-1):
+        for j in range(idx-1,-1,-1):
             if events[j][0]=="img":
                 a=events[j][1]["alt"];s=events[j][1]["src"]
                 if not re.search(r"(Martin Hasenpflug|Viererkette bei|Pin It|Bücher|Cover|logo)",a,re.I):
@@ -147,7 +147,7 @@ if missing_imgs:
     print("MISSING_IMAGES:")
     for e in missing_imgs:
         print(e["id"],"|",e["title"],"|",e["source_url"])
-if img_count<120: raise SystemExit(f"MH image validation failed: only {img_count} image URLs")
+if img_count<128: raise SystemExit(f"MH image validation failed: only {img_count} image URLs")
 MHFILE.write_text(json.dumps({"source":"https://fussballtraining.li/publikationen/die-neuen/gratisbuch-fussballtraining","units":units,"exercises":exs,"closing":closing},ensure_ascii=False,separators=(",",":")),encoding="utf-8")
 
 # Mark the 177 user-confirmed Easy2Coach records directly in the embedded dataset.
