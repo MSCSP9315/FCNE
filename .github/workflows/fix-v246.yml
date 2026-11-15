@@ -1,0 +1,43 @@
+name: Apply v2.46 MH compose fix
+on:
+  push:
+    branches: [main]
+    paths:
+      - "tools/fix_v246.py"
+      - "tools/smoke_v246.py"
+      - ".github/workflows/fix-v246.yml"
+permissions:
+  contents: write
+jobs:
+  patch-test-commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python tools/fix_v246.py
+      - name: Validate static patch
+        run: |
+          grep -q "fcne-v246-mh-compose" index.html
+          grep -q "2.46 MH-COMPOSE-FIX" index.html
+          grep -q "v2.46-mh-compose-fix" sw.js
+      - name: Install Playwright
+        run: |
+          pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Browser smoke test
+        run: python tools/smoke_v246.py
+      - name: Commit v2.46
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html sw.js
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "Apply v2.46 MH compose fix"
+            git push
+          fi
